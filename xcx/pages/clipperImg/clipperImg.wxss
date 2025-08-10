@@ -1,0 +1,20 @@
+/* pages/clipperImg/clipperImg.wxss */
+.cropper-buttons{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  z-index: 999;
+}
+.btn{
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #0acd7a;
+  padding: 0 50rpx;
+  border-radius: 90rpx;
+  margin: 0 20rpx;
+}

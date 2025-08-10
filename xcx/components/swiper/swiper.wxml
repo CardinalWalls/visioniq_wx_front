@@ -1,0 +1,17 @@
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<view class="swiper-box {{classname}}">
+  <swiper class="swiper-banner" autoplay="{{autoplay}}" circular="true" style="height: {{height}}rpx" bindchange="CurrentChange">
+    <swiper-item wx:for="{{banners}}" wx:key="index" class="swiper-item-2">
+      <navigator url="{{item.url}}" hover-class='none' class='db link' wx:if="{{item.url !== ''}}">
+        <image src="{{MyMethods.requestImgUrl(item[imgKey], {size: '&x-oss-process=image/resize,m_lfit,s_'+height})}}" class="slide-image imgbg" mode='{{mode}}' />
+      </navigator>
+      <image wx:else src="{{MyMethods.requestImgUrl(item[imgKey], {size: '&x-oss-process=image/resize,m_lfit,s_'+height})}}" class="slide-image imgbg" mode='{{mode}}' />
+      <!-- <image src="../../images/banner.png" class="slide-image imgbg" mode='{{mode}}' /> -->
+    </swiper-item>
+  </swiper>
+  <view class="swiper-pages" wx:if="{{banners.length > 1 && isShowDots}}">
+    <view wx:for="{{banners}}" wx:key="index" class="pages {{pagesIndex == index ? 'active' : ''}}"></view>
+  </view>
+
+  <slot name="search"></slot>
+</view>

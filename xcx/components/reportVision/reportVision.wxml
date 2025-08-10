@@ -1,0 +1,4 @@
+<!--components/report/report.wxml-->
+<view style="height: 340px;" wx:if="{{vision.length > 0}}">
+  <ec-canvas id="mychart-dom-line-v1" canvas-id="mychart-line-v1" ec="{{ ecLine }}"></ec-canvas>
+</view>

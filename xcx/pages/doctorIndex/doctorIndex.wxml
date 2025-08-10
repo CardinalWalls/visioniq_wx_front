@@ -1,0 +1,85 @@
+<!--pages/doctorIndex/doctorIndex.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="user-top">
+  <SwiperBanner banners="{{banner}}" height="410"></SwiperBanner>
+</view>
+
+<view class="meun-list">
+  <view class="item-box">
+    <navigator url="/pages/addArchives/addArchives" hover-class="none" class="item tab1">
+      <icon class="icon-manger-xjda"></icon>
+      <view class="text-box">
+        <view class="name">新建档案</view>
+        <view class="dec">快速建立档案资料</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="item-box">
+    <navigator url="/pages/doctor/archivesManage/archivesManage" hover-class="none" class="item tab2">
+      <icon class="icon-manger-dagl"></icon>
+      <view class="text-box">
+        <view class="name">档案管理</view>
+        <view class="dec">用户档案合集</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="item-box">
+    <navigator url="/pages/doctor/myProfile/myProfile" hover-class="none" class="item tab3">
+      <icon class="icon-manger-wdzl"></icon>
+      <view class="text-box">
+        <view class="name">我的资料</view>
+        <view class="dec">查看个人资料内容</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="item-box">
+    <navigator url="/pages/doctor/bookManage/bookManage" hover-class="none" class="item tab4">
+      <icon class="icon-manger-yyyh"></icon>
+      <view class="text-box">
+        <view class="name">预约用户</view>
+        <view class="dec">已预约用户显示</view>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<!-- 在线对话 -->
+<view class="online-chat">
+  <view class="title-box">
+    <text class="name">在线对话</text>
+    <view class="fe"></view>
+    <view class="btn">
+      <icon class="icon-manger-msg"></icon>
+      未读消息<text class="red">{{tj.totalUnread || 0}}</text>条
+    </view>
+  </view>
+
+  <block wx:if="{{d}}">
+    <no-data wx:if="{{d.total == 0}}"></no-data>
+    <view class="chat-list" wx:else>
+        <view class="item" wx:for="{{d.list}}" wx:key="index">
+        <navigator class="img-box" url="/pages/doctor/archivesDetail/archivesDetail?userArchiveId={{item.id}}" hover-class="none">
+          <image src="{{MyMethods.requestImgUrl('', {type: 'avatar'})}}" mode="aspectFill" class="imgbg img"></image>
+          <icon class="point" wx:if="{{allObj[item.id] > 0}}"></icon>
+        </navigator>
+        <navigator url="/pages/chatWindow/chatWindow?userArchiveId={{item.id}}" hover-class="none" class="text-box">
+          <view class="row-1">
+            <text class="name">{{item.name}}</text>
+            <text class="age">{{MyMethods.getAgeMothDay(item.birth)}}</text>
+            <icon class="icon-gender{{item.gender}} gender"></icon>
+            <text class="risk-level {{item.riskLevel === 2 ?'blue':''}}" wx:if="{{item.riskLevel === 2 || item.riskLevel === 3}}">{{MyMethods.getRiskLevel(item.riskLevel).name}}</text>
+          </view>
+          <text class="time">{{MyMethods.dateClipping(item.lastMessageTime, 0, 10)}}</text>
+          <view class="remark" wx:if="{{item.remark}}">{{item.remark}}</view>
+          <view class="dec">{{item.lastMessage || '无'}}</view>
+        </navigator>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="ios"></view>

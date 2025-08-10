@@ -1,0 +1,50 @@
+<!--pages/chatWindow/chatWindow.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<view class="chat-content">
+  <!-- <view class="tab-sticky ref">
+    <view class="user-info">
+      <icon class="icon-expert"></icon>
+      <text class="name">专家咨询</text>
+      <view class="text-box">权威专家为您<text>1V1</text>防控指导</view>
+    </view>
+  </view> -->
+
+  <view class="tab-sticky ref">
+    <view class="tabs-link">
+      <navigator url="/pages/doctor/archivesDetail/archivesDetail?userArchiveId={{archive.id}}" hover-class="none" class="item">用户主页</navigator>
+      <navigator url="/pages/user/manageCheck/manageCheck?userArchiveId={{archive.id}}" hover-class="none" class="item">视力档案</navigator>
+
+      <block wx:if="{{archive.age <= 18}}">
+        <block wx:if="{{d && d.total > 0 && vision.length == 1 && vision[0].l && vision[0].r}}">
+          <navigator url="/pages/news/risk/risk?userArchiveId={{archive.id}}&reportid={{d.list[0].id}}" hover-class="none" class="item">风险评估</navigator>
+        </block>
+        <block wx:else="">
+          <view bind:tap="tapRisk" data-type="risk" class="item">风险评估</view>
+        </block>
+      </block>
+
+      <navigator url="/pages/doctor/velocityMeasurement/velocityMeasurement?userArchiveId={{archive.id}}" hover-class="none" class="item" wx:if="{{speed[archive.id] && speed[archive.id].l && speed[archive.id].r}}">
+          <view>区间测速</view>
+        </navigator>
+        <view class="item" bind:tap="tapRisk" data-type="speed" wx:else="">
+          <view>区间测速</view>
+        </view> 
+    </view>
+
+    <view class="remark" wx:if="{{archive.remark !==''}}">{{archive.remark}}</view>
+  </view>
+
+  <view wx:if="{{archive}}">
+    
+    <chat-window boxH="{{boxH}}" archive="{{archive}}"></chat-window>
+  </view>
+
+  <view class="ref">
+    <view style="height: 90rpx;padding: 20rpx;"></view>
+    <view class="ios"></view>
+  </view>
+</view>

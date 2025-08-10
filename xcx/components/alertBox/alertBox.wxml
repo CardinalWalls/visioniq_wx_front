@@ -1,0 +1,7 @@
+<!--components/AlertBox/AlertBox.wxml-->
+<view class="alert-box" wx:if="{{isShowMy}}">
+  <view class="alert-bg" catchtap="bindClose"></view>
+  <view class="alert-slot {{isclass}} active">
+    <slot></slot>
+  </view>
+</view>

@@ -1,0 +1,66 @@
+<!--pages/users/index/index.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}"></NavBar>
+<!-- 导航 end -->
+
+<block wx:if="{{user !== ''}}">
+
+  <view class="modify-pd">
+    <view class='modify-box'>
+      <!-- bindtap="changeImg" -->
+      <view class="modify-item">
+        <view class="title">头像</view>
+        <view class="fe text-box tr">
+          <view class="headimg-box">
+            <UserOpenType bind:success="minuserChange" typecount="{{-1}}"></UserOpenType>
+            <image class="avatar imgbg" mode="aspectFill" src="{{MyMethods.isHttps(user.avatar) ? user.avatar: MyMethods.requestImgUrl(user.avatar, {type: 'avatar',size: '&x-oss-process=image/resize,m_lfit,s_90'})}}">
+            </image>
+          </view>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">手机号码</view>
+        <view class="fe text-box tr">
+          <input type="number" value="{{user.phone}}" disabled></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">姓名</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入姓名" data-name="realName" value="{{user.realName}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">性别</view>
+        <view class="fe text-box tr">
+          <PickerSelector list="{{gender}}" rangeKey="name" bind:change="pickerChange" data-type="gender">
+            <input placeholder="请选择性别" value="{{user.gender === 0 ? '':gender[user.gender-1].name}}" cursor-spacing="40" disabled></input>
+          </PickerSelector>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow"></icon>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="fixed-btn-h"></view>
+  <view class="ios"></view>
+
+
+  <view class="fixed-btn">
+    <view class="btn-box-log">
+      <view class="submit-log" bindtap="saveInfo">
+        <icon class="icon-home-log" />
+        <text class="text">保存</text>
+      </view>
+    </view>
+    <view class="ios"></view>
+  </view>
+</block>

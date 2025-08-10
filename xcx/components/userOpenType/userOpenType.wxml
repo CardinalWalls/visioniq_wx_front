@@ -1,0 +1,6 @@
+<!--components/phoneOpenType/phoneOpenType.wxml-->
+<view class="opentype" wx:if="{{isShow}}">
+  <button hover-class="none" open-type="chooseAvatar" bindchooseavatar="bindchooseavatar" class="opentype" wx:if="{{canIUseGetUserProfile == 3 }}"></button>  
+  <button hover-class="none" bindtap="getUserProfile" class="opentype" wx:elif="{{canIUseGetUserProfile == 2 }}"></button>
+  <button hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="opentype" wx:else></button>
+</view>

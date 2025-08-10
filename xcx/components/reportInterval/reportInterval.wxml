@@ -1,0 +1,42 @@
+<!--components/report/report.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<view wx:if="{{vision.r}}">
+  <view style="height: 320px;">
+    <ec-canvas id="mychart-dom-line-v2" canvas-id="mychart-line-v1" ec="{{ ecLineRight }}"></ec-canvas>
+  </view>
+
+  <view class="report-content" wx:if="{{vision.r.description !==''}}">
+    <view class="report-content-dec">
+      <text class="result">结论：{{vision.r.description}}</text>
+    </view>
+  </view>
+</view>
+
+<view style="margin-top: 40rpx; border-top: 1px solid #eee; padding-top: 30rpx;" wx:if="{{vision.l}}">
+  <view style="height: 320px;">
+    <ec-canvas id="mychart-dom-line-v2" canvas-id="mychart-line-v2" ec="{{ ecLineLeft }}"></ec-canvas>
+  </view>
+
+  <view class="report-content" wx:if="{{vision.l.description !==''}}">
+    <view class="report-content-dec">
+      <text class="result">结论：{{vision.l.description}}</text>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 提交按钮-提示框 -->
+<my-dialog show="{{isShow}}" title="提示" isCloseBtn="{{false}}" maskClosable="{{false}}" extClass="dialog-book" maskClosable="{{true}}">
+
+<view class="dialog-tips-dec">
+  <view>检查日期：{{MyMethods.getDateChina(formobj.inspectDate)}}</view>
+  <view>防控办法：{{(record[formobj.inspectDate].measures||'暂无')}}</view>
+</view>
+<view slot="footer" class="btn-box">
+    <view class="btn" bindtap="tapCancel">关闭</view>
+  <view style="width: 20rpx;"></view>
+  <view class="btn orange" bindtap="tapUpdate">修正</view>
+</view>
+</my-dialog>

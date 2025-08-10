@@ -1,0 +1,169 @@
+/* pages/addArchives/addArchives.wxss */
+.form-list {
+  padding: 40rpx 20rpx;
+}
+
+.form-list .item {
+  margin-bottom: 40rpx;
+}
+
+.form-list .pick-line {
+  display: flex;
+  align-items: center;
+}
+
+.form-list .line {
+  width: 33rpx;
+  height: 3rpx;
+  background-color: #e5e5e5;
+  margin: 0 10rpx;
+}
+
+.form-list .item-lable {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.form-list .require {
+  color: #f83b43;
+  margin-right: 10rpx;
+}
+
+.form-list .require.opa0 {
+  opacity: 0;
+}
+
+.form-list .name {
+  color: #262626;
+  font-size: 32rpx;
+}
+
+.form-list .green {
+  color: #45b778;
+  font-size: 26rpx;
+}
+
+.form-list .gray {
+  color: #bbbbbb;
+  font-size: 24rpx;
+}
+
+.form-list .item-con {
+  display: flex;
+  align-items: center;
+  background-color: #f6f6f6;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 80rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.form-list .text-box {
+  flex: 1;
+  padding: 0 20rpx 0 30rpx;
+}
+
+.form-list .input-text {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  color: #1a1a1a;
+}
+
+.form-list .input-text.tc {
+  text-align: center;
+}
+
+.form-list .opacity {
+  opacity: 0;
+}
+
+.form-list .icon-box {
+  padding-right: 30rpx;
+}
+
+.protocol-box {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.protocol-box .link {
+  color: #01c176;
+}
+
+.pab-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.nologin-phone-text {
+  position: absolute;
+  top: 50%;
+  left: 30rpx;
+  z-index: 2;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+}
+
+.imglist {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.imglist .imgbox {
+  border-radius: 20rpx;
+  background-color: #f6f6f6;
+  width: 144rpx;
+  height: 144rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14rpx;
+  margin-bottom: 14rpx;
+  position: relative;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.imglist .imgbox .icon-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.imglist .imgbox:nth-child(4n) {
+  margin-right: 0;
+}
+
+.imglist .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.dialog-title {
+  font-size: 48rpx;
+  color: #01c176;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+
+.dialog-dec {
+  color: #101010;
+  font-size: 24rpx;
+  margin: 30rpx 0 50rpx 0;
+}

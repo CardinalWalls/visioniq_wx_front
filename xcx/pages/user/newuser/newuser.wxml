@@ -1,0 +1,21 @@
+<!--pages/user/newuser/newuser.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}"></NavBar>
+<!-- 导航 end -->
+<view class="bg" style="background: url({{bg}}) no-repeat top center;background-size: 100% 100%;"></view>
+
+<view class="main-fixed">
+  <view style="height: {{navheight}}px"></view>
+  <view class="headimg-box">
+    <image src="{{MyMethods.requestImgUrl(minuser.wxImg, { type: 'avatar'})}}" mode="aspectFill" class="imgbg headimg"></image>
+  </view>
+  <view class="phone">{{minuser.phonePwd}}</view>
+  <view class="fe">
+  </view>
+  <icon class="icon-newuser-text"></icon>
+  <view class="add-box">
+    <navigator url="/pages/addArchives/addArchives" class="icon-newuser-add" hover-class="none"></navigator>
+  </view>
+  <view class="ios"></view>
+</view>

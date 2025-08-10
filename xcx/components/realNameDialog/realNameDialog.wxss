@@ -1,0 +1,55 @@
+/* components/AuthDialog/AuthDialog.wxss */
+
+
+/* 授权登录弹窗 */
+@import "../../wxss/small.wxss";
+
+.auth-box {
+  padding: 30rpx 30rpx 60rpx;
+
+  border-radius: 10rpx;
+  background-color: #fff;
+  width: 540rpx !important;
+}
+
+.auth-box .close{
+  position: absolute;
+  top: 60rpx;
+  right: 30rpx;
+  display: block;
+}
+
+.auth-box .title {
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+}
+
+.auth-box .text {
+  font-size: 24rpx;
+  color: #838383;
+  margin-top: 20rpx;
+}
+
+
+.auth-btns {
+  margin-top: 40rpx;
+}
+
+.auth-btns .btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  border: 1rpx solid #1ea8ff;
+  position: relative;
+  z-index: 1;
+  border-radius: 10rpx;
+  text-align: center;
+  background-color: #1ea8ff;
+  color: #fff;
+}
+
+.auth-btns .weixin {
+  margin-right: 10rpx;
+  margin-top: -8rpx;
+}

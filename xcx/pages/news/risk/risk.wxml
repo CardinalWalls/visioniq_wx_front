@@ -1,0 +1,267 @@
+<!--pages/PersonalCenter/PromoteRule/PromoteRule.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+
+  <!-- 导航 start -->
+  <NavBar navbar-data="{{nvabarData}}"></NavBar>
+  <!-- 导航 end -->
+  
+  <block wx:if="{{vision}}">
+    
+    <!-- 近视度数预测 -->
+    <view class="box first">
+      <view class="title-box">
+        <text class="name">近视度数预测</text>
+        <view class="fe"></view>
+      </view>
+
+      <view style="min-height: 400rpx;">
+        <view class="vision-swiper" wx:if="{{vision}}">
+          <report vision="{{ vision}}"></report>
+        </view>
+      </view>
+    </view>
+
+    <!-- 评估结果 -->
+    <view class="box" style="padding-bottom: 30rpx;">
+      <view class="title-box">
+        <text class="name">评估结果</text>
+        <view class="fe"></view>
+      </view>
+
+      <!-- 现在是0绿色, 1,2黄色, 4红色 -->
+      <view class="result-level">
+        <view class="item status0">
+            <view class="dec">低风险</view>
+
+            <view class="position" wx:if="{{vision[0].l.nearsight_level == 0}}">
+                <icon class="icon-result-arrow"></icon>
+                <text class="text">您的评估结果</text>
+            </view>
+        </view>
+        <view class="item status1">
+            <view class="dec">中风险</view>
+
+            <view class="position" wx:if="{{vision[0].l.nearsight_level == 1 || vision[0].l.nearsight_level == 2 || vision[0].l.nearsight_level == 3}}">
+                <icon class="icon-result-arrow"></icon>
+                <text class="text">您的评估结果</text>
+            </view>
+        </view>
+        <view class="item status2">
+            <view class="dec">高风险</view>
+
+            <view class="position" wx:if="{{vision[0].l.nearsight_level == 4}}">
+                <icon class="icon-result-arrow"></icon>
+                <text class="text">您的评估结果</text>
+            </view>
+        </view>
+      </view>
+
+      <!-- <view class="tips status0" wx:if="{{vision[0].l.nearsight_level == 0 || vision[0].r.nearsight_level == 0}}">
+          <view class="text">视力发展趋势健康</view>
+        </view>
+        <view class="tips status2" wx:elif="{{vision[0].l.nearsight_level == 4 || vision[0].r.nearsight_level == 4}}">
+          <view class="text">
+            <block wx:if="{{vision[0].l.nearsight_level == 4 && vision[0].r.nearsight_level == 4}}">双眼</block>
+            <block wx:elif="{{vision[0].l.nearsight_level == 4}}">左眼</block>
+            <block wx:elif="{{vision[0].r.nearsight_level == 4}}">右眼</block>有高度近视风险
+          </view>
+        </view>
+        <view class="tips status1" wx:else>
+          <view class="text">
+            <block wx:if="{{vision[0].l.nearsight_level > 0 && vision[0].r.nearsight_level> 0 }}">双眼</block>
+            <block wx:elif="{{vision[0].l.nearsight_level > 0 }}">左眼</block>
+            <block wx:elif="{{vision[0].r.nearsight_level > 0 }}">右眼</block>有近视发展风险
+          </view>
+        </view> -->
+    </view>
+
+      <!-- 近视预测指数 -->
+      <view class="box">
+        <view class="title-box">
+          <text class="name">近视预测指数</text>
+          <view class="fe"></view>
+        </view>
+
+        <!-- <view class="report-content-pd"  wx:if="{{detail}}">
+          <view class="report-content-dec2">
+            <rich-text nodes="{{detail.content}}"></rich-text>
+          </view>
+        </view> -->
+
+        <view class="table year">
+          <view class="item tit">
+            <view class="text">年龄</view>
+            <view class="text">右眼屈光度(D)</view>
+            <view class="text">左眼屈光度(D)</view>
+          </view>
+          <view class="item" wx:for="{{vision[0].l.future_records}}" wx:key="index">
+            <view class="text">{{item.age}}岁</view>
+            <view class="text">{{MyMethods.twoDecimal(vision[0].r.future_records[index].diopter_s)}}D</view>
+            <view class="text">{{MyMethods.twoDecimal(item.diopter_s)}}D</view>
+          </view>
+        </view>
+
+      </view>
+
+      <!-- 眼轴发展指数 -->
+      <view class="box">
+        <view class="title-box">
+          <text class="name">眼轴发展指数</text>
+          <view class="fe"></view>
+        </view>
+        
+        <block wx:if="{{visionNew.alRecordsTime.length > 0}}">
+          <view class="table" wx:for="{{visionNew.alRecordsTime}}" wx:key="index">
+            <view class="item tit">
+              <view class="text"></view>
+              <view class="text">右眼</view>
+              <view class="text">左眼</view>
+            </view>
+            <view class="item">
+              <view class="text">时间</view>
+              <view class="text">{{item || ''}}</view>
+              <view class="text">{{item || ''}}</view>
+            </view>
+            
+            <view class="item">
+              <view class="text">眼轴长度AL(mm)</view>
+              <view class="text">{{visionNew.alRecordsR[item].AL || ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].AL || ''}}</view>
+            </view>
+            <view class="item">
+              <view class="text">眼轴长度百分比</view>
+              <view class="text">{{visionNew.alRecordsR[item].AL_percentage ?MyMethods.getFloor(visionNew.alRecordsR[item].AL_percentage, 0) + '%' : ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].AL_percentage ? MyMethods.getFloor(visionNew.alRecordsL[item].AL_percentage, 0) + '%' : ''}}</view>
+            </view>
+
+            <view class="item status s{{visionNew.alRecordsL[item].AL_warning_level}}" wx:if="{{visionNew.alRecordsR[item].AL_warning == visionNew.alRecordsL[item].AL_warning && visionNew.alRecordsL[item].AL_warning !== ''}}">
+              <view class="text">眼轴长度结论：{{visionNew.alRecordsL[item].AL_warning}}</view>
+            </view>
+            <view class="item" wx:else>
+              <view class="text tit">眼轴长度结论</view>
+              
+              <view class="text status s{{visionNew.alRecordsR[item].AL_warning_level}}">{{visionNew.alRecordsR[item].AL_warning || ''}}</view>
+              <view class="text status s{{visionNew.alRecordsL[item].AL_warning_level}}">{{visionNew.alRecordsL[item].AL_warning || ''}}</view>
+            </view>
+
+            <block wx:if="{{visionNew.alRecordsL[item].grow_warning || visionNew.alRecordsR[item].grow_warning}}">
+              <view class="item">
+                <view class="text">眼轴增长(mm)</view>
+                <view class="text">{{visionNew.alRecordsR[item].AL_grow ? MyMethods.getFloor(visionNew.alRecordsR[item].AL_grow, 4) : ''}}</view>
+                <view class="text">{{visionNew.alRecordsL[item].AL_grow ? MyMethods.getFloor(visionNew.alRecordsL[item].AL_grow, 4): ''}}</view>
+              </view>
+              <view class="item">
+                <view class="text">眼轴增长参考值</view>
+                <view class="text">{{visionNew.alRecordsR[item].grow_safe ?MyMethods.getFloor(visionNew.alRecordsR[item].grow_safe, 4) : ''}}</view>
+                <view class="text">{{visionNew.alRecordsL[item].grow_safe ? MyMethods.getFloor(visionNew.alRecordsL[item].grow_safe, 4) :''}}</view>
+              </view>
+
+              <view class="item status s{{visionNew.alRecordsL[item].grow_warning_level}}" wx:if="{{visionNew.alRecordsR[item].grow_warning === visionNew.alRecordsL[item].grow_warning && visionNew.alRecordsL[item].grow_warning !=='' }}">
+                <view class="text">眼轴增长结论：{{visionNew.alRecordsL[item].grow_warning||''}}</view>
+              </view>
+              <view class="item" wx:else>
+                <view class="text tit">眼轴增长结论</view>
+                  <view class="text status s{{visionNew.alRecordsR[item].grow_warning_level}}">{{visionNew.alRecordsR[item].grow_warning || ''}}</view>
+                  <view class="text status s{{visionNew.alRecordsL[item].grow_warning_level}}">{{visionNew.alRecordsL[item].grow_warning || ''}}</view>
+              </view>
+            </block>
+
+
+            <view class="item">
+              <view class="text">平角膜曲率K1</view>
+              <view class="text">{{visionNew.alRecordsR[item].K1 || ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].K1 || ''}}</view>
+            </view>
+            <view class="item">
+              <view class="text">陡角膜曲率K2</view>
+              <view class="text">{{visionNew.alRecordsR[item].K2 || ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].K2 || ''}}</view>
+            </view>
+
+
+            <view class="item">
+              <view class="text">角膜曲率CR</view>
+              <view class="text">{{visionNew.alRecordsR[item].CR || ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].CR || ''}}</view>
+            </view>
+            <view class="item">
+              <view class="text">轴率比</view>
+              <view class="text">{{visionNew.alRecordsR[item].ratio ? MyMethods.getFloor(visionNew.alRecordsR[item].ratio, 4) : ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].ratio ? MyMethods.getFloor(visionNew.alRecordsL[item].ratio,4) : ''}}</view>
+            </view>
+            <view class="item">
+              <view class="text">轴率比参考值</view>
+              <view class="text">{{visionNew.alRecordsR[item].ratio_limit ? MyMethods.getFloor(visionNew.alRecordsR[item].ratio_limit, 4) : ''}}</view>
+              <view class="text">{{visionNew.alRecordsL[item].ratio_limit ? MyMethods.getFloor(visionNew.alRecordsL[item].ratio_limit,4) : ''}}</view>
+            </view>
+            <view class="item status s{{visionNew.alRecordsL[item].ratio_warning_level}}" wx:if="{{visionNew.alRecordsR[item].ratio_warning == visionNew.alRecordsL[item].ratio_warning && visionNew.alRecordsL[item].ratio_warning !==''}}">
+              <view class="text">轴率比结论：{{visionNew.alRecordsL[item].ratio_warning}}</view>
+            </view>
+            <view class="item" wx:else>
+              <view class="text tit">轴率比结论</view>
+              <view class="text status s{{visionNew.alRecordsR[item].ratio_warning_level}}">{{visionNew.alRecordsR[item].ratio_warning || ''}}</view>
+              <view class="text status s{{visionNew.alRecordsL[item].ratio_warning_level}}">{{visionNew.alRecordsL[item].ratio_warning || ''}}</view>
+            </view>
+
+          </view>
+        </block>
+        <no-data wx:else=""></no-data>
+
+      </view>
+
+      <!-- 远视储备预测指数 -->
+      <!-- 0 正常 1 远视储备不足 2 轻度-中度近视 3 中度-高度近视 4 超高度近视  -->
+      <!-- nearsight_level 不近视就才显示远视储备信息 -->
+      <view class="box" wx:if="{{(vision[0].l.nearsight_level <= 1 || vision[0].r.nearsight_level <= 1) && visionNew.farsightRecordsTime.length > 0}}">
+        <view class="title-box">
+          <text class="name">远视储备预测指数</text>
+          <view class="fe"></view>
+        </view>
+        
+        <block wx:if="{{visionNew.farsightRecordsTime.length > 0}}">
+          <view class="table" wx:for="{{visionNew.farsightRecordsTime}}" wx:key="index">
+            <view class="item tit">
+              <view class="text"></view>
+              <view class="text">右眼</view>
+              <view class="text">左眼</view>
+            </view>
+            <view class="item">
+              <view class="text">时间</view>
+              <view class="text">{{item || ''}}</view>
+              <view class="text">{{item || ''}}</view>
+            </view>
+            <view class="item" >
+              <view class="text">球镜度数(D)</view>
+              <view class="text">{{visionNew.farsightRecordsR[item].diopter_c_accurate || ''}}</view>
+              <view class="text">{{visionNew.farsightRecordsL[item].diopter_c_accurate ||''}}</view>
+              
+            </view>
+            <view class="item" >
+              <view class="text">柱镜度数(D)</view>
+              <view class="text">{{visionNew.farsightRecordsR[item].diopter_s_accurate || ''}}</view>
+              <view class="text">{{visionNew.farsightRecordsL[item].diopter_s_accurate ||''}}</view>
+            </view>
+            <view class="item" >
+              <view class="text">远视储备</view>
+              <view class="text">{{visionNew.farsightRecordsR[item].farsight_storage || ''}}</view>
+              <view class="text">{{visionNew.farsightRecordsL[item].farsight_storage ||''}}</view>
+            </view>
+            <view class="item status s{{visionNew.farsightRecordsL[item].farsight_warning_level}}" wx:if="{{visionNew.farsightRecordsL[item].farsight_warning === visionNew.farsightRecordsR[item].farsight_warning && visionNew.farsightRecordsL[item].farsight_warning !== ''}}">
+              <view class="text">{{visionNew.farsightRecordsL[item].farsight_warning}}</view>
+            </view>
+            <view class="item" wx:else>
+              <view class="text tit">结论</view>
+              <view class="text status s{{visionNew.farsightRecordsR[item].farsight_warning_level}}">{{visionNew.farsightRecordsR[item].farsight_warning}}</view>
+              <view class="text status s{{visionNew.farsightRecordsL[item].farsight_warning_level}}">{{visionNew.farsightRecordsL[item].farsight_warning}}</view>
+            </view>
+          </view>
+        </block>
+        <no-data wx:else=""></no-data>
+      </view>
+ 
+  
+  </block>
+  
+
+
+<view class="ios"></view>

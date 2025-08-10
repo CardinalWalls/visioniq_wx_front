@@ -1,0 +1,47 @@
+/* pages/user/newuser/newuser.wxss */
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.main-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-fixed .add-box {
+  padding-left: 10rpx;
+  margin-top: 34rpx;
+  margin-bottom: 9vh;
+}
+
+.main-fixed .headimg-box {
+  margin-top: 10vh;
+}
+
+.main-fixed .headimg {
+  border: 6rpx solid #ffffff;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0rpx 8rpx 32rpx 5rpx rgba(0, 123, 73, 0.11);
+}
+
+.main-fixed .phone {
+  color: #1e1e1e;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+}

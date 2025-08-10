@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "report": "/components/report/report"
+  },
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,181 @@
+/* pages/doctor/myProfile/myProfile.wxss */
+.con {
+  padding: 0 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.con-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 90vh;
+  background: #fefffe;
+  background: -moz-linear-gradient(top, #fefffe 0%, #d5eee5 47%, #ffffff 91%);
+  background: -webkit-linear-gradient(top, #fefffe 0%, #d5eee5 47%, #ffffff 91%);
+  background: linear-gradient(to bottom, #fefffe 0%, #d5eee5 47%, #ffffff 91%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefffe', endColorstr='#ffffff',GradientType=0 );
+}
+
+.info-box {
+  display: flex;
+  padding: 35rpx 30rpx;
+}
+
+.info-box .text-box {
+  flex: 1;
+  padding-top: 10rpx;
+}
+
+.info-box .row-1 {
+  display: flex;
+  align-items: baseline;
+}
+
+.info-box .name {
+  color: #191919;
+  font-size: 46rpx;
+  font-weight: bold;
+  margin-right: 30rpx;
+}
+
+.info-box .position {
+  color: #323232;
+  font-size: 28rpx;
+}
+
+.info-box .hospital {
+  color: #212121;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 6rpx;
+}
+
+.info-box .img-box {
+  width: 155rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+}
+
+.info-box .img {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 130rpx;
+}
+
+.info-box .btn {
+  background-color: #2fbe82;
+  height: 47rpx;
+  line-height: 47rpx;
+  font-size: 26rpx;
+  color: #ffffff;
+  border-radius: 47rpx;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.num-list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.num-list .item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.num-list .item:first-child::after {
+  content: '';
+  width: 2rpx;
+  height: 36rpx;
+  background-color: #e0e0e0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.num-list .num {
+  font-family: 'fontNumBold';
+  color: #363636;
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+
+.num-list .text {
+  color: #757575;
+  font-size: 24rpx;
+}
+
+.good-at {
+  background-color: #ffffff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+
+.good-at .dec {
+  color: #757575;
+  font-size: 26rpx;
+  margin-top: 4rpx;
+}
+
+.introduce {
+  min-height: 40vh;
+}
+
+.good-at, .introduce {
+  background-color: #ffffff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.good-at .dec, .introduce .dec {
+  color: #757575;
+  font-size: 26rpx;
+  margin-top: 4rpx;
+}
+
+.good-at .introduce-dec, .introduce .introduce-dec {
+  color: #484848;
+  font-size: 26rpx;
+  line-height: 1.8;
+  margin-top: 20rpx;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 0 0 0;
+}
+
+.title-box .name {
+  position: relative;
+  z-index: 1;
+  color: #2a2a2a;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.title-box .name::after {
+  content: '';
+  width: 120rpx;
+  height: 10rpx;
+  border-radius: 5rpx;
+  position: absolute;
+  bottom: 2rpx;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%);
+  background: #d4eee5;
+}

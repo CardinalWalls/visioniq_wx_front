@@ -1,0 +1,58 @@
+<!--pages/doctor/myProfile/myProfile.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<view class="con">
+  <view class="con-bg"></view>
+
+  <block wx:if="{{expert}}">
+    <view class="top-box">
+      <view class="info-box">
+        <view class="text-box">
+          <view class="row-1">
+            <text class="name">{{expert.name}}</text>
+            <text class="position">{{expert.str}}</text>
+          </view>
+          <view class="hospital" wx:if="{{expert.hospital !== ''}}">{{expert.hospital}}</view>
+          <view class="hospital" wx:if="{{expert.regionName !== ''}}">{{expert.regionName}}</view>
+        </view>
+        <navigator url="/pages/doctor/myProfileUpdate/myProfileUpdate" hover-class="none" class="img-box" wx:if="{{!opts.id}}">
+          <image src="{{MyMethods.requestImgUrl(expert.avatar, {type: 'avatar'})}}" class="imgbg img" mode="aspectFill"></image>
+          <text class="btn">编辑资料</text>
+        </navigator>
+        <view class="img-box" wx:else>
+          <image src="{{MyMethods.requestImgUrl(expert.avatar, {type: 'avatar'})}}" class="imgbg img" mode="aspectFill"></image>
+        </view>
+      </view>
+
+      <view class="num-list">
+        <view class="item">
+          <text class="num">{{expert.viewCount || 0}}</text>
+          <text class="text">人查看</text>
+        </view>
+        <view class="item">
+          <text class="num">{{expert.bindCount || 0}}</text>
+          <text class="text">人绑定</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="good-at">
+      <icon class="icon-manger-zysc"></icon>
+      <view class="dec">{{expert.proficient || '暂未设置'}}</view>
+    </view>
+
+    <view class="introduce">
+      <view class="title-box">
+        <text class="name">医生简介</text>
+        <view class="fe"></view>
+      </view>
+      <view class="introduce-dec">
+        <text space="ensp">{{expert.profile}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="ios"></view>

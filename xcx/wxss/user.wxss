@@ -1,0 +1,7 @@
+.icon-user-arrow{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat 3rpx -155rpx;background-size: 196rpx 177rpx;width: 17rpx;height: 25rpx;}
+.icon-user-ewm{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat 3rpx 3rpx;background-size: 196rpx 177rpx;width: 45rpx;height: 46rpx;}
+.icon-user-jrsj{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat -157rpx -76rpx;background-size: 196rpx 177rpx;width: 42rpx;height: 41rpx;}
+.icon-user-quit{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat -75rpx -77rpx;background-size: 196rpx 177rpx;width: 42rpx;height: 40rpx;}
+.icon-user-setting{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat -76rpx 3rpx;background-size: 196rpx 177rpx;width: 47rpx;height: 44rpx;}
+.icon-user-xgsj{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat -157rpx 3rpx;background-size: 196rpx 177rpx;width: 42rpx;height: 45rpx;}
+.icon-user-xtfk{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/user.png?v=2024010111331') no-repeat 3rpx -77rpx;background-size: 196rpx 177rpx;width: 44rpx;height: 44rpx;}

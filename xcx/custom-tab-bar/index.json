@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "PhoneOpenType": "../components/phoneOpenType/phoneOpenType",
+    "UserOpenType": "../components/userOpenType/userOpenType"
+  }
+}

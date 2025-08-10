@@ -1,0 +1,117 @@
+<!--pages/tabBar/Index/Index.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<block wx:if="{{user}}">
+<view class="user-top" style="background: url({{bg}}) no-repeat bottom center #1fb471; background-size: 100% auto;">
+  <view style="height: {{navheight}}px"></view>
+  <view class="user-info">
+    <block wx:if="{{isLogin == true}}">
+      <view class="text-box">
+        <view class="name">{{user.realName || user.userNickName}}</view>
+        <view class="phone">{{user.phone}}</view>
+      </view>
+    </block>
+    <view class="text-box" wx:elif="{{isLogin == false}}">
+      <view class="name pre">手机号一键登录
+        <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}"></PhoneOpenType>
+      </view>
+    </view>
+
+    <navigator url="{{minuser.type == 2 ? '/pages/doctor/myProfileUpdate/myProfileUpdate':'/pages/user/modifyInfo/modifyInfo'}}" hover-class="none">
+      <image src="{{MyMethods.requestImgUrl(user.avatar, {type: 'avatar'})}}" class="headimg imgbg" />
+    </navigator>
+    
+  </view>
+
+</view>
+
+
+<view class="pd meun-box">
+  <view class="meun-list">
+    <view class="item">
+      <view class="icon-box">
+        <icon class="icon-user-xgsj"></icon>
+      </view>
+      <view class="text-box">修改手机</view>
+      <icon class="icon-user-arrow" />
+      <navigator url="/pages/user/phone/phone" hover-class="none" class="opa" wx:if="{{isLogin == true}}"></navigator>
+    </view>
+    <view class="item">
+      <view class="icon-box">
+        <icon class="icon-user-jrsj"></icon>
+      </view>
+      <view class="text-box">加入时间</view>
+      <text class="tel">{{MyMethods.getCurrentDate(expert.registTime)}}</text>
+    </view>
+    <view class="item">
+      <view class="icon-box">
+        <icon class="icon-user-xtfk"></icon>
+      </view>
+      <view class="text-box">系统反馈</view>
+      <icon class="icon-user-arrow" />
+      <button open-type="contact" class="opa"></button>
+    </view>
+
+    <!-- 医生端 -->
+    <view class="item" bindtap="openLimit" wx:if="{{isLogin == true && minuser.type == 2}}">
+      <view class="icon-box">
+        <icon class="icon-user-setting"></icon>
+      </view>
+      <view class="text-box">设置挂号时间</view>
+      <icon class="icon-user-arrow" />
+    </view>
+
+    <view class="item" bindtap="tapEwm" wx:if="{{isLogin == true && minuser.type == 2}}">
+      <view class="icon-box">
+        <icon class="icon-user-ewm"></icon>
+      </view>
+      <view class="text-box">我的二维码</view>
+      <icon class="icon-user-arrow" />
+    </view>
+
+  </view>
+
+  <view class="meun-list mg" wx:if="{{isLogin == true}}">
+    <view class="item" bindtap="quitTap">
+      <view class="icon-box">
+        <icon class="icon-user-quit"></icon>
+      </view>
+      <view class="text-box">退出登录</view>
+    </view>
+  </view>
+
+</view>
+
+</block>
+
+<!-- 设置挂号时间 -->
+<my-dialog show="{{dialogShowLimit}}" title="设置挂号时间" extClass="dialog-book">
+  <view class="dialog-limit">
+    <view class="tit">挂号限制(选择不上班星期)：</view>
+
+    <view class="week-list">
+      <label class="item" wx:for="{{limitArr}}" wx:key="index" data-index="{{index}}" data-checked="{{item.checked}}" bindtap="checkboxChange">
+        <checkbox value="cb" checked="{{item.checked}}" />
+        <text class="text">{{item.name}}</text>
+      </label>
+    </view>
+  </view>
+
+  <view slot="footer" class="btn-box">
+    <view class="btn" bindtap="submitLimit">提交</view>
+  </view>
+</my-dialog>
+
+<!-- 我的二维码 -->
+<my-dialog show="{{dialogShowEwm}}" title="" extClass="dialog-ewm" bind:close="tapEwm">
+  <view class="ewm-box">
+      <view class="title">重庆儿童青少年视力防控平台</view>
+      <image class="ewm-img imgbg" mode="aspectFill" show-menu-by-longpress="true" src="{{ MyMethods.requestImgUrl(ewmImg)}}" wx:if="{{ewmImg}}"></image>
+      <view class="ewm-img imgbg ewm-loading" wx:else>加载中...</view>
+      <view class="name">{{expert.name}}</view>
+			<view class="hospital" wx:if="{{expert.hospital !==''}}">{{expert.hospital}}</view>
+		</view>
+</my-dialog>

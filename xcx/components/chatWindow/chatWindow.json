@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "MainContainer": "/components/mainContainer/mainContainer",
+    "RealNameDialog": "/components/realNameDialog/realNameDialog"
+  }
+}

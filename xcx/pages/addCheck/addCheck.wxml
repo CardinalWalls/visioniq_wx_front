@@ -1,0 +1,607 @@
+<!--pages/addCheck/addCheck.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<block wx:if="{{archive}}">
+  <view class="user-top">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="info-box">
+        <view class="img-box">
+          <icon class="icon-gender{{archive.gender}}-large2 gender"></icon>
+        </view>
+        <view class="fe">
+          <view class="row-1">
+            <text class="name">{{archive.name}}</text>
+          </view>
+          <view class="idcard">{{MyMethods.numPwd(archive.idcard, 6, 4)}}</view>
+        </view>
+        <text class="age">{{MyMethods.getAgeMothDay(archive.birth)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">基本信息</text>
+        <view class="fe"></view>
+      </view>
+
+      <view class="item">
+        <view class="item-lable">
+          <text class="require">*</text>
+          <text class="name">检查日期</text>
+        </view>
+
+        <picker mode="date" bindchange="inputChange" data-type="inspectDate">
+          <view class="item-con">
+            <view class="text-box">
+              <text class="placeholder active tl" wx:if="{{formobj.inspectDate && formobj.inspectDate !==''}}">{{ formobj.inspectDate}}</text>
+              <text class="placeholder tl" wx:else>请选择检查日期</text>
+
+              <!-- <input type="text" class="input-text" placeholder="请选择检查日期" data-type="inspectDate" value="{{formobj.inspectDate}}" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+            </view>
+            <view class="icon-box">
+              <icon class="icon-select"></icon>
+            </view>
+          </view>
+        </picker>
+      </view>
+
+      <view class="item">
+        <view class="item-lable">
+          <text class="require opacity">*</text>
+          <text class="name">检查医院</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="请输入检查医院" data-type="hospital" value="{{formobj.hospital}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+  
+      </view>
+
+      <view class="item">
+        <view class="item-lable">
+          <text class="require opacity">*</text>
+          <text class="name">当前身高(cm)</text>
+          <view class="fe"></view>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="digit" class="input-text" placeholder="请输入当前身高" data-type="height" value="{{formobj.height > 0 ? formobj.height:''}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 验光数据 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">比对验光单手动录入</text>
+        <view class="fe"></view>
+      </view>
+
+      <!-- 内容 -->
+      <view class="optometry-box">
+        <view class="item">
+          <view class="item-lable">
+            <!-- <text class="require">*</text> -->
+            <label class="checkbox" bind:tap="pickerChange" data-type="dilatedRefraction" >
+              <checkbox value="{{formobj.dilatedRefraction}}" checked="{{formobj.dilatedRefraction}}" color="#01c176" disabled="{{dilatedRefractionDisabled}}"/>
+              <text class="name">是否采用散瞳验光</text>
+            </label>
+            <view class="fe"></view>
+            <navigator url="/pages/news/article/article?type=addCheckHelpDec" class="green">帮助说明？</navigator>
+          </view>
+        </view>
+
+        <view class="form-item-eye">
+          <view class="item-eye">
+            <view class="item-eye-tit">右眼OD</view>
+            <view class="item-con" catch:tap="tapTableCell" data-name="diopterS" data-type="right" data-value="{{formobj.rightDiopterS}}">
+              <text class="placeholder active" wx:if="{{formobj.rightDiopterS && formobj.rightDiopterS !==''}}">{{ formobj.rightDiopterS}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+              <!-- <input type="text" class="input-text" placeholder="请输入数据" data-type="rightDiopterS" value="{{formobj.rightDiopterS}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+            </view>
+            <view class="item-con" catch:tap="tapTableCell" data-name="diopterC" data-type="right" data-value="{{formobj.rightDiopterC}}">
+              <text class="placeholder active" wx:if="{{formobj.rightDiopterC && formobj.rightDiopterC !==''}}">{{ formobj.rightDiopterC}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+              <!-- <input type="text" class="input-text" placeholder="请输入数据" data-type="rightDiopterC" value="{{formobj.rightDiopterC}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+            </view>
+          </view>
+          
+          <view class="item-eye-txts">
+            <view class="item-eye-tit"></view>
+            <view class="item-eye-lable">
+              <view class="lable-row">
+                <!-- <text class="require">*</text> -->
+                <text class="name">球镜度数(D)</text>
+              </view>
+              <view class="gray">(近视)</view>
+            </view>
+            <view class="item-eye-lable">
+              <view class="lable-row">
+                <!-- <text class="require">*</text> -->
+                <text class="name small">柱镜度数(D)</text>
+              </view>
+              <view class="gray">(散光)</view>
+            </view>
+          </view>
+          
+          <view class="item-eye">
+            <view class="item-eye-tit">左眼OS</view>
+            <view class="item-con" catch:tap="tapTableCell" data-name="diopterS" data-type="left" data-value="{{formobj.leftDiopterS}}">
+              <text class="placeholder active" wx:if="{{formobj.leftDiopterS && formobj.leftDiopterS !==''}}">{{ formobj.leftDiopterS}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+              <!-- <input type="text" class="input-text" placeholder="请输入数据" data-type="leftDiopterS" value="{{formobj.leftDiopterS}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+            </view>
+            <view class="item-con" catch:tap="tapTableCell" data-name="diopterC" data-type="left" data-value="{{formobj.leftDiopterC}}">
+              <text class="placeholder active" wx:if="{{formobj.leftDiopterC && formobj.leftDiopterC !==''}}">{{ formobj.leftDiopterC}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+              <!-- <input type="text" class="input-text" placeholder="请输入数据" data-type="leftDiopterC" value="{{formobj.leftDiopterC}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+            </view>
+          </view>
+        </view>
+
+        <view class="item" >
+          <view class="item-lable">
+            <!-- <text class="require">*</text> -->
+            <text class="name">上传原始验光单，拍照后，仅选一张图片</text>
+          </view>
+
+          <view class="imglist">
+            <view class="imgbox" wx:for="{{otherFileArray}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="otherFileArray" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="otherFileArray" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="otherFileArray" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+        </view>
+
+        <!-- 添加检查单时的浮窗-tips1 -->
+        <view class="optometry-box-fixed" wx:if="{{!opts.id && dilatedRefractionDialog1}}">
+          <view class="pd">
+            <view class="title">温馨提示</view>
+            <view class="dec2">视功能检查需要在散瞳验光之前完成！</view>
+            <view class="btns">
+              <view class="btn yes" data-type="dilatedRefractionDialog1" bind:tap="tapDilatedRefractionDialog">我知道了</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 添加检查单时的浮窗-tips2 -->
+        <!-- <view class="optometry-box-fixed" wx:if="{{!opts.id && dilatedRefractionDialog2}}">
+          <view class="pd">
+            <view class="title">温馨提示</view>
+            <view class="dec2">当前用户年龄已超过12岁，可无需散瞳验光，只需小蹱验光即可！</view>
+            <view class="btns">
+              <view class="btn yes" data-type="dilatedRefractionDialog2" bind:tap="tapDilatedRefractionDialog">我知道了</view>
+            </view>
+          </view>
+        </view> -->
+
+        <!-- 添加检查单时的浮窗-tips3 -->
+        <view class="optometry-box-fixed" wx:if="{{!opts.id && dilatedRefractionDialog3}}">
+          <view class="pd">
+            <view class="title">是否使用了散瞳验光？</view>
+            <view class="dec">温馨提示：散瞳验光是指通过药物使睫状肌处于麻痹状态，在其失去调节的作用下，获取眼睛最真实的屈光状态的验光过程。</view>
+            <view class="btns">
+              <view class="btn yes" data-value="{{true}}" data-type="dilatedRefractionDialog3" bind:tap="tapDilatedRefractionDialog">是</view>
+              <view style="width: 40rpx;"></view>
+              <view class="btn no" data-value="{{false}}" data-type="dilatedRefractionDialog3" bind:tap="tapDilatedRefractionDialog">否</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      
+
+    </view>
+  </view>
+  <!-- 光学生物测量数据 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">比对生物测量仪单据手动录入</text>
+        <view class="fe"></view>
+      </view>
+
+
+      <view class="item-tips">
+        <text>提示：未检查则不填写 </text>
+        <view class="fe"></view>
+        <navigator url="/pages/news/article/article?type=addCheckExample" class="link">帮助说明？</navigator>
+      </view>
+   
+
+      <view class="form-item-eye">
+        <view class="item-eye">
+          <view class="item-eye-tit">右眼OD</view>
+          <view class="item-con" catch:tap="tapTableCell" data-name="al" data-type="right" data-value="{{formobj.rightAxis}}">
+            <text class="placeholder active" wx:if="{{formobj.rightAxis && formobj.rightAxis !==''}}">{{ formobj.rightAxis}}</text>
+            <text class="placeholder" wx:else>请选择数据</text>
+          </view>
+
+          <view class="item-con" catch:tap="tapTableCell" data-name="k1" data-type="right"  data-value="{{formobj.rightK1}}">
+            <text class="placeholder active" wx:if="{{formobj.rightK1 && formobj.rightK1 !==''}}">{{ formobj.rightK1}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+          </view>
+          <view class="item-con" catch:tap="tapTableCell" data-name="k2" data-type="right"  data-value="{{formobj.rightK2}}">
+            <text class="placeholder active" wx:if="{{formobj.rightK2 && formobj.rightK2 !==''}}">{{ formobj.rightK2}}</text>
+            <text class="placeholder" wx:else>请选择数据</text>
+          </view>
+
+          <!-- <view class="item-con">
+            <input type="text" class="input-text" placeholder="自动计算" data-type="rightCurvatureRadius" value="{{formobj.rightCurvatureRadius}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true" placeholder-class="input-placeholder2"></input>
+          </view> -->
+        </view>
+        
+        <view class="item-eye-txts">
+          <view class="item-eye-tit"></view>
+          <view class="item-eye-lable">
+            <view class="lable-row">
+              <text class="name">眼轴AL(mm)</text>
+            </view>
+          </view>
+          <view class="item-eye-lable">
+            <view class="lable-row">
+              <text class="name">K1(D)</text>
+            </view>
+            <view class="gray">平角膜曲率</view>
+          </view>
+          
+          <view class="item-eye-lable">
+            <view class="lable-row">
+              <text class="name">K2(D)</text>
+            </view>
+            <view class="gray">陡角膜曲率</view>
+            
+          </view>
+          <!-- <view class="item-eye-lable">
+            <view class="lable-row">
+              <text class="name">CR(mm)</text>
+            </view>
+            <view class="gray">曲率半径</view>
+          </view> -->
+        </view>
+        
+        <view class="item-eye">
+          <view class="item-eye-tit">左眼OS</view>
+          <view class="item-con" catch:tap="tapTableCell" data-name="al" data-type="left" data-value="{{formobj.leftAxis}}">
+            <text class="placeholder active" wx:if="{{formobj.leftAxis && formobj.leftAxis !==''}}">{{ formobj.leftAxis}}</text>
+              <text class="placeholder" wx:else>请选择数据</text>
+            <!-- <input type="text" class="input-text" placeholder="请选择数据" data-type="leftAxis" value="{{formobj.leftAxis}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input> -->
+          </view>
+
+          <view class="item-con" catch:tap="tapTableCell" data-name="k1" data-type="left" data-value="{{formobj.leftK1}}">
+            <text class="placeholder active" wx:if="{{formobj.leftK1 && formobj.leftK1 !==''}}">{{ formobj.leftK1}}</text>
+            <text class="placeholder" wx:else>请选择数据</text>
+          </view>
+          <view class="item-con" catch:tap="tapTableCell" data-name="k2" data-type="left" data-value="{{formobj.leftK2}}">
+            <text class="placeholder active" wx:if="{{formobj.leftK2 && formobj.leftK2 !==''}}">{{ formobj.leftK2}}</text>
+            <text class="placeholder" wx:else>请选择数据</text>
+          </view>
+
+          <!-- <view class="item-con">
+            <input type="text" class="input-text" placeholder="自动计算" data-type="leftCurvatureRadius" value="{{formobj.leftCurvatureRadius}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true" placeholder-class="input-placeholder2"></input>
+          </view> -->
+        </view>
+      </view>
+
+      <view class="btn-orange" bind:tap="orcDialogCancelOpen">
+          <icon class="icon-photo-white"></icon>
+          <text>检查单据智能识别</text>
+        </view>
+      <view class="item" >
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">上传原始眼轴单，拍照后，仅选一张图片</text>
+        </view>
+
+        <view class="imglist">
+          <view class="imgbox" wx:for="{{photos}}" wx:key="index">
+            <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="fileArray" bindtap="previewImg" />
+            <icon class="icon-delete" data-index="{{index}}" data-name="fileArray" bindtap="deleteImg"></icon>
+          </view>
+          <view class="imgbox" data-type="upload" data-name="fileArray" bindtap="uploadImg">
+            <icon class="icon-photo"></icon>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 影响因素 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">影响因素</text>
+        <text class="name-choose">(选填)</text>
+        <view class="fe"></view>
+      </view>
+
+      <view class="item ck">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">每天户外活动时间</text>
+        </view>
+
+        <view class="item-checkbox nopd">
+          <block wx:for="{{ckObj.outSchoolHours}}" wx:key="index">
+            <text class="ck-item {{item.value === formobj.outSchoolHours ?'active':''}}" data-value="{{item.value}}" data-type="outSchoolHours" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+      </view>
+
+      <view class="item ck">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">坐姿不正确</text>
+        </view>
+
+        <view class="item-checkbox nopd">
+          <block wx:for="{{ckObj.incorrectSittin}}" wx:key="index">
+            <text class="ck-item {{item.value === formobj.incorrectSittin?'active':''}}" data-value="{{item.value}}" data-type="incorrectSittin" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+      </view>
+
+      <view class="item ck">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">佩戴眼睛不正确</text>
+        </view>
+
+        <view class="item-checkbox">
+          <block wx:for="{{ckObj.incorrectGlasses}}" wx:key="index">
+            <text class="ck-item {{item.value === formobj.incorrectGlasses?'active':''}}" data-value="{{item.value}}" data-type="incorrectGlasses" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+      </view>
+      <view class="item ck">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">过敏情况</text>
+        </view>
+
+        <view class="item-checkbox nopd">
+          <block wx:for="{{ckObj.allergy}}" wx:key="index">
+            <text class="ck-item {{item.value === formobj.allergy?'active':''}}" data-value="{{item.value}}" data-type="allergy" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+  <!-- 防控措施 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">当前已采取的治疗措施，请勾选</text>
+        <!-- <text class="name-choose">(选填)</text> -->
+        <view class="fe"></view>
+      </view>
+
+      <!-- <view class="item ck">
+        <view class="item-lable">
+          <text class="name">日户外用眼时长</text>
+        </view>
+
+        <view class="item-checkbox nopd">
+          <block wx:for="{{ckObj.outdoorsHours}}" wx:key="index">
+            <text class="ck-item {{item.value === formobj.outdoorsHours?'active':''}}" data-value="{{item.value}}" data-type="outdoorsHours" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+        <view class="item-con textarea-box">
+          <view class="text-box">
+            <textarea class="textarea else" placeholder="用眼补充说明" data-type="outdoorsHoursExplain" value="{{formobj.outdoorsHoursExplain}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" placeholder-class="input-placeholder2"></textarea>
+          </view>
+        </view>
+
+      </view> -->
+
+      <view class="item ck">
+        <view class="item-lable">
+          <text class="name">佩戴眼镜情况</text>
+        </view>
+
+        <view class="item-checkbox glasses-type">
+          <block wx:for="{{ckObj.glassesType}}" wx:key="index">
+            <text class="ck-item {{item.class ? item.class:''}} {{item.value === formobj.glassesType?'active':''}}" data-value="{{item.value}}" data-type="glassesType" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+        <view class="item-con textarea-box">
+          <view class="text-box">
+            <textarea class="textarea else" placeholder="佩戴补充说明" data-type="glassesTypeExplain" value="{{formobj.glassesTypeExplain}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" placeholder-class="input-placeholder2"></textarea>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="item ck">
+        <view class="item-lable">
+          <text class="name">其他措施</text>
+        </view>
+
+        <view class="item-checkbox glasses-type">
+          <block wx:for="{{ckObj.otherSolution}}" wx:key="index">
+            <text class="ck-item {{item.class ? item.class:''}} {{item.value === formobj.otherSolution?'active':''}}" data-value="{{item.value}}" data-type="otherSolution" bindtap="ckChange">{{item.name}}</text>
+          </block>
+        </view>
+
+        <view class="item-con textarea-box">
+          <view class="text-box">
+            <textarea class="textarea else" placeholder="措施补充说明" data-type="otherSolutionExplain" value="{{formobj.otherSolutionExplain}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" placeholder-class="input-placeholder2"></textarea>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+  <!-- 补充说明 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">补充说明</text>
+        <text class="name-choose">(选填)</text>
+        <view class="fe"></view>
+      </view>
+
+      <view class="item" style="margin-bottom: 0;">
+        <!-- <view class="item-lable">
+          <text class="require opacity">*</text>
+          <text class="name">其他情况</text>
+        </view> -->
+        <view class="item-con textarea-box">
+          <view class="text-box">
+            <textarea class="textarea" placeholder="" data-type="otherDescription" value="{{formobj.otherDescription}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" ></textarea>
+          </view>
+        </view>
+
+
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <!-- <view class="fixed-btn-h">
+    <view class="fixed-btn"> -->
+      <view class="btn-box-log">
+        <!-- <view class="back" bindtap="backTap">
+          <text class="text">返回</text>
+        </view> -->
+        <view class="submit-log" bindtap="submitOpenDialog">
+          <text class="text">提交</text>
+          <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}" wx:if="{{isLogin == false}}"></PhoneOpenType>
+        </view>
+      </view>
+      <view class="ios"></view>
+    <!-- </view>
+
+  </view> -->
+
+</block>
+
+
+<!-- 检查单据智能识别-提示框 -->
+<my-dialog show="{{orcDialogShow}}" title="温馨提示" isCloseBtn="{{false}}" maskClosable="{{false}}" extClass="dialog-book">
+
+<view class="dialog-tips-orc">
+  <view>为了正确识别数据，请按照以下要求拍摄或上传</view>
+  <view class="dec">
+    <text>1、将报告平放不要折叠，正对报告拍摄
+2、需要将图片的边缘全部拍摄进去
+3、拍摄保持平稳不晃动不移动</text>
+  </view>
+</view>
+<view slot="footer" class="btn-box">
+    <view class="btn orange" data-type="orc" data-name="fileArray" bindtap="uploadImg">我已知晓</view>
+  </view>
+</my-dialog>
+
+<!-- 提交按钮-提示框 -->
+<my-dialog show="{{dialogShow}}" title="信息确认" isCloseBtn="{{false}}" maskClosable="{{false}}" extClass="dialog-book">
+
+<view class="dialog-tips-dec">
+  <text>检查日期：{{MyMethods.getDateChina(formobj.inspectDate)}}\n确定信息填写无误并提交</text>
+</view>
+<view slot="footer" class="btn-box">
+<view class="btn" bindtap="dialogSubmit">取消</view>
+  <view style="width: 20rpx;"></view>
+  <view class="btn orange" bindtap="submit">确认提交</view>
+</view>
+</my-dialog>
+
+<!-- 眼轴AL 一级 -->
+  <my-half-screen-dialog title="眼轴AL" extClass="keyboard" mask="{{false}}" show="{{dialog.al}}">
+    <view class="keyboard-bg" slot="desc">
+      <view class="keyboard-nums al">
+      <block wx:for="{{keyboard.al}}" wx:key="index">
+        <view class="item {{kCurrent.al[0] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="al" data-level="{{1}}">{{item}}</view>
+      </block>
+    </view>
+    </view>
+  </my-half-screen-dialog>
+
+<!-- 眼轴AL二级 -->
+  <my-half-screen-dialog title="眼轴AL" extClass="keyboard" mask="{{false}}" show="{{dialog.alLeve2}}">
+    <view class="keyboard-bg" slot="desc">
+      <view class="keyboard-nums child">
+        <block wx:for="{{keyboard.allChild}}" wx:key="index">
+          <view class="item {{kCurrent.al[1] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="al" data-level="{{2}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </my-half-screen-dialog>
+
+
+<!-- K1 & K2 一级 -->
+  <my-half-screen-dialog title="K1 & K2" extClass="keyboard" mask="{{false}}" show="{{dialog.k}}">
+    <view class="keyboard-bg" slot="desc">
+      <view class="keyboard-nums al">
+      <block wx:for="{{keyboard.k}}" wx:key="index">
+        <view class="item {{kCurrent.k[0] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="k" data-level="{{1}}">{{item}}</view>
+      </block>
+    </view>
+    </view>
+  </my-half-screen-dialog>
+
+<!-- K1 & K2 二级 -->
+  <my-half-screen-dialog title="K1 & K2" extClass="keyboard" mask="{{false}}" show="{{dialog.kLeve2}}">
+    <view class="keyboard-bg" slot="desc">
+      <view class="keyboard-nums child">
+        <block wx:for="{{keyboard.allChild}}" wx:key="index">
+          <view class="item {{kCurrent.k[1] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="k" data-level="{{2}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </my-half-screen-dialog>
+
+
+
+<!-- 球镜度数(D)、C 一级 -->
+<my-half-screen-dialog title="{{keyboardObj.name == 'diopterS'?'球镜度数(D)(近视)':'柱镜度数(D)(散光)'}}" extClass="keyboard" mask="{{false}}" show="{{dialog.diopter}}">
+  <view class="keyboard-bg" slot="desc">
+    <view class="keyboard-nums al">
+    <block wx:for="{{keyboard.diopter}}" wx:key="index">
+      <view class="item {{kCurrent.diopter[0] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="diopter" data-level="{{1}}">{{item}}</view>
+    </block>
+  </view>
+  </view>
+</my-half-screen-dialog>
+
+
+<!-- 球镜度数(D)、C 二级 -->
+<my-half-screen-dialog title="{{keyboardObj.name == 'diopterS'?'球镜度数(D)(近视)':'柱镜度数(D)(散光)'}}" extClass="keyboard" mask="{{false}}" show="{{dialog.diopterLeve2}}">
+  <view class="keyboard-bg" slot="desc">
+    <view class="keyboard-nums al">
+      <block wx:for="{{keyboard.diopterChild}}" wx:key="index">
+        <view class="item {{kCurrent.diopter[1] == item ?'active':''}}" data-value="{{item}}" bind:tap="tapNum" data-name="diopter" data-level="{{2}}">{{item}}</view>
+      </block>
+    </view>
+  </view>
+</my-half-screen-dialog>
+
+

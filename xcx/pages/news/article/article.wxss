@@ -1,0 +1,13 @@
+/* pages/PersonalCenter/PromoteRule/PromoteRule.wxss */ 
+ 
+.rule-box { 
+  /* font-size: 28rpx;  */
+  /* color: #595959;  */
+  padding: 30rpx 26rpx; 
+  line-height: 50rpx; 
+} 
+ 
+.rule-box .tit { 
+  color: #262626; 
+  font-size: 30rpx; 
+}

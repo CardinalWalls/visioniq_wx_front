@@ -1,0 +1,98 @@
+<!--pages/doctorIndex/doctorIndex.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="user-top">
+  <SwiperBanner banners="{{banner}}" height="410"></SwiperBanner>
+</view>
+
+<!-- 在线对话 -->
+<view class="online-chat">
+  <view class="title-box">
+    <text class="name">在线对话</text>
+    <view class="btn" style="margin-left: 10rpx;" bind:tap="refreshMessage">刷新消息</view>
+    <view class="fe"></view>
+    <view class="btn">
+      <icon class="icon-manger-msg"></icon>
+      未读消息<text class="red">{{tj.totalUnread || 0}}</text>条
+    </view>
+  </view>
+
+  <view class="search-box">
+    <view class="item" bind:tap="openRegion">
+      <text>{{datas.regionIds === '' ? '选择区域': '已选择区域'}}</text>
+      <icon class="icon-select arrow-down"></icon>
+    </view>
+    <view class="item" bind:tap="openExpert">
+      <text>{{datas.expertId === '' ? '选择专家': '已选择专家'}}</text>
+      <icon class="icon-select arrow-down"></icon>
+    </view>
+    <view class="btn" bind:tap="lookAll">查看全部</view>
+  </view>
+
+  <block wx:if="{{d}}">
+    <no-data wx:if="{{d.total == 0}}"></no-data>
+    <view class="chat-list" wx:else>
+      <view class="item" wx:for="{{d.list}}" wx:key="index">
+        <navigator class="img-box" url="/pages/doctor/archivesDetail/archivesDetail?userArchiveId={{item.id}}" hover-class="none">
+          <image src="{{MyMethods.requestImgUrl('', {type: 'avatar'})}}" mode="aspectFill" class="imgbg img"></image>
+          <icon class="point" wx:if="{{item.unread === 1}}"></icon>
+          <!-- <icon class="point" wx:if="{{allObj[item.id] > 0}}"></icon> -->
+        </navigator>
+        <view class="text-box" data-index="{{index}}" data-id="{{item.id}}" data-unread="{{item.unread}}" bind:tap="tapLinkChatWindow">
+          <view class="row-1">
+            <text class="name">{{item.name}}</text>
+            <text class="age">{{MyMethods.getAgeMothDay(item.birth)}}</text>
+            <icon class="icon-gender{{item.gender}} gender"></icon>
+            <text class="risk-level {{item.riskLevel === 2 ?'blue':''}}" wx:if="{{item.riskLevel === 2 || item.riskLevel === 3}}">{{MyMethods.getRiskLevel(item.riskLevel).name}}</text>
+          </view>
+          <text class="time">{{MyMethods.dateClipping(item.lastMessageTime, 0, 10)}}</text>
+          <view class="remark" wx:if="{{item.remark}}">{{item.remark}}</view>
+          <view class="dec">{{item.lastMessage || '无'}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="ios"></view>
+
+
+<!-- 选择区域 -->
+<my-dialog show="{{regionsShow}}" title="选择区域" isCloseBtn="{{false}}" extClass="dialog-book">
+    <view class="dialog-checkbox" >
+      <view class="item {{selectRegions[item.id] ? 'active':''}}" wx:for="{{regions}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" bind:tap="tapRegion">
+        <view class="ck">
+          <icon class="icon-chat-success"></icon>
+        </view>
+        <text class="text">{{item.name}}</text>
+      </view>
+    </view>
+
+    <view slot="footer" class="btn-box">
+      <view class="btn" bindtap="submitRegion">确定</view>
+    </view>
+
+</my-dialog>
+
+<!-- 选择专家 -->
+<my-dialog show="{{expertsShow}}" title="选择专家" isCloseBtn="{{false}}" extClass="dialog-book">
+    <view class="dialog-checkbox " >
+      <view class="item {{selectExperts[item.id] ? 'active':''}}" wx:for="{{experts}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" bind:tap="tapExpert">
+        <view class="ck">
+          <icon class="icon-chat-success"></icon>
+        </view>
+        <view class="text">
+          <view>{{item.name}}</view>
+          <view>{{item.phone}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view slot="footer" class="btn-box">
+      <view class="btn" bindtap="submitExpert">确定</view>
+    </view>
+
+</my-dialog>

@@ -1,0 +1,10 @@
+/* components/phoneOpenType/phoneOpenType.wxss */
+.opentype {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  z-index: 2;
+}

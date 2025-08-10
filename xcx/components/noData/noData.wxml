@@ -1,0 +1,6 @@
+<!--components/nodata/nodata.wxml-->
+<view class='nodata'>
+  <view class='{{icon}} icon'></view>
+  <view class='text'>{{text || '暂无数据'}}</view>
+  <slot></slot>
+</view>

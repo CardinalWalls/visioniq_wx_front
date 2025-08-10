@@ -1,0 +1,48 @@
+<!--pages/login/login.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<!-- <NavBar navbar-data="{{nvabarData}}"></NavBar> -->
+<!-- 导航 end -->
+
+<block wx:if="{{isLogin === false}}">
+
+  <view class="bg" style="background: url({{loginbg}}) no-repeat top center;background-size: 100% auto;"></view>
+  <view style="height: {{navheight}}px;"></view>
+
+  <view class='fe pre'>
+    <view class="login">
+      <image src="{{logo}}" class="logo-img" mode="aspectFit" />
+      <view class="text">视力问题防控管理平台</view>
+      <view class="fe"></view>
+      <view class="btn-box">
+        <view class="btn">
+          用户登录
+          <block wx:if="{{checked}}">
+            <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}"></PhoneOpenType>
+          </block>
+          <view wx:else class="opa" bindtap="logintap"></view>
+        </view>
+
+        <view class="btn black">
+          医生登录
+          <block wx:if="{{checked}}">
+            <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}" needAuthorization="{{privacyObj.needAuthorization}}" bind:privacyAuth="privacyAuth"></PhoneOpenType>
+          </block>
+          <view wx:else class="opa" bindtap="logintap"></view>
+        </view>
+      </view>
+      <view class="agree">
+        <label class="checkbox" bindtap="checkboxTap">
+          <checkbox value="" checked="{{checked}}" color="#01c176" />
+          <text>我已经仔细阅读并同意</text>
+          <text class="green" catchtap="privacyAuth">《服务与隐私条款》</text>
+        </label>
+      </view>
+      <view class="ios"></view>
+    </view>
+  </view>
+
+</block>
+
+<!-- 用户隐私协议 -->
+<privacy-popup show="{{showPrivacy}}" bind:agree="agree" bind:disagree="disagree"></privacy-popup>

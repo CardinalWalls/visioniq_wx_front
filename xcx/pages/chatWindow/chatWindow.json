@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "chat-window": "/components/chatWindow/chatWindow"
+  },
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

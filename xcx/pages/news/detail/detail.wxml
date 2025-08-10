@@ -1,0 +1,68 @@
+<!--pages/News/Detail/Detail.wxml-->
+<import src="../../../components/wxParse/wxParse.wxml" />
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+
+<view class="{{navClass}}">
+  <!-- 导航 start -->
+  <NavBar navbar-data="{{nvabarData}}"></NavBar>
+  <!-- 导航 end -->
+
+  <view wx:if="{{d !== ''}}">
+    <view class="detail-top">
+      <view class="title">{{d.title}}</view>
+      <view class="dec flex">
+
+        <text class="time">发布时间：{{MyMethods.dateClipping(d.publishTime, 0, 10)}}</text>
+        <!-- <text class="count fe tr">{{d.readCount || 0}}次浏览</text> -->
+      </view>
+    </view>
+    <!-- 内容 start -->
+    <view class="content">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <!-- 内容 end -->
+
+    <!-- 文章信息模块浮动窗口 start -->
+    <!-- <view class="item fe" catchtap="toggle" data-add="{{d.myPraiseCount === 1 ? true:false}}"
+          data-target-type="{{2}}" data-target-id="{{d.id}}">
+          <icon class="dib icon-zan-large{{d.myPraiseCount === 1 ? '-active':''}}"></icon>
+          <text class="text">{{d.praiseCount || 0}}</text>
+        </view> -->
+    <view class="nums-fixed">
+      <view class="nums flex">
+        
+        <view class="item fe">
+          <icon class="dib icon-new-detail-wx"></icon>
+          <text class="text">分享</text>
+          <button open-type="share" class="button"></button>
+        </view>
+        <view class="item fe" bindtap="getWxcode">
+          <icon class="dib icon-new-detail-friends"></icon>
+          <text class="text">朋友圈</text>
+        </view>
+      </view>
+    </view>
+    <!-- 文章信息模块浮动窗口 end -->
+  </view>
+  <view class="ios"></view>
+
+
+
+ <!-- 生成图片 start -->
+<Poster id="poster" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></Poster>
+<!-- 生成图片 end -->
+
+<!-- 生成的海报图弹窗 start -->
+<view class="common-pop" wx:if="{{posterVisible}}">
+  <view class="cover-view" catchtap="closeCommon"></view>
+  <view class="common-img center2">
+    <view class="text">长按保存图片分享朋友圈</view>
+    <image src="{{previewImg}}" mode="widthFix" class="img" show-menu-by-longpress="true"></image>
+    <icon class="close icon-close-pop" catchtap="closeCommon">
+    </icon>
+
+  </view>
+</view>
+<!-- 生成的海报图弹窗 end -->
+
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "report": "/components/report/report",
+    "chat-window": "/components/chatWindow/chatWindow",
+    "my-dialog": "/components/dialog/dialog"
+  },
+  "navigationBarTextStyle": "white"
+}

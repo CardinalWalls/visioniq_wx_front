@@ -1,0 +1,224 @@
+/* pages/tabBar/Index/Index.wxss */
+page {
+  background-color: #f9f9f9;
+}
+
+.user-top {
+  background-color: #1fb471;
+}
+
+
+.user-info {
+  display: flex;
+  padding: 56rpx 54rpx 130rpx 54rpx;
+  align-items: center;
+  color: #fff;
+
+  .headimg {
+    width: 132rpx;
+    height: 132rpx;
+    border: 6rpx solid rgba($color: #fff, $alpha: 0.7);
+    border-radius: 132rpx;
+    display: block;
+  }
+
+  .text-box {
+    flex: 1;
+    padding: 0 30rpx;
+  }
+
+  .name {
+    font-size: 45rpx;
+    font-weight: bold;
+  }
+
+  .phone {
+    font-size: 30rpx;
+    margin-top: 10rpx;
+  }
+
+
+  .edit {
+    display: flex;
+    align-items: center;
+    color: #99f0bd;
+    font-size: 28rpx;
+    height: 60rpx;
+    border-radius: 60rpx;
+    background-color: #14a064;
+    padding: 0 24rpx;
+
+    icon {
+      margin-right: 10rpx;
+    }
+  }
+}
+
+
+.user-tab {
+  background-color: #fff;
+  border-radius: 15rpx;
+  margin: 0 24rpx;
+  position: relative;
+  z-index: 1;
+  bottom: -60rpx;
+  height: 155rpx;
+  display: flex;
+  align-items: center;
+
+  .item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .num {
+    font-family: 'fontNumBold';
+    color: #363636;
+    font-size: 48rpx;
+  }
+
+  .text,
+  .unit {
+    color: #606060;
+    font-size: 28rpx;
+    margin-top: 4rpx;
+  }
+
+  .unit {}
+}
+
+.pd {
+  padding: 0 24rpx;
+}
+
+.meun-box {
+  margin-top: -64rpx;
+}
+
+.meun-list {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  border-radius: 20rpx;
+
+  &.mg {
+    margin-top: 30rpx;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    height: 100rpx;
+    position: relative;
+    z-index: 1;
+    font-size: 30rpx;
+  }
+
+  .icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50rpx;
+  }
+
+  .text-box {
+    flex: 1;
+    padding: 0 30rpx;
+    color: #262626;
+    font-weight: bold;
+  }
+
+  .tel {
+    color: #8a8a8a;
+  }
+}
+
+
+.dialog-limit {
+  padding: 30rpx 0;
+
+  .tit {
+    color: #333333;
+    text-align: left;
+  }
+
+  .week-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20rpx;
+
+    .item {
+      margin-bottom: 20rpx;
+      width: 33.3333333%;
+      display: flex;
+      align-items: center;
+    }
+
+    .text {
+      color: #333;
+      font-size: 28rpx;
+    }
+  }
+}
+
+
+
+/* 核销码生成弹窗 */
+.dialog-ewm {
+  .weui-dialog {
+    width: 500rpx;
+  }
+  .weui-dialog__hd {
+    z-index: 10;
+  }
+  .weui-dialog__ft {
+    display: none;
+  }
+
+  .close-box {
+    width: 80rpx;
+    height: 80rpx;
+  }
+}
+.ewm-box {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  border-radius: 10rpx;
+  color: #101010;
+  padding-top: 40rpx;
+
+  .title {
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .ewm-img {
+    width: 400rpx;
+    height: 400rpx;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .ewm-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    color: #d8d8d8;
+  }
+
+  .name {
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-top: 20rpx;
+  }
+  .hospital {
+    color: #b0aeb7;
+    font-size: 30rpx;
+    margin-top: 10rpx;
+  }
+
+  
+}

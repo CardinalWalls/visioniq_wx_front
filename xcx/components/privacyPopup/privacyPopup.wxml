@@ -1,0 +1,25 @@
+<view class="{{show ? 'weui-show' :'weui-hidden'}}">
+  <view class="weui-mask init" wx:if="{{mask}}" catch:touchmove="onMaskMouseMove" data-type="tap"></view>
+  <view class="weui-half-screen-dialog {{extClass}}">
+    <view class="weui-half-screen-dialog__hd">
+      <view class="weui-half-screen-dialog__hd__main">
+        <text class="weui-half-screen-dialog__title">{{title}}</text>
+      </view>
+    </view>
+    <view class="weui-half-screen-dialog__bd">
+      <view class="weui-half-screen-dialog__tips">{{desc1}}</view>
+      <view class="weui-half-screen-dialog__tips" style="color:blue" bindtap="openPrivacyContract">{{urlTitle}}</view>
+      <view class="weui-half-screen-dialog__tips">{{desc2}}</view>
+    </view>
+    <view class="weui-half-screen-dialog__ft">
+      <view class="weui-half-screen-dialog__btn-area">
+        <view class="privacy-btn border" bindtap="handleDisagree">不同意并退出</view>
+        <view class="privacy-btn">同意并继续
+          <button open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="handleAgree" class="opentype"
+        ></button>
+        </view>
+        
+      </view>
+    </view>
+  </view>
+</view>

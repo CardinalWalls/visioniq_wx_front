@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "check-list": "/components/checkList/checkList",
+    "report-vision": "/components/reportVision/reportVision"
+  },
+  "navigationBarTextStyle": "white"
+}

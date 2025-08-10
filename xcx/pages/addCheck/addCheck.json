@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog",
+    "my-half-screen-dialog": "/components/halfScreenDialog/halfScreenDialog"
+  },
+  "navigationBarTextStyle": "white"
+}

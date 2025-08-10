@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "SwiperBanner": "/components/swiper/swiper"
+  },
+  "navigationBarTextStyle": "white"
+}

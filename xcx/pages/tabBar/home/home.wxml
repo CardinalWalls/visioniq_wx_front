@@ -1,0 +1,10 @@
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<import src="../../../components/wxParse/wxParse.wxml" />
+
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+
+<NavTab current-tab="{{0}}"></NavTab>

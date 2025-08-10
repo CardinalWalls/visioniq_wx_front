@@ -1,0 +1,561 @@
+{
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesManage/archivesManage",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=489485287597015040",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesManage/archivesManage",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "pathName": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesManage/archivesManage",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "pathName": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/risk/risk",
+          "pathName": "pages/news/risk/risk",
+          "query": "userArchiveId=582139948002443264&reportid=596664476174909440",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/chatWindow/chatWindow",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/chatWindow/chatWindow",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "pathName": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/chatWindow/chatWindow",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesManage/archivesManage",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/settled/settled",
+          "pathName": "pages/settled/settled",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "pathName": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/intervention/intervention",
+          "pathName": "pages/doctor/intervention/intervention",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/interventionMethods/interventionMethods",
+          "pathName": "pages/doctor/interventionMethods/interventionMethods",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/intervention/intervention",
+          "pathName": "pages/doctor/intervention/intervention",
+          "query": "userArchiveId=577141776679174144",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/interventionMethods/interventionMethods",
+          "pathName": "pages/doctor/interventionMethods/interventionMethods",
+          "query": "userArchiveId=577141776679174144",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "pathName": "pages/doctor/velocityMeasurement/velocityMeasurement",
+          "query": "userArchiveId=577141776679174144",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addCheck/addCheck",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "userArchiveId=582139948002443264",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/risk/risk",
+          "pathName": "pages/news/risk/risk",
+          "query": "userArchiveId=490545945805586432&reportid=576453030501679104",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/risk/risk",
+          "pathName": "pages/news/risk/risk",
+          "query": "userArchiveId=490545945805586432&reportid=576453030501679104&type=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/list/list",
+          "pathName": "pages/news/list/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/user/manageCheck/manageCheck",
+          "pathName": "pages/user/manageCheck/manageCheck",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addVisualCheck/addVisualCheck",
+          "pathName": "pages/addVisualCheck/addVisualCheck",
+          "query": "userArchiveId=577141776679174144",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=492712170606297088",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=492712460583698432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addVisualCheck/addVisualCheck",
+          "pathName": "pages/addVisualCheck/addVisualCheck",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addCheck/addCheck",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "userArchiveId=490545945805586432&id=570194705216700416",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/detail/detail",
+          "pathName": "pages/news/detail/detail",
+          "query": "id=520871181255966720",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/news/detail/detail",
+          "pathName": "pages/news/detail/detail",
+          "query": "id=570236215446470656",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/loginLoading/loginLoading",
+          "pathName": "pages/loginLoading/loginLoading",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/addCheck/addCheck",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/doctor/archivesDetail/archivesDetail",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/operatorIndex/operatorIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/user/newuser/newuser",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/user/personal/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/userIndex/userIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addArchives/addArchives",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctorIndex/doctorIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/myProfile/myProfile",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/bookManage/bookManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "id=",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/user/manageCheck/manageCheck",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addArchives/addArchives",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/userIndex/userIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addArchives/addArchives",
+          "query": "id=490167713461698560",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "userArchiveId=490187180866535424",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/user/manageCheck/manageCheck",
+          "query": "userArchiveId=490187180866535424",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/addCheck/addCheck",
+          "query": "userArchiveId=490187180866535424&id=490208823722639360",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesManage/archivesManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctorIndex/doctorIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/bookManage/bookManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/myProfile/myProfile",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "userId=174543543228956672",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/chatWindow/chatWindow",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/myProfileUpdate/myProfileUpdate",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/archivesDetail/archivesDetail",
+          "query": "userArchiveId=490545945805586432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/news/list/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/news/list/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/news/risk/risk",
+          "query": "userArchiveId=490545945805586432&reportid=576453030501679104&type=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/tabBar/user/user",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/tabBar/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "S%E8%A7%86%E5%8A%9B%E9%98%B2%E6%8E%A7%E5%B9%B3%E5%8F%B0",
+  "libVersion": "3.0.2"
+}

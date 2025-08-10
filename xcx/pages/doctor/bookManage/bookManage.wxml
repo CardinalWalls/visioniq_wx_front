@@ -1,0 +1,35 @@
+<!--pages/doctor/bookManage/bookManage.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<mp-sticky offset-top="{{navheight}}" z-index="99">
+  <view class="tab-box" style="width:{{getSystemInfo.safeArea.width}}px">
+    <Tab tab-cur="{{tabCur}}" tab-data="{{tabData}}" scroll bindchange="tabChange" size="{{100}}" line-height="{{98}}" color="#2fbe82">
+    </Tab>
+  </view>
+</mp-sticky>
+
+
+<block wx:if="{{d}}">
+  <no-data wx:if="{{d.total == 0}}"></no-data>
+  <view class="list" wx:else>
+    <navigator url="/pages/doctor/archivesDetail/archivesDetail?userArchiveId={{item.userArchiveId}}" hover-class="none" class="item" wx:for="{{d.list}}" wx:key="index">
+      <icon class="icon-gender{{item.userGender}}-large"></icon>
+
+      <view class="text-box">
+        <view class="row-1">
+            <text class="name">{{item.userName}}</text>
+            <text class="age">{{MyMethods.getAgeMothDay(item.userBirth)}}</text>
+            <text class="risk-level {{item.userRiskLevel === 2 ?'blue':''}}" wx:if="{{item.userRiskLevel === 2 || item.userRiskLevel === 3}}">{{MyMethods.getRiskLevel(item.userRiskLevel).name}}</text>
+        </view>
+        <text class="time">{{item.targetTime}}</text>
+        <text class="remark">{{item.userRemark}}</text>
+      </view>
+      
+      <icon class="icon-select"></icon>
+    </navigator>
+  </view>
+</block>
+<view class="ios"></view>

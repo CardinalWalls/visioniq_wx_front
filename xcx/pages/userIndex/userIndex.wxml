@@ -1,0 +1,234 @@
+<!--pages/userIndex/userIndex.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- expert -->
+<view id="page" wx:if="{{user && archive && archiveCurrent}}" style="overflow-y:{{isShowFullScreen ? 'hidden':'scroll'}}">
+  <!-- 导航 start -->
+  <NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+  <view class="user-top">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="text-box item">
+        <swiper class="swiper" indicator-dots="{{archive.total > 1 ? true: false}}" indicator-active-color="#13bb75" indicator-color="#baedd9" current="{{current}}" bindchange="bindchange" bindanimationfinish="bindanimationfinish">
+          <swiper-item wx:for="{{archive.list}}" wx:key="index">
+            <navigator url="/pages/addArchives/addArchives?id={{item.id}}" hover-class="none" class="swiper-item">
+              <view class="img-box">
+                <icon class="icon-gender{{item.gender}}-large2 gender"></icon>
+              </view>
+
+              <view class="swiper-item-fe">
+                <view class="row-1">
+                  <text class="name">{{item.name}}</text>
+                  <text class="age">{{MyMethods.getAgeMothDay(item.birth)}}</text>
+                </view>
+                <view class="idcard">{{MyMethods.numPwd(item.idcard, 6, 4)}}</view>
+              </view>
+            </navigator>
+          </swiper-item>
+        </swiper>
+      </view>
+      <navigator url="/pages/addArchives/addArchives" hover-class="none" class="btn-box item pre">
+        <icon class="icon-add-large"></icon>
+        <text class="text">添加档案</text>
+      </navigator>
+    </view>
+  </view>
+  
+  <view class="con-box">
+    <view class="loading" wx:if="{{loading}}">
+      <view></view>
+      <view class="loading-box">
+        <view class="sk-fading-circle">
+          <view class="sk-circle1 sk-circle"></view>
+          <view class="sk-circle2 sk-circle"></view>
+          <view class="sk-circle3 sk-circle"></view>
+          <view class="sk-circle4 sk-circle"></view>
+          <view class="sk-circle5 sk-circle"></view>
+          <view class="sk-circle6 sk-circle"></view>
+          <view class="sk-circle7 sk-circle"></view>
+          <view class="sk-circle8 sk-circle"></view>
+          <view class="sk-circle9 sk-circle"></view>
+          <view class="sk-circle10 sk-circle"></view>
+          <view class="sk-circle11 sk-circle"></view>
+          <view class="sk-circle12 sk-circle"></view>
+        </view>
+        <view class="text">正在切换档案</view>
+      </view>
+    </view>
+
+    <!-- 档案管理 -->
+    <view class="box" style="border-top: 0;">
+      <view class="menu-list">
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.list[current].id}}" hover-class="none" class="item">录入检查单<text class="tips-pab" wx:if="{{visionListObj[archive.list[current].id].total === 0}}">请先录入检查单数据</text></navigator>
+        <navigator url="/pages/user/manageCheck/manageCheck?userArchiveId={{archive.list[current].id}}" hover-class="none" class="item">视力档案<text class="count">{{visionListObj[archive.list[current].id].total || 0}}</text></navigator>
+        <navigator url="/pages/news/list/list?typecode=YKZS" hover-class="none" class="item">眼科知识</navigator>
+        
+        <block wx:if="{{archiveCurrent.age <= 18 }}">
+          <block wx:if="{{vision[archive.list[current].id] && vision[archive.list[current].id][0] && vision[archive.list[current].id][0].l && vision[archive.list[current].id][0].r}}">
+            <navigator url="/pages/news/risk/risk?userArchiveId={{archive.list[current].id}}&reportid={{visionListObj[archive.list[current].id].list[0].id}}" hover-class="none" class="item">风险评估</navigator>
+          </block>
+          <block wx:else="">
+            <view bind:tap="tapRisk" data-type="risk" class="item">风险评估</view>
+          </block>
+      </block>
+
+        <navigator url="/pages/doctor/myProfile/myProfile?id={{archive.list[current].expertId}}" hover-class="none" class="item">家庭医生</navigator> 
+        <navigator url="/pages/addVisualCheck/addVisualCheck?userArchiveId={{archive.list[current].id}}" hover-class="none" class="item">其他检查数据</navigator>
+      </view>
+
+    </view>
+
+    <!-- 近视度数预测 -->
+    <view class="box" wx:if="{{archiveCurrent.age <= 18}}">
+      <view class="title-box">
+        <text class="name">近视度数预测</text>
+        <view class="fe"></view>
+      </view>
+
+      <!-- <view>
+        当前档案检查单个数：{{vision[archive.list[current].id].length}}, 档案id={{archive.list[current].id}}, 当前档案检查单个数：{{visionListObj[archive.list[current].id].list.length}}
+      </view> -->
+      <view style="min-height: 400rpx;">
+        <view class="vision-swiper" wx:if="{{loading=== false && vision[archive.list[current].id].length > 0 && vision[archive.list[current].id].length == 1 && vision[archive.list[current].id][0].l && vision[archive.list[current].id][0].r}}">
+          <report vision="{{ vision[archive.list[current].id]}}"></report>
+        </view>
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.list[current].id}}" hover-class="none" class="no-add"  wx:elif="{{loading=== false && archive.total > 0 && visionListObj[archive.list[current].id].total == 0}}">
+          <icon class="icon-nodata-add"></icon>
+          <view class="nodata-add">请录入视力检查数据</view>
+        </navigator>
+        <!-- <no-data >
+          <view class="nodate-dec">请先添加检查单，查看数据详情！</view>
+        </no-data> -->
+        <view class="vision-swiper-loading" style="height: 340px;" wx:elif="{{loading=== false}}">
+          <view class="loading-box">
+            <view class="sk-fading-circle">
+              <view class="sk-circle1 sk-circle"></view>
+              <view class="sk-circle2 sk-circle"></view>
+              <view class="sk-circle3 sk-circle"></view>
+              <view class="sk-circle4 sk-circle"></view>
+              <view class="sk-circle5 sk-circle"></view>
+              <view class="sk-circle6 sk-circle"></view>
+              <view class="sk-circle7 sk-circle"></view>
+              <view class="sk-circle8 sk-circle"></view>
+              <view class="sk-circle9 sk-circle"></view>
+              <view class="sk-circle10 sk-circle"></view>
+              <view class="sk-circle11 sk-circle"></view>
+              <view class="sk-circle12 sk-circle"></view>
+            </view>
+            <view class="text">报告生成中...</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+
+    <!-- 专家咨询 -->
+    <view class="box">
+      <view class="title-box">
+        <text class="name">专家咨询</text>
+        <view class="fe"></view>
+        <view class="btn" bindtap="openBook">
+          <icon class="icon-yuyue"></icon>
+          <text>专家门诊预约</text>
+        </view>
+      </view>
+      <view class="title-dec">权威专家为您<text>1V1</text>防控指导</view>
+
+      <view class="chat-window-box">
+        <chat-window boxH="{{420}}" btnIsFixed="{{false}}" archive="{{archive.list[current]}}"></chat-window>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 在线预约 -->
+<my-dialog show="{{dialogShowOnline}}" title="专家门诊预约" extClass="dialog-book">
+  <block wx:if="{{dialogShowOnline}}">
+    <view class="dialog-online" >
+      <view class="books" wx:if="{{book && book.total > 0}}">
+        <view class="tit">已约时间：</view>
+        <view class="text-box">
+          <view class="time" wx:for="{{book.list}}" wx:key="index" bindtap="deleteBook" data-id="{{item.id}}" data-date="{{item.targetTime}}">{{item.targetTime}}<icon class="icon-delete-book icon"></icon></view>
+        </view>
+      </view>
+      
+      <view class="item">
+        <view class="tit">专家姓名：</view>
+        <view class="text">{{expert.name || ''}}</view>
+      </view>
+      <view class="item">
+        <view class="tit">专家职位：</view>
+        <view class="text">{{expert.jobPosition || ''}}</view>
+      </view>
+      <view class="item" style="margin-bottom: 20rpx;">
+        <view class="tit">医院名称：</view>
+        <view class="text">{{expert.hospital || ''}}</view>
+      </view>
+
+      <view class="item">
+        <view class="tit">预约姓名：</view>
+        <view class="text orange">{{archive.list[current].name || ''}}</view>
+      </view>
+      <view class="item">
+        <view class="tit">身份证号：</view>
+        <view class="text orange">{{archive.list[current].idcard || ''}}</view>
+      </view>
+      <view class="item">
+        <view class="tit">预约时间：</view>
+        <view class="text orange">
+          <picker mode="selector" range="{{bookDate}}" range-key="fullName" bindchange="pickerChange" data-type="targetTime">
+            {{bookObj.fullName == '' ? '请选择时间':bookObj.fullName}}
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view slot="footer" class="btn-box">
+      <view class="btn" bindtap="submitBook">确定预约</view>
+    </view>
+  </block>
+</my-dialog>
+
+<!-- 消息未读数 -->
+<my-dialog show="{{dialogUnRead}}" title="" extClass="dialog-unread" maskClosable="{{false}}" mask="{{false}}" isCloseBtn="{{false}}" >
+  <view>
+    <view class="close-box" bind:tap="unReadDialogClose">
+      <icon class="icon-dialog-close-white "  />
+    </view>
+    
+    <view>
+      <icon class="icon-unread-alert"></icon>
+    </view>
+    <view class="text">
+      <text>您收到 {{unread || 0}} 条最新消息</text>
+    </view>
+  </view>
+  <view class="btns" slot="footer">
+    <view class="btn" bind:tap="unReadLook">立即查看</view>
+  </view>
+</my-dialog>
+
+<!-- 欢迎弹窗 -->
+<my-dialog show="{{dialogEnter}}" title="" extClass="enter-alert" isCloseBtn="{{false}}">
+  <view class="con">
+    <!-- <image src="{{MyMethods.requestImgUrl(enterImg)}}" class="img" mode="widthFix"></image> -->
+    <view class="con-bg" style="background: url('{{MyMethods.requestImgUrl(enterImg)}}') no-repeat bottom center;background-size: auto 100%;">
+        <view class="con-pd">
+            <rich-text nodes="{{enterText}}" user-select="{{true}}"></rich-text>
+        </view>
+    </view>
+    <!-- <text>我们是免费近视防控平台，由重庆市眼科学会、重庆医科大学、重庆市教委共同开发，汇集了权威专家，保障每一个建议都基于最新医学研究和专家共识。</text>
+    <text style="margin-top: 20rpx; display: block;">
+        <text style="color: red;">{{archive.list[current].expertName}}</text> 将成为你孩子的专属家庭医生，直至18岁，提供个性化的近视防控指导。平台利用人工智能精准预测近视发展，提供阶段性调整建议，减少不必要的就医时间和费用。作为一个公立公益平台，我们的目标是通过专业的医学支持，帮助你的孩子保持最佳的视力健康。随时与家庭医生互动，让你放心、省心，欢迎向我们的专家进行咨询。
+    </text> -->
+
+    <view class="close" bind:tap="dialogEnterClose">
+        <icon class="icon-close-pop"></icon>
+    </view>
+  </view>
+</my-dialog>
+

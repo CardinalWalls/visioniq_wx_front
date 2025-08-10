@@ -1,0 +1,19 @@
+<view style="width:{{windowWidth}}px;overflow: hidden;">
+  <scroll-view class="scroll-view {{tabClass}}" style="height: {{size}}rpx;" scroll-x="{{scrolling}}"
+    scroll-with-animation="{{scrolling}}" scroll-left="{{scrollLeft}}" show-scrollbar="false">
+    <view class="tabs-wrap">
+      <view class="tabs {{scroll ? 'tabs-scroll' : ''}}" style="height: {{size}}rpx">
+        <view class="tabs-item {{index === tabCur ? 'tabs-item-cur': ''}}"
+          style="height: {{size}}rpx;line-height: {{lineHeight > 0 ? lineHeight:size }}rpx;" wx:for="{{tabData}}"
+          wx:key="index" bindtap="toggleTab" data-index="{{index}}">
+          <view class="tabs-item-child">
+            {{tabKey === '' ?item:item[tabKey]}}
+            <text class="count" wx:if="{{special > 0}}">{{item.count}}</text>
+          </view>
+        </view>
+        <view class="tabs-line {{needTransition ? 'transition' : ''}}"
+          style="background: {{color}};width: {{lineWidth}}px;transform: translateX({{translateX}}px)"></view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

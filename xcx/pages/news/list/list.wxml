@@ -1,0 +1,37 @@
+<!--pages/News/List/List.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+
+<block wx:if="{{d !== ''}}">
+  <!-- 导航 start -->
+  <NavBar navbar-data="{{nvabarData}}"></NavBar>
+  <!-- 导航 end -->
+
+  <!-- 搜索 start -->
+  <navigator url="/pages/SearchPage/SearchPage?type=0" class="search-box">
+    <input type="text" placeholder="请输入关键字查询" focus="{{isOnfocus}}" cursor-spacing="40" class="input-text" bindinput="inputChange" bindblur="search" bindconfirm="search"></input>
+    <view class="icon-search" bindtap="search">
+      <icon class="icon-nologin-sousuo"></icon>
+    </view>
+  </navigator>
+  <!-- 搜索 end -->
+
+  <!-- 分类 start -->
+	<block wx:if="{{tabData.length > 2}}">
+    <mp-sticky offset-top="{{navheight}}" z-index="99">
+      <view class="tabs-box" style="width:{{getSystemInfo.screenWidth}}px;">
+        <Tab tab-cur="{{tabCur}}" tab-data="{{tabData}}" color="#2fbe82" size="{{size}}" scroll bindchange="tabChange">
+        </Tab>
+      </view>
+    </mp-sticky>
+	</block>
+	<!-- 分类 end -->
+
+  <block wx:if="{{d}}">
+    <view class="newlist">
+      <NewsList data="{{d.list}}"></NewsList>
+    </view>
+    <NoData wx:if="{{d.total === 0}}"></NoData>
+  </block>
+
+  <view class="ios"></view>
+</block>

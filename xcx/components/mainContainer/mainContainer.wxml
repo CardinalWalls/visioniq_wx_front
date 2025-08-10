@@ -1,0 +1,25 @@
+<!--components/mainContainer/mainContainer.wxml-->
+<scroll-view 
+  style="height:{{height}}px;" 
+  enhanced="{{enhanced}}"
+  refresher-default-style="{{refresherDefaultStyle}}"
+  scroll-with-animation="{{scrollWithAnimation}}"
+  fast-deceleration="{{fastDeceleration}}"
+  show-scrollbar="{{showScrollbar}}"
+  refresher-enabled="{{refresherEnabled}}"
+  scroll-y="{{scrollY}}" 
+  enable-back-to-top="true" 
+  refresher-triggered="{{refresher}}" 
+  scroll-top="{{scrollTop}}"
+  binddragstart="_dragstart"
+  binddragging="_dragging"
+  binddragend="_dragend"
+  bindrefresherabort="_abort"
+  bindrefresherrestore="_restore"
+  bindscrolltolower="_lower" 
+  bindrefresherrefresh="_refresh"
+  bindrefresherpulling="_pulling"
+  bindscroll="_scroll"
+  bindscrolltoupper="_toupper">
+  <slot></slot>
+</scroll-view>

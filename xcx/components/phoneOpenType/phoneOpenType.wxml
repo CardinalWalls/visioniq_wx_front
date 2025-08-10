@@ -1,0 +1,4 @@
+<!--components/phoneOpenType/phoneOpenType.wxml-->
+<button hover-class="none" class="opentype" catchtap="privacyAuth" wx:if="{{needAuthorization}}"></button>
+<button hover-class="none" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="opentype" wx:else></button>
+<!-- catchtap="btnHide" wx:elif="{{isShow}}" -->

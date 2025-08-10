@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "mp-sticky": "/components/sticky/index",
+    "NewsList": "/components/newsList/newsList"
+  },
+  "backgroundColor": "#ffffff",
+  "enablePullDownRefresh": true
+}

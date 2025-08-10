@@ -1,0 +1,11 @@
+<picker 
+    mode="multiSelector"
+    bindchange="bindAreaChange"
+    bindcolumnchange="bindAreaColumnChange"
+    range-key="{{'name'}}"
+    value="{{areaIndex}}" 
+    range="{{areaArr}}"
+>
+  <!-- {{areaArr[0][areaIndex[0]].name}}，{{areaArr[1][areaIndex[1]].name}}，{{areaArr[2][areaIndex[2]].name}} -->
+  <slot></slot>
+</picker>

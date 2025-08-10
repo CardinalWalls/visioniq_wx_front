@@ -1,0 +1,55 @@
+<!--components/report/report.wxml-->
+<block wx:if="{{vision.length > 0}}">
+
+  <view class="report-box" style="min-height: 340px" wx:if="{{vision[0].r}}">
+    <view style="height:340px">
+        <view class="full-btn" data-type="r" bind:tap="tapFullScreen">
+            <icon class="icon-full-scree"></icon>
+        </view>
+      <ec-canvas id="mychart-dom-line-v2" canvas-id="mychart-line-v2" ec="{{ ecLineRight }}"></ec-canvas>
+    </view>
+
+    <view class="report-content">
+      <view class="report-content-dec s{{currentLevel.rLevel}}" wx:if="{{description.r !==''}}">
+        <text class="result" wx:if="{{description !==''}}">结论：{{description.r}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="report-box" style="min-height: 340px" wx:if="{{vision[0].l}}">
+    <view style="height:340px">
+        <view class="full-btn" data-type="l" bind:tap="tapFullScreen">
+            <icon class="icon-full-scree"></icon>
+        </view>
+      <ec-canvas id="mychart-dom-line-v1" canvas-id="mychart-line-v1" ec="{{ ecLineLeft }}"></ec-canvas>
+    </view>
+
+    <view class="report-content">
+      <view class="report-content-dec s{{currentLevel.lLevel}}" wx:if="{{description.l !==''}}">
+        <text class="result" wx:if="{{description.l !==''}}">结论：{{description.l}}</text>
+      </view>
+    </view>
+
+
+  </view>
+
+</block>
+<no-data wx:else="{{vision.length == 0}}">
+  <view class="nodate-dec">请先添加检查单，查看数据详情！</view>
+</no-data>
+
+
+
+<!-- 全屏折线图 -->
+<view class="full-screen" wx:if="{{isShowFull}}">
+    <!-- margin-left: -{{isPc ?echartFullSize.w/2 + 80:echartFullSize.w +20}}rpx; -->
+    <view style="width: {{echartFullSize.w}}px;height: {{echartFullSize.h}}px;" class="full-con">
+        <view class="close" bind:tap="fullClose">
+            <icon class="icon-dialog-close"></icon>
+        </view>
+        <ec-canvas id="mychart-dom-line-v3" canvas-id="mychart-line-v3" ec="{{ ecLineFull }}"></ec-canvas>
+    </view>
+
+    
+</view>

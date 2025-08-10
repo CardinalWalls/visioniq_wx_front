@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog",
+    "ec-canvas": "/components/ec-canvas/ec-canvas"
+  }
+}

@@ -1,0 +1,63 @@
+.weui-dialog.weui-dialog_hidden {
+  opacity: 0;
+  transform: scale3d(1, 1, 0)
+}
+
+.weui-dialog {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1) translateY(-50%);
+  transform: scale3d(1, 1, 1) translateY(-50%);
+  transition: all .2s ease-in
+}
+
+.weui-mask.weui-mask_hidden {
+  opacity: 0;
+  transform: scale3d(1, 1, 0)
+}
+
+.weui-mask {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+  transition: all .2s ease-in
+}
+
+.weui-dialog__ft::after {
+  border-top: none;
+}
+.weui-dialog__ft {
+  padding: 0 40rpx;
+}
+.submit{
+  background-color: #0acd7a;
+  height: 90rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 40rpx;
+}
+
+.weui-dialog__title {
+  color: #242424;
+  font-size: 40rpx;
+}
+
+.weui-dialog__hd {
+  position: relative;
+  z-index: 1;
+}
+
+.close-box {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  z-index: 10;
+  width: 90rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weui-dialog {
+  padding-bottom: 80rpx;
+}
+

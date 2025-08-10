@@ -1,0 +1,2 @@
+<!--components/nomore/nomore.wxml-->
+<view class="nomore" bindtap="backTop">点我返回顶部</view>

@@ -1,0 +1,50 @@
+<!--pages/users/index/index.wxml-->
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}"></NavBar>
+<!-- 导航 end -->
+
+
+<view class="form-box">
+
+  <view class="form-box-item">
+    <!-- <view class="form-box-tit">手机号码</view> -->
+    <view class="form-input">
+      <view class="input-box">
+        <input type="number" maxlength="11" class="input-text" placeholder-class="placeholder-class" value="{{d.phone}}" placeholder="请输入新手机号码" bindinput="inputChange" data-type="phone" cursor-spacing="40"></input>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-box-item">
+    <!-- <view class="form-box-tit">图形校验码</view> -->
+    <view class="form-input">
+      <view class="input-box flex center3">
+        <view class="fe text-box">
+          <input type="text" class="input-text" maxlength="5" placeholder-class="placeholder-class" value="{{imgverifyCode}}" placeholder="请输入图形验证码" bindinput="inputChange" data-type="imgverifyCode" cursor-spacing="40"></input>
+        </view>
+        <view class="yzm-box fix" bindtap='getEdgeCodeImg'>
+          <image src='{{edgeCodeImg}}' class='yzm-img fr' mode='aspectFill'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-box-item">
+    <!-- <view class="form-box-tit">验证码</view> -->
+    <view class="form-input">
+      <view class="input-box flex center3">
+        <view class="fe text-box">
+          <input type="number" class="input-text" maxlength="6" placeholder-class="placeholder-class" value="{{d.verifyCode}}" placeholder="请输入短信验证码" bindinput="inputChange" data-type="verifyCode" cursor-spacing="40"></input>
+        </view>
+        <view class="yzm-box yzm-text {{verify.visible ? '':'disabled'}}" catchtap="sendYzm">
+          <text>{{verify.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="phone-btn">
+  <view class="btn-large" catchtap="tapSubmit">保存</view>
+</view>

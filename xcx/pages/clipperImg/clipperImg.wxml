@@ -1,0 +1,22 @@
+<import src="../../components/weCropper/weCropper.wxml"/>
+<!-- 导航 start -->
+<nav-bar navbar-data="{{nvabarData}}"></nav-bar>
+<!-- 导航 end -->
+
+<view class=''>
+  <view class="cropper-wrapper">
+      <template is="WeCropper" data="{{...cropperOpt}}"/>
+      <cover-view class="cropper-buttons">
+          <cover-view
+            class="upload btn"
+            bindtap="uploadTap">
+            重新选择
+          </cover-view>
+          <cover-view
+            class="getCropperImage btn"
+            bindtap="getCropperImage">
+            确定使用
+          </cover-view>
+      </cover-view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+/* components/nodata/nodata.wxss */
+.nodata {
+  text-align: center;
+  padding: 110rpx 0;
+}
+
+.icon{
+  margin: 0 auto 10rpx;
+}
+
+.text {
+  font-size: 28rpx;
+  color: #adadad;
+}

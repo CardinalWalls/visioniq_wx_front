@@ -1,0 +1,238 @@
+/* pages/PersonalCenter/PromoteRule/PromoteRule.wxss */
+.box {
+  border-top: 20rpx solid #f9f9f9;
+  padding-bottom: 50rpx;
+}
+
+.box.first {
+  border-top: none;
+}
+
+.vision-swiper {
+  padding: 20rpx 0;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 20rpx 0 20rpx;
+}
+
+.title-box .name {
+  position: relative;
+  z-index: 1;
+  color: #2a2a2a;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.title-box .name::after {
+  content: '';
+  width: 130rpx;
+  height: 20rpx;
+  position: absolute;
+  bottom: 2rpx;
+  left: 0;
+  z-index: -1;
+  background: #84faa7;
+  background: -moz-linear-gradient(left, #84faa7 0%, #faffed 96%);
+  background: -webkit-linear-gradient(left, #84faa7 0%, #faffed 96%);
+  background: linear-gradient(to right, #84faa7 0%, #faffed 96%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#84faa7', endColorstr='#faffed', GradientType=1);
+}
+
+.title-box .btn {
+  border: 2rpx solid #01c176;
+  background-color: #d9fff0;
+  height: 56rpx;
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #22be80;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  margin-left: 10rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.title-box .btn icon {
+  margin-right: 6rpx;
+}
+
+.title-box .dec {
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+
+.table {
+  margin: 30rpx 20rpx 0;
+  border: 1rpx solid #ccc;
+}
+
+.table.year .item:nth-child(2) {
+  background-color: #fff9f9;
+  color: #e20202;
+}
+
+.table .item {
+  display: flex;
+  color: #101010;
+  font-size: 26rpx;
+  text-align: center;
+  border-top: 1rpx solid #ccc;
+  min-height: 60rpx;
+}
+
+.table .item:first-child {
+  border-top: none;
+}
+
+.table .item.tit {
+  font-weight: bold;
+  font-size: 28rpx;
+  background-color: #22be80;
+  color: #fff;
+}
+
+.table .item .text {
+  padding: 10rpx;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.table .item .text::after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.table .item .text:last-child::after {
+  content: '';
+  display: none;
+}
+
+.table .tit {
+  font-weight: bold;
+}
+
+.table .status {
+  background-color: #d9fff0;
+  color: #22be80;
+  font-size: 24rpx;
+}
+
+.table .status.s1 {
+  background-color: rgba(253, 173, 58, 0.12);
+  color: #fdad3a;
+}
+
+.table .status.s2 {
+  background-color: #fff9f9;
+  color: #e20202;
+}
+
+.table .success {
+  background-color: #d9fff0;
+  color: #01c176;
+  font-size: 24rpx;
+}
+
+.table .warning {
+  background-color: #fff9f9;
+  color: #e20202;
+  font-size: 24rpx;
+}
+
+.result-level {
+  margin: 40rpx 20rpx 0;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.result-level .item {
+  flex: 1;
+  color: #fff;
+  margin-right: 4rpx;
+}
+
+.result-level .item:last-child {
+  margin-right: 0;
+}
+
+.result-level .item .dec {
+  font-size: 28rpx;
+  font-weight: bold;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;
+}
+
+.result-level .item.status0 .dec {
+  background-color: #22be80;
+}
+
+.result-level .item.status1 .dec {
+  background-color: #fdad3a;
+}
+
+.result-level .item.status2 .dec {
+  background-color: #e20202;
+}
+
+.result-level .position {
+  text-align: center;
+  padding-top: 6rpx;
+}
+
+.result-level .position .text {
+  margin-top: 4rpx;
+  display: block;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  border-radius: 80rpx;
+  background-color: #e20202;
+}
+
+.report-content-pd {
+  padding: 0 20rpx;
+}
+
+.report-content-dec2 {
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  border: 4rpx dashed #f69b18;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  color: #110011;
+}
+
+.tips {
+  margin: 20rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #fb881f;
+  color: #fff;
+  border-radius: 50rpx;
+}
+
+.tips.s0 {
+  background-color: #15c295;
+}
+
+.tips.s4 {
+  background-color: #ff0000;
+}

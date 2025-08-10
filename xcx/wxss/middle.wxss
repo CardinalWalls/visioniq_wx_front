@@ -1,0 +1,2 @@
+.icon-nodata-add{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/middle.png?v=2024010111331') no-repeat -169rpx 6rpx;background-size: 241rpx 146rpx;width: 72rpx;height: 72rpx;}
+.icon-nodata{background: url('https://vision-dev1.oss-cn-zhangjiakou.aliyuncs.com/middle.png?v=2024010111331') no-repeat 6rpx 6rpx;background-size: 241rpx 146rpx;width: 147rpx;height: 152rpx;}

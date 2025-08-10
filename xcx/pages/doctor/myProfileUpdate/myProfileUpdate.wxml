@@ -1,0 +1,123 @@
+<!--pages/users/index/index.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}"></NavBar>
+<!-- 导航 end -->
+
+<block wx:if="{{user}}">
+
+  <view class="modify-pd">
+    <view class='modify-box'>
+      <!-- bindtap="changeImg" -->
+      <view class="modify-item">
+        <view class="title">头像</view>
+        <view class="fe text-box tr">
+          <view class="headimg-box">
+            <user-open-type bind:success="minuserChange" typecount="{{-1}}"></user-open-type>
+            <image class="avatar imgbg" mode="aspectFill" src="{{MyMethods.isHttps(user.avatar) ? user.avatar: MyMethods.requestImgUrl(user.avatar, {type: 'avatar',size: '&x-oss-process=image/resize,m_lfit,s_90'})}}">
+            </image>
+          </view>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">姓名</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入姓名" data-name="name" value="{{user.name}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">性别</view>
+        <view class="fe text-box tr">
+          <picker mode="selector" range="{{gender}}" rangeKey="name" bindchange="pickerChange" data-type="gender">
+            <input placeholder="请选择性别" value="{{user.gender === 0 ? '':gender[user.gender-1].name}}" cursor-spacing="40" disabled></input>
+          </picker>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">地区</view>
+        <view class="fe text-box tr">
+          <address bind:getAddress="_getAddress">
+            <input placeholder="请选择地区" value="{{regionObj.names}}" cursor-spacing="40" disabled="true"></input>
+          </address>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">职称</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入职称" data-name="title" value="{{user.title}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">职位</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入职位" data-name="jobPosition" value="{{user.jobPosition}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">医院</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入医院" data-name="hospital" value="{{user.hospital}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">科室</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入科室" data-name="department" value="{{user.department}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item">
+        <view class="title">等级</view>
+        <view class="fe text-box tr">
+          <input bindinput="changeInput" placeholder="请输入等级" data-name="level" value="{{user.level}}" cursor-spacing="40"></input>
+        </view>
+        <icon class="dib icon-modifyInfo-arrow disabled"></icon>
+      </view>
+
+      <view class="modify-item column">
+        <view class="title">擅长</view>
+        <view class="textarea-box">
+          <textarea bindinput="changeInput" placeholder="请输入擅长内容" data-name="proficient" value="{{user.proficient}}" cursor-spacing="40" class="textarea" maxlength="-1"></textarea>
+        </view>
+      </view>
+
+      <view class="modify-item column">
+        <view class="title">个人简介</view>
+        <view class="textarea-box">
+          <textarea bindinput="changeInput" placeholder="请输入等级" data-name="profile" value="{{user.profile}}" cursor-spacing="40" class="textarea" maxlength="-1"></textarea>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+  <view class="fixed-btn-h"></view>
+  <view class="ios"></view>
+
+
+  <view class="fixed-btn">
+    <view class="btn-box-log">
+      <view class="submit-log" bindtap="saveInfo">
+        <icon class="icon-home-log" />
+        <text class="text">保存</text>
+      </view>
+    </view>
+    <view class="ios"></view>
+  </view>
+</block>

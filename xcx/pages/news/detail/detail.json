@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "Poster": "/components/poster/index"
+  },
+  "backgroundColor": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "backgroundTextStyle": "light"
+}

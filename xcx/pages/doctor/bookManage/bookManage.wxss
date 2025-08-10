@@ -1,0 +1,74 @@
+/* pages/doctor/bookManage/bookManage.wxss */
+.tab-box {
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.list {
+  padding: 10rpx 20rpx;
+}
+
+.list .item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  padding: 30rpx 0 30rpx 10rpx;
+}
+
+.list .text-box {
+  flex: 1;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list .row-1 {
+  display: flex;
+  align-items: center;
+}
+
+.list .name {
+  color: #2a2a2a;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.list .risk-level {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 1px solid #e20202;
+  padding: 0 20rpx;
+  border-radius: 30rpx;
+  color: #e20202;
+  background-color: rgba(254, 250, 131, 0.52);
+}
+
+.list .risk-level.blue {
+  border-color: #1fbefe;
+  background-color: rgba(147, 210, 243, 0.33);
+  color: #101010;
+}
+
+.list .remark {
+  color: #e20202;
+  font-size: 24rpx;
+}
+
+.list .age {
+  margin-right: 20rpx;
+  background-color: #81cdc8;
+  height: 45rpx;
+  line-height: 45rpx;
+  border-radius: 45rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  padding: 0 20rpx;
+}
+
+.list .time {
+  color: #7f7f7f;
+  font-size: 26rpx;
+}

@@ -1,0 +1,57 @@
+.swiper-pages {
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.shop .slide-image {
+  border-radius: 10rpx !important;
+}
+
+.swiper-banner .link{
+  height: 100%;
+  display: block;
+}
+.swiper-pages .pages{
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 10rpx;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  margin: 0 4rpx
+}
+
+.swiper-pages .pages.active{
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+  width: 24rpx;
+}
+.swiper-box{
+  position: relative;
+  z-index: 1;
+}
+
+.swiper-box.pd20 {
+  padding: 0 20rpx;
+}
+
+.swiper-box.sxy .swiper-pages {
+  bottom: 34rpx;
+}
+
+.slide-image{
+  height: 100%;
+  width: 100%;
+  border-radius: 10rpx;
+}
+.swiper-banner{
+  overflow: hidden;
+}
+
+.imgbg {
+  background-color: #f5f5f5;
+}

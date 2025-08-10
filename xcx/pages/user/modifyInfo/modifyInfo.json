@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "UserOpenType": "/components/userOpenType/userOpenType",
+    "MainContainer": "/components/mainContainer/mainContainer",
+    "pickerSelector": "/components/pickerSelector/pickerSelector",
+    "Address": "/components/address/address",
+    "AlertBox": "/components/alertBox/alertBox"
+  }
+}

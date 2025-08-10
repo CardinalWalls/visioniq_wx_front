@@ -1,0 +1,65 @@
+/* pages/chatWindow/chatWindow.wxss */
+.tab-sticky {
+  background-color: #ffffff;
+}
+
+.remark {
+  padding: 0 20rpx 10rpx 20rpx;
+  background-color: #ccffec;
+  color: #e20202;
+  font-size: 24rpx;
+}
+
+.user-info {
+  background: #eefbf6;
+  border-radius: 5rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 92rpx;
+  color: #1e1e1e;
+}
+
+.user-info .name {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+
+.user-info .text-box {
+  flex: 1;
+  text-align: right;
+  font-size: 26rpx;
+  color: #1e1e1e;
+}
+
+.user-info .text-box text {
+  color: #2fbe82;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+.tabs-link {
+  display: flex;
+  align-items: center;
+  background: #ccffec;
+  padding: 20rpx 10rpx;
+  box-shadow: -3px 0 20rpx -2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -3px 0 20rpx -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: -3px 0 20rpx -2px rgba(0, 0, 0, 0.2);
+}
+
+.tabs-link .item {
+  background-color: #2fbe82;
+  color: #ffffff;
+  font-size: 24rpx;
+  flex: 1;
+  margin: 0 10rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}

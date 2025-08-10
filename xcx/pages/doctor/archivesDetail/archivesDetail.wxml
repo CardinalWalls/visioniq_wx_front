@@ -1,0 +1,131 @@
+<!--pages/doctor/archivesDetail/archivesDetail.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<block wx:if="{{archive}}">
+  <view class="user-top">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="img-box">
+        <icon class="icon-gender{{archive.gender}}-large2"></icon>
+      </view>
+      <view class="text-box">
+        <view class="row-1">
+          <text class="name">{{archive.name}}</text>
+          <text class="age">{{MyMethods.getAgeMothDay(archive.birth)}}</text>
+        </view>
+        <view class="idcard">{{MyMethods.numPwd(archive.idcard, 6, 4)}}</view>
+        <view class="remark" wx:if="{{archive.remark}}">{{archive.remark}}</view>
+      </view>
+      <text class="risk-level {{archive.riskLevel === 2 ?'blue':''}}" wx:if="{{archive.riskLevel === 2 || archive.riskLevel === 3}}">{{MyMethods.getRiskLevel(archive.riskLevel).name}}</text>
+    </view>
+  </view>
+
+  <view class="tel-box" bindtap="makePhoneCall" data-phone="{{archive.parentPhone}}">
+    <icon class="icon-manger-user"></icon>
+    <text class="name">监护人电话：</text>
+    <view class="fe phone">{{archive.parentPhone}}</view>
+    <icon class="icon-manger-tel"></icon>
+  </view>
+
+
+  <!-- 档案管理 -->
+  <view class="box" style="border-top: 0;">
+      <!-- <view class="title-box">
+        <text class="name">档案管理</text>
+        <view class="fe"></view>
+        <view class="dec">帮助儿童青少年保护视力</view>
+      </view> -->
+
+      <view class="menu-list">
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.id}}" hover-class="none" class="item">录入检查单</navigator>
+        <navigator url="/pages/user/manageCheck/manageCheck?userArchiveId={{archive.id}}" hover-class="none" class="item">视力档案<text class="count">{{d.total || 0}}</text></navigator>
+        <navigator url="/pages/news/list/list?typecode=YKZS" hover-class="none" class="item">眼科知识</navigator>
+
+        <block wx:if="{{archive.age <= 18}}">
+          <block wx:if="{{d && d.total > 0 && vision.length == 1 && vision[0].l && vision[0].r}}">
+            <navigator url="/pages/news/risk/risk?userArchiveId={{archive.id}}&reportid={{d.list[0].id}}" hover-class="none" class="item">风险评估</navigator>
+          </block>
+          <block wx:else="">
+            <view bind:tap="tapRisk" data-type="risk" class="item">风险评估</view>
+          </block>
+        </block>
+
+        <navigator url="/pages/doctor/myProfile/myProfile?id={{archive.expertId}}" hover-class="none" class="item">家庭医生</navigator> 
+        <navigator url="/pages/addVisualCheck/addVisualCheck?userArchiveId={{archive.id}}" hover-class="none" class="item">其他检查数据</navigator>
+
+
+        <navigator url="/pages/doctor/velocityMeasurement/velocityMeasurement?userArchiveId={{archive.id}}" hover-class="none" class="item" wx:if="{{speed[archive.id] && speed[archive.id].l && speed[archive.id].r}}">
+          <view>区间测速</view>
+          <view class="dec">近期疗效评估</view>
+        </navigator>
+        <view class="item" bind:tap="tapRisk" data-type="speed" wx:else="">
+          <view>区间测速</view>
+          <view class="dec">近期疗效评估</view>
+        </view> 
+        
+        
+        <navigator url="/pages/doctor/interventionMethods/interventionMethods?userArchiveId={{archive.id}}" hover-class="none" class="item">干预方式</navigator> 
+        <navigator url="/pages/addArchives/addArchives?id={{archive.id}}" hover-class="none" class="item">修改档案</navigator> 
+      </view>
+
+    </view>
+
+  <!-- 近视度数预测 -->
+  <view class="box" wx:if="{{archive.age <= 18}}">
+    <view class="title-box">
+      <text class="name">近视度数预测</text>
+      <view class="fe"></view>
+    </view>
+
+    <view class="vision-swiper" wx:if="{{d && d.total > 0 && vision.length == 1 && vision[0].l && vision[0].r}}">
+      <report vision="{{vision}}"></report>
+    </view>
+    <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.id}}" hover-class="none" class="no-add" wx:elif="{{d && d.total == 0}}">
+      <icon class="icon-nodata-add"></icon>
+      <view class="nodata-add">请录入视力检查数据</view>
+    </navigator>
+    <view class="vision-swiper-loading" style="height: 340px;" wx:else>
+      <view class="loading-box">
+        <view class="sk-fading-circle">
+          <view class="sk-circle1 sk-circle"></view>
+          <view class="sk-circle2 sk-circle"></view>
+          <view class="sk-circle3 sk-circle"></view>
+          <view class="sk-circle4 sk-circle"></view>
+          <view class="sk-circle5 sk-circle"></view>
+          <view class="sk-circle6 sk-circle"></view>
+          <view class="sk-circle7 sk-circle"></view>
+          <view class="sk-circle8 sk-circle"></view>
+          <view class="sk-circle9 sk-circle"></view>
+          <view class="sk-circle10 sk-circle"></view>
+          <view class="sk-circle11 sk-circle"></view>
+          <view class="sk-circle12 sk-circle"></view>
+        </view>
+        <view class="text">报告生成中...</view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 按钮 -->
+  <view class="fixed-btn-h">
+    <view class="fixed-btn">
+      <view class="btn-box-log">
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.id}}" hover-class="none" class="item orange">
+          <icon class="icon-manger-add"></icon>
+          <text class="text">添加检查单</text>
+        </navigator>
+        <icon class="line"></icon>
+        <navigator url="/pages/chatWindow/chatWindow?userArchiveId={{archive.id}}" hover-class="none" class="item">
+          <icon class="icon-manger-msg-white"></icon>
+          <text class="text">在线沟通</text>
+        </navigator>
+      </view>
+      <view class="ios"></view>
+    </view>
+
+  </view>
+
+</block>

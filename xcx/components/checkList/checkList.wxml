@@ -1,0 +1,133 @@
+<!--components/checkList/checkList.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<view class="box" wx:for="{{list}}" wx:key="index">
+  <view class="title-box">
+    <text class="name">检查数据</text>
+    <text class="num">{{index+1}}</text>
+    <view class="fe"></view>
+  </view>
+
+  <navigator url="/pages/addCheck/addCheck?userArchiveId={{item.userArchiveId}}&id={{item.id}}" hover-class="none" class="check-hospital">
+    <icon class="icon-manger-time"></icon>
+    <text class="text">{{MyMethods.stringReplace(item.inspectDate,'-','/')}}</text>
+    <text class="text">{{item.hospital}}</text>
+    <text class="text">{{item.height}}cm</text>
+    <view class="fe"></view>
+    <view class="btn">修改信息</view>
+    <!-- <icon class="icon-manger-arrow"></icon> -->
+  </navigator>
+
+  <view class="check-result">
+    <view class="tit-box">
+      <view class="item">右眼OD</view>
+      <view class="name {{item.dilatedRefraction ? 'is-mydriasis':''}}">
+        <text class="mydriasis" wx:if="{{item.dilatedRefraction}}">散瞳验光</text>
+      </view>
+      <view class="item">左眼OS</view>
+    </view>
+    <view class="check-result-item">
+      <view class="item">{{item.rightDiopterS || ''}}</view>
+      <view class="name">
+        <text>球镜度数(D)</text>
+        <text class="gray">(近视)</text>
+      </view>
+      <view class="item">{{item.leftDiopterS ||''}}</view>
+      
+    </view>
+    <view class="check-result-item">
+      <view class="item">{{item.rightDiopterC ||''}}</view>
+      <view class="name">
+        <text>柱镜度数(D)</text>
+        <text class="gray">（散光）</text>
+      </view>
+      <view class="item">{{item.leftDiopterC ||''}}</view>
+    </view>
+    <view class="check-result-item">
+      <view class="item">{{item.rightAxis}}</view>
+      <view class="name">
+        <text>眼轴AL(mm)</text>
+      </view>
+      <view class="item">{{item.leftAxis}}</view>
+    </view>
+
+    <view class="check-result-item">
+      <view class="item">{{item.rightK1}}</view>
+      <view class="name">
+        <text>K1(D)</text>
+        <text class="gray">平角膜曲率</text>
+      </view>
+      <view class="item">{{item.leftK1}}</view>
+    </view>
+    <view class="check-result-item">
+      <view class="item">{{item.rightK2}}</view>
+      <view class="name">
+        <text>K2(D)</text>
+        <text class="gray">陡角膜曲率</text>
+      </view>
+      <view class="item">{{item.leftK2}}</view>
+    </view>
+    
+    <view class="check-result-item">
+      <view class="item">{{item.rightCurvatureRadius}}</view>
+      <view class="name">
+        <text>CR(mm)</text>
+        <text class="gray">曲率半径</text>
+      </view>
+      <view class="item">{{item.leftCurvatureRadius}}</view>
+    </view>
+
+    <view class="check-result-item">
+      <view class="item">{{item.rightVisual}}</view>
+      <view class="name">
+        <text>裸眼视力</text>
+        <!-- <text class="gray">裸眼</text> -->
+      </view>
+      <view class="item">{{item.leftVisual}}</view>
+    </view>
+  </view>
+
+
+  <!-- 影响因素 -->
+  <view class="check-result" wx:if="{{item.outSchoolHours !== '' || item.incorrectSittin !== '' || item.incorrectGlasses !== '' || item.allergy !== ''}}">
+    <view class="tit-box">
+      <view class="item">影响因素</view>
+    </view>
+    <view class="check-result-item2" wx:if="{{item.outSchoolHours !== ''}}">
+      <view class="item">每天户外活动时间</view>
+      <view class="fe"></view>
+      <view class="tag">{{item.outSchoolHours}}</view>
+    </view>
+    <view class="check-result-item2" wx:if="{{item.incorrectSittin !== ''}}">
+      <view class="item">坐姿不正确</view>
+      <view class="fe"></view>
+      <view class="tag">{{item.incorrectSittin}}</view>
+    </view>
+    <view class="check-result-item2" wx:if="{{item.incorrectGlasses !== ''}}">
+      <view class="item">佩戴眼睛不正确</view>
+      <view class="fe"></view>
+      <view class="tag">{{item.incorrectGlasses}}</view>
+    </view>
+    <view class="check-result-item2" wx:if="{{item.allergy !== ''}}">
+      <view class="item">过敏情况</view>
+      <view class="fe"></view>
+      <view class="tag">{{item.allergy}}</view>
+    </view>
+   
+  </view>
+  
+  <!-- 防控措施 -->
+  <view class="check-result" wx:if="{{item.glassesType !== '' || item.glassesTypeExplain !== '' || item.otherSolution !== '' || item.otherSolutionExplain !== ''}}">
+    <view class="tit-box">
+      <view class="item">防控措施</view>
+    </view>
+    <view class="check-result-item3" wx:if="{{item.glassesType !== '' || item.glassesTypeExplain !== ''}}">
+      <view class="item">{{item.glassesType}}{{item.glassesTypeExplain !== '' ? '（'+item.glassesTypeExplain+'）':''}}</view>
+    </view>
+    <view class="check-result-item3" wx:if="{{item.otherSolution !== '' || item.otherSolutionExplain !== ''}}">
+      <view class="item">{{item.otherSolution}}{{item.otherSolutionExplain !== '' ? '（'+item.otherSolutionExplain+'）':''}}</view>
+    </view>
+   
+   
+  </view>
+
+</view>

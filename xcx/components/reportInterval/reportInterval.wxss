@@ -1,0 +1,30 @@
+/* components/report/report.wxss */
+.dialog-tips-dec {
+  text-align: left;
+  padding: 30rpx 0;
+  color: #333333;
+}
+
+.report-content {
+  padding: 0 20rpx;
+  margin-top: 30rpx;
+}
+
+.report-content-dec {
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  border: 4rpx dashed #f69b18;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  color: #fb881f;
+}
+
+.report-content-dec.s0 {
+  color: #15c295;
+  border-color: #15c295;
+}
+
+.report-content-dec.s4 {
+  color: #ff0000;
+  border-color: #ff0000;
+}

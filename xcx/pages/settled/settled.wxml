@@ -1,0 +1,206 @@
+<!--pages/addArchives/addArchives.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="form-list">
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">手机号码</text>
+        </view>
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="" data-type="name" value="{{minuser.phone}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" disabled="true"></input>
+                <text class="nologin-phone-text" wx:if="{{isLogin === false}}">点击微信授权</text>
+
+                <view class="pab-box" bind:tap="privacyAuth" wx:if="{{isLogin === false && privacyObj.needAuthorization === true}}"> </view>
+                <view class="pab-box" wx:elif="{{isLogin === false && privacyObj.needAuthorization === false}}">
+                    <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}"></PhoneOpenType>
+                </view>
+
+            </view>
+        </view>
+    </view>
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">真实姓名</text>
+        </view>
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="请输入真实姓名" data-type="name" value="{{formobj.name}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+            </view>
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">性别</text>
+        </view>
+
+        <picker mode="selector" range="{{gender}}" range-key="name" bindchange="pickerChange" data-type="gender">
+            <view class="item-con">
+                <view class="text-box">
+                    <input type="text" class="input-text" placeholder="请选择性别" data-type="gender" value="{{formobj.gender === 0 ? '':gender[formobj.gender-1].name}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+                </view>
+                <view class="icon-box">
+                    <icon class="icon-select"></icon>
+                </view>
+            </view>
+        </picker>
+    </view>
+    <view class="item">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">所在地区</text>
+    </view>
+
+    <address class='userinfo-right' bind:getAddress="_getAddress">
+      <view class="pick-line">
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择省" data-type="provinces" value="{{regionObj.provinces}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择市" data-type="city" value="{{regionObj.city}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择区" data-type="district" value="{{regionObj.district}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+
+      </view>
+    </address>
+
+  </view>
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">所在医院或机构</text>
+        </view>
+
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="请输入所在医院或机构" data-type="hospital" value="{{formobj.hospital}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+            </view>
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">所在科室或部门</text>
+            <view class="fe"></view>
+        </view>
+
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="请输入所在科室或部门" data-type="department" value="{{formobj.department}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+            </view>
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require opa0">*</text>
+            <text class="name">职称</text>
+        </view>
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="请输入职称" data-type="title" value="{{formobj.title}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+            </view>
+        </view>
+    </view>
+    <view class="item">
+        <view class="item-lable">
+            <text class="require opa0">*</text>
+            <text class="name">职务</text>
+        </view>
+        <view class="item-con">
+            <view class="text-box">
+                <input type="text" class="input-text" placeholder="请输入职务" data-type="jobPosition" value="{{formobj.jobPosition}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+            </view>
+        </view>
+    </view>
+
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">形象照片</text>
+        </view>
+        <view class="imglist">
+            <view class="imgbox" wx:for="{{photos.avatar}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="avatar" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="avatar" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="avatar" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+    </view>
+
+    <view class="item">
+        <view class="item-lable">
+            <text class="require">*</text>
+            <text class="name">工作证件</text>
+            <text class="gray">（工作证、医师执业证、视光师资格证 任一均可）</text>
+        </view>
+        <view class="imglist">
+            <view class="imgbox" wx:for="{{photos.workCard}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="workCard" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="workCard" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="workCard" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+    </view>
+</view>
+
+<view class="fixed-btn-h">
+    <view class="fixed-btn">
+        <view class="btn-box-log">
+            <view class="protocol-box">
+                <label class="checkbox" bind:tap="tapProtocol">
+                    <checkbox value="{{isProtocol}}" checked="{{isProtocol}}" color="#01c176" />请阅读并同意
+                </label>
+                <text catch:tap="openPrivacyContract" data-key="platform" data-title="用户服务协议" class="link">《用户服务协议》</text>和<text catch:tap="openPrivacyContract" data-key="platformServe" data-title="隐私政策" class="link">《隐私政策》</text>
+            </view>
+            <view class="submit-log" bindtap="submit" wx:if="{{isLogin === true}}">
+                <text class="text">提交申请</text>
+            </view>
+            <view class="submit-log nologin" wx:else="">
+                <text class="text">提交申请</text>
+                <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}" wx:if="{{isLogin == false}}"></PhoneOpenType>
+            </view>
+        </view>
+        <view class="ios"></view>
+    </view>
+
+</view>
+
+
+<!-- 用户隐私协议 -->
+<privacy-popup show="{{showPrivacy}}" bind:agree="agree" bind:disagree="disagree"></privacy-popup>
+
+
+<!-- 温馨提示 -->
+<my-dialog show="{{dialogShow}}" title="" isCloseBtn="{{false}}" maskClosable="{{false}}" extClass="dialog-book">
+    <icon class="icon-settled-success"></icon>
+    <view class="dialog-title">提交成功</view>
+    <view class="dialog-dec">工作人员会尽快完成审核，请耐心等待！</view>
+    <view slot="footer" class="btn-box">
+    <view class="btn" bindtap="dialogSubmit">关闭</view>
+    </view>
+</my-dialog>

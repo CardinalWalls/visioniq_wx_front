@@ -1,0 +1,186 @@
+<!--pages/addArchives/addArchives.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="form-list">
+  <view class="item" wx:if="{{minuser.type != 1 && !opts.id}}">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">归属账号的手机号码</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="number" class="input-text" placeholder="请输入归属账号的手机号码" data-type="phone" value="{{formobj.phone}}" maxlength="11" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">姓名</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="text" class="input-text" placeholder="请输入姓名" data-type="name" value="{{formobj.name}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">身份证号码</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="idcard" class="input-text" placeholder="请输入身份证号码" data-type="idcard" value="{{formobj.idcard}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">性别</text>
+    </view>
+
+    <picker mode="selector" range="{{gender}}" range-key="name" bindchange="pickerChange" data-type="gender">
+      <view class="item-con">
+        <view class="text-box">
+          <input type="text" class="input-text" placeholder="请选择性别" data-type="gender" value="{{formobj.gender === 0 ? '':gender[formobj.gender-1].name}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+        </view>
+        <view class="icon-box">
+          <icon class="icon-select"></icon>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">出生日期</text>
+    </view>
+
+    <picker mode="date" bindchange="pickerChange" data-type="birth" value="{{formobj.birth}}">
+      <view class="item-con">
+        <view class="text-box">
+          <input type="text" class="input-text" placeholder="请选择出生日期" data-type="birth" value="{{formobj.birth}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+        </view>
+        <view class="icon-box">
+          <icon class="icon-select"></icon>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">双亲是否高度近视</text>
+      <view class="fe"></view>
+      <text class="green">600度及以上为高度近视</text>
+    </view>
+
+    <picker mode="selector" value="{{formobj.parentsMyopia}}" range="{{parentsMyopia}}" range-key="name" bindchange="pickerChange" data-type="parentsMyopia">
+      <view class="item-con">
+        <view class="text-box">
+          <input type="text" class="input-text" placeholder="请选择双亲是否高度近视" data-type="parentsMyopia" value="{{formobj.parentsMyopia !== '' ? parentsMyopia[formobj.parentsMyopia].name:''}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+        </view>
+        <view class="icon-box">
+          <icon class="icon-select"></icon>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">所在地区</text>
+    </view>
+
+    <address class='userinfo-right' bind:getAddress="_getAddress">
+      <view class="pick-line">
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择省" data-type="provinces" value="{{regionObj.provinces}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择市" data-type="city" value="{{regionObj.city}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text tc" placeholder="请选择区" data-type="district" value="{{regionObj.district}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+          </view>
+        </view>
+
+      </view>
+    </address>
+
+  </view>
+
+  
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">学校名称</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="text" class="input-text" placeholder="请输入学校名称" data-type="schoolName" value="{{formobj.schoolName}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">机构名称</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="text" class="input-text" placeholder="请输入机构名称" data-type="orgName" value="{{formobj.orgName}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+
+  <view class="item" wx:if="{{minuser.type != 1}}">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">备注</text>
+    </view>
+    <view class="item-con" >
+      <view class="text-box">
+        <input type="text" class="input-text" placeholder="请输入备注" data-type="remark" value="{{formobj.remark}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="fixed-btn-h">
+  <view class="fixed-btn">
+    <view class="btn-box-log">
+      <view class="protocol-box">
+        <label class="checkbox" bind:tap="tapProtocol">
+          <checkbox value="{{isProtocol}}" checked="{{isProtocol}}" color="#01c176" />请阅读并同意
+        </label>
+        <text catch:tap ="openPrivacyContract" data-key="platform" data-title="用户服务协议" class="link">《用户服务协议》</text>和<text catch:tap="openPrivacyContract" data-key="platformServe" data-title="隐私政策" class="link">《隐私政策》</text>
+      </view>
+      <view class="submit-log" bindtap="submit">
+        <text class="text">保存</text>
+        <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}" wx:if="{{isLogin == false}}"></PhoneOpenType>
+      </view>
+    </view>
+    <view class="ios"></view>
+  </view>
+
+</view>

@@ -1,0 +1,363 @@
+<!--pages/addCheck/addCheck.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<block wx:if="{{archive}}">
+  <view class="user-top">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="info-box">
+        <view class="img-box">
+          <icon class="icon-gender{{archive.gender}}-large2 gender"></icon>
+        </view>
+        <view class="fe">
+          <view class="row-1">
+            <text class="name">{{archive.name}}</text>
+          </view>
+          <view class="idcard">{{MyMethods.numPwd(archive.idcard, 6, 4)}}</view>
+        </view>
+        <text class="age">{{MyMethods.getAgeMothDay(archive.birth)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 视功能报告 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">填写数据</text>
+        <view class="fe"></view>
+      </view>
+
+      <view class="item">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">NRA（负相对调节）</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="nra" value="{{formobj.nra}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      <view class="item">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">PRA（正相对调节）</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="pra" value="{{formobj.pra}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      <view class="item">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">BCC（调节反应）</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="bcc" value="{{formobj.bcc}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      
+      
+      <view class="item">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">FLIPPER（调节灵活度）</text>
+        </view>
+
+        <view class="clo-3">
+          <view class="item-con">
+            <view class="text-box">
+              <input type="digit" class="input-text" placeholder="OD" data-type="afOd" value="{{formobj.afOd}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+          <view class="item-con">
+            <view class="text-box">
+              <input type="digit" class="input-text" placeholder="OS" data-type="afOs" value="{{formobj.afOs}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+          <view class="item-con">
+            <view class="text-box">
+              <input type="digit" class="input-text" placeholder="OU" data-type="afOu" value="{{formobj.afOu}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+        </view>
+        <view class="clo-3" style="margin-top: 20rpx;">
+          <view class="item-con">
+            <view class="text-box">
+              <input type="text" class="input-text" placeholder="填写+-" data-type="afOd" value="{{flipperSymbol.afOd}}" data-name="flipperSymbol" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+          <view class="item-con">
+            <view class="text-box">
+              <input type="text" class="input-text" placeholder="填写+-" data-type="afOs" value="{{flipperSymbol.afOs}}" data-name="flipperSymbol" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+          <view class="item-con">
+            <view class="text-box">
+              <input type="text" class="input-text" placeholder="填写+-" data-type="afOu" value="{{flipperSymbol.afOu}}" data-name="flipperSymbol" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view class="item">
+        <view class="item-lable">
+          <!-- <text class="require">*</text> -->
+          <text class="name">AMP（调节幅度）</text>
+        </view>
+
+        <view class="clo-3">
+          <view class="item-con">
+            <view class="text-box">
+              <input type="text" class="input-text" placeholder="OD" data-type="ampOd" value="{{formobj.ampOd}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+          <view class="item-con">
+            <view class="text-box">
+              <input type="text" class="input-text" placeholder="OS" data-type="ampOs" value="{{formobj.ampOs}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+            </view>
+          </view>
+        </view>
+        
+
+      </view>
+
+
+
+     
+    </view>
+  </view>
+
+
+  <!-- 其他检查数据 -->
+  <view class="form-box">
+    <view class="form-list">
+      <view class="title-box">
+        <text class="name">其他检查数据</text>
+        <view class="fe"></view>
+      </view>
+
+      <view class="item">
+        <view class="item-lable">
+          <text class="name">眼压kapa</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="pressure" value="{{formobj.pressure}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      <view class="item">
+        <view class="item-lable">
+          <text class="name">脉络膜厚度（mm）</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="choroidalThickness" value="{{formobj.choroidalThickness}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      <view class="item">
+        <view class="item-lable">
+          <text class="name">旁中心离焦检测</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="sideCenterDefocus" value="{{formobj.sideCenterDefocus}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      
+      <view class="item">
+        <view class="item-lable">
+          <text class="name">电生理检查</text>
+        </view>
+
+        <view class="item-con">
+          <view class="text-box">
+            <input type="text" class="input-text" placeholder="" data-type="electrophysiology" value="{{formobj.electrophysiology}}" cursor-spacing="30" always-embed="true" bindinput="inputChange"></input>
+          </view>
+        </view>
+
+      </view>
+      
+     
+      <view class="item" >
+          <view class="item-lable">
+            <text class="name">眼底照相</text>
+          </view>
+
+          <view class="imglist">
+            <view class="imgbox" wx:for="{{photos.eyegroundImg}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="eyegroundImg" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="eyegroundImg" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="eyegroundImg" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+        </view>
+      
+        <view class="item" >
+          <view class="item-lable">
+            <text class="name">眼科OCT</text>
+          </view>
+
+          <view class="imglist">
+            <view class="imgbox" wx:for="{{photos.octImg}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="octImg" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="octImg" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="octImg" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+        </view>
+
+        <view class="item" >
+          <view class="item-lable">
+            <text class="name">视野检查</text>
+          </view>
+
+          <view class="imglist">
+            <view class="imgbox" wx:for="{{photos.visualFieldImg}}" wx:key="index">
+              <image src="{{MyMethods.requestImgUrl(item.url)}}" mode="aspectFill" class="img" data-index="{{index}}" data-name="visualFieldImg" bindtap="previewImg" />
+              <icon class="icon-delete" data-index="{{index}}" data-name="visualFieldImg" bindtap="deleteImg"></icon>
+            </view>
+            <view class="imgbox" data-type="upload" data-name="visualFieldImg" bindtap="uploadImg">
+              <icon class="icon-photo"></icon>
+            </view>
+          </view>
+        </view>
+
+
+     
+    </view>
+  </view>
+
+  <!-- 反馈结果 -->
+  <view class="form-box" wx:if="{{d && d.total >0}}">
+    <view class="form-list result">
+      <view class="title-box">
+        <text class="name">反馈结果</text>
+        <view class="fe"></view>
+      </view>
+
+      <block wx:if="{{result}}">
+      <view class="table">
+          <view class="item tit">
+            <view class="text"></view>
+            <view class="text">结果</view>
+          </view>
+          <view class="item">
+            <view class="text">BCC (调节反应)</view>
+            <view class="text">{{result.BCC.conclusion}}</view>
+          </view>
+          <view class="item">
+            <view class="text">NRA (负相对调节)</view>
+            <view class="text">{{result.NRA.conclusion}}</view>
+          </view>
+          <view class="item">
+            <view class="text">PRA (正相对调节)</view>
+            <view class="text">{{result.PRA.conclusion}}</view>
+          </view>
+        </view>
+
+        <view class="table">
+          <view class="item tit">
+            <view class="text"></view>
+            <view class="text">左眼OS</view>
+            <view class="text">右眼OD</view>
+          </view>
+          <view class="item">
+            <view class="text">AMP (调节幅度)</view>
+            <view class="text">{{result.AMP.os.conclusion}}</view>
+            <view class="text"> {{result.AMP.od.conclusion}}</view>
+          </view>
+        </view>
+
+
+        <view class="table">
+          <view class="item tit">
+            <view class="text">flipper(调节灵敏度)</view>
+            <view class="text">频率cpm</view>
+            <view class="text">通过困难</view>
+          </view>
+          <view class="item">
+            <view class="text">左眼OS</view>
+            <view class="text">{{result.af.os['value(cpm)']}}</view>
+            <view class="text">{{result.af.os['conclusion']}}</view>
+          </view>
+          <view class="item">
+            <view class="text">右眼OD</view>
+            <view class="text">{{result.af.od['value(cpm)']}}</view>
+            <view class="text">{{result.af.od['conclusion']}}</view>
+          </view>
+          <view class="item">
+            <view class="text">双眼OU</view>
+            <view class="text">{{result.af.ou['value(cpm)']}}</view>
+            <view class="text">{{result.af.ou['conclusion']}}</view>
+          </view>
+        </view>
+
+        <view class="result-con">
+        <text class="text red" style="margin-top:30rpx;" wx:if="{{result.final}}">诊断意见: {{result.final}}</text>
+        <text class="text red" wx:if="{{result.method}}">{{result.method}}</text>
+
+
+      </view>
+      </block>
+
+      
+      <view class="loading-dec" wx:else="">加载中..</view>
+
+    </view>
+  </view>
+
+
+  <!-- 保存按钮 -->
+  <view class="fixed-btn-h">
+    <view class="fixed-btn">
+      <view class="btn-box-log">
+        <view class="submit-log" bindtap="submit">
+          <text class="text">保存</text>
+          <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}" wx:if="{{isLogin == false}}"></PhoneOpenType>
+        </view>
+      </view>
+      <view class="ios"></view>
+    </view>
+
+  </view>
+
+</block>
+
+
+
+<!-- 温馨提示 -->
+<my-dialog show="{{dialogShow}}" title="温馨提示" isCloseBtn="{{false}}" maskClosable="{{false}}" extClass="dialog-book">
+
+  <view class="dialog-tips-dec">视功能检查需要在散瞳验光之前完成！</view>
+  <view slot="footer" class="btn-box">
+    <view class="btn" bindtap="dialogSubmit">我知道了</view>
+  </view>
+</my-dialog>

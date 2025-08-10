@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog",
+    "PhoneOpenType": "/components/phoneOpenType/phoneOpenType"
+  },
+  "navigationBarTextStyle": "white"
+}

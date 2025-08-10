@@ -1,0 +1,36 @@
+<!--components/nav-tab/nav-tab.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<view class="nav-box type{{navbarData.type}}"  data-time="{{lastTapTime}}" catchtap="doubleClick" style="{{navbarData.fixed ? '' : 'height:'+ appg.navheight + 'px'}}">
+  <view class="nav-bar {{navbarData.isFixed == false ? 'nofixed':''}}" style="padding-top:{{appg.navpd}}px">
+    <view class='pre'>
+      <button class='prev' hover-class='none' catchtap="navback" wx:if="{{navbarData.prev !== false}}"></button>
+      <view hover-class="none" class="city" wx:if="{{navbarData.city}}"><icon class="icon-dingwei"></icon>{{navbarData.city}}</view>
+
+      <block wx:if="{{navbarData.user}}">
+        <!-- 普通用户主页顶部 -->
+        <navigator url="/pages/personal/personal" hover-class="none" class="city" >
+          <icon class="{{navbarData.user.icon}}"></icon>
+          <text>{{navbarData.user.text}}</text>
+        </navigator>
+        <navigator url="/pages/settled/settled" hover-class="none" class="title small">
+          <icon class="icon-user-expert"></icon>
+          <text>专家入驻申请</text>
+        </navigator>
+      </block>
+
+      <navigator url="/pages/personal/personal" hover-class="none" class="nav-info-box" wx:elif="{{navbarData.info}}">
+        <image src="{{MyMethods.requestImgUrl(navbarData.info.avatar, {type: 'avatar'})}}" class="headimg imgbg" mode="aspectFill"></image>
+        <text class="name">您好，{{navbarData.info.name}}</text>
+      </navigator>
+      <view class="logo-box" wx:elif="{{navbarData.iconClass}}">
+        <icon class="{{navbarData.iconClass}}"></icon>
+      </view>
+      <block wx:elif="{{navbarData.birth}}">
+        <!-- 医生端聊天窗口 -->
+        <view class="title">{{navbarData.title}} {{MyMethods.getAgeMothDay(navbarData.birth)}}</view>
+      </block>
+      
+      <view class="title" wx:else>{{navbarData.title}}</view>
+    </view>
+  </view>
+</view>

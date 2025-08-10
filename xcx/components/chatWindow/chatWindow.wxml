@@ -1,0 +1,111 @@
+<!--components/chatWindow/chatWindow.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<view class="window">
+  <view class="window-bg" wx:if="{{!btnIsFixed}}">
+    <view class="bg"></view>
+  </view>
+  <scroll-view style="height:{{boxH}}px" class="scroll-view" scroll-with-animation="{{scrollWithAnimation}}" refresher-enabled="{{true}}" scroll-y="{{true}}" scroll-top="{{scrollTop}}" refresher-triggered="{{refresherTriggered}}" scroll-anchoring="{{true}}" bindscrolltolower="mainLower" bindrefresherrefresh="mainRefresh" bindrefresherpulling="mainPulling" bindscrolltoupper="mainToupper">
+    <view class="page" id="page">
+      <view class="top-loading" wx:if="{{d && d.pageNum >= d.pages && d.pages > 1 }}">已全部加载</view>
+
+      <view class="list {{loading ? 'opacity':''}}" wx:if="{{d && d.total > 0}}">
+        <block wx:for="{{d.list}}" wx:key="index">
+          <view id="item_{{item.id}}" class="item msg{{item.systemMsg}} {{((minuser.type === 1 && item.sendUserType === 1) || (minuser.type !== 1 && item.sendUserType !== 1)) ? 'my':''}}">
+            <view class="info">
+            <!-- systemMsg 系统消息类别；0=非系统消息, 1=系统推送, 2=AI回复, 3=新用户系统问候, 4=新用户医生问候,5=干预方式（内容为JSON，参考视力干预接口） -->
+              <!-- 系统 对话 -->
+              <view class="headimg type msg{{item.systemMsg}}" wx:if="{{item.systemMsg == 1 || item.systemMsg == 2 || item.systemMsg == 3}}">{{MyMethods.getSystemMsg(item.systemMsg).avatar}}</view>
+              
+              <!-- <image src="{{systemAvatar}}" mode="aspectFit" class="headimg imgbg" wx:if="{{item.systemMsg}}" /> -->
+              <!-- 专家->档案人员 对话 -->
+              <icon class="icon-gender{{chatPeople.gender}}-headimg gender" wx:elif="{{minuser.type != 1 && !((minuser.type === 1 && item.sendUserType === 1) || (minuser.type !== 1 && item.sendUserType !== 1))}}"></icon>
+
+              <!-- 客服 -->
+              <image src="{{MyMethods.requestImgUrl(minuser.avatar, {type: 'avatar'})}}" mode="aspectFit" class="headimg imgbg 3" wx:elif="{{item.sendUserType == 2 && item.sendUserAvatar == '' && minuser.userId !== item.sendUserId && item.systemMsg !== 4}}" /> 
+              <image src="{{MyMethods.requestImgUrl(item.sendUserAvatar, {type: 'avatar'})}}" mode="aspectFit" class="headimg imgbg 4" wx:else="" />
+              
+              <view class="text-box">
+                <!-- systemMsg 系统消息类别；0=非系统消息, 1=系统推送, 2=AI回复, 3=新用户系统问候, 4=新用户医生问候,5=干预方式（内容为JSON，参考视力干预接口） -->
+                <view class="name-box 1" wx:if="{{item.systemMsg == 1 || item.systemMsg == 2 || item.systemMsg == 3}}">
+                  <text class="name" wx:if="{{item.systemMsg == 1 && item.systemMsgTypeName !==''}}">{{item.systemMsgTypeName}}</text>
+                  <text class="name" wx:else>{{MyMethods.getSystemMsg(item.systemMsg).title}}</text>
+                </view>
+                <view class="name-box db 22" wx:elif="{{minuser.type != 1 && item.systemMsg !== 0 && item.sendUserId !== minuser.userId}}">
+                <!-- 还了一个专家后，在专家窗口显示的信息 -->
+                  <text class="name">{{item.sendUserRealName || item.sendUserNickName}}</text>
+                  <view class="dec">
+                    <text class="txt" wx:if="{{item.jobPosition !== ''}}">{{item.jobPosition}}</text>
+                    <text class="txt" wx:if="{{item.expertTitle !== ''}}">{{item.expertTitle}}</text>
+                    <text class="txt" wx:if="{{item.expertHospital !== ''}}">{{item.expertHospital}}</text>
+                  </view>
+                </view>
+                <view class="name-box 2" wx:elif="{{minuser.type != 1}}">
+                  <text class="name">{{chatPeople.name}}</text>
+                  <text class="age">{{MyMethods.getAgeMothDay(chatPeople.birth)}}</text>
+                  <text class="risk-level level{{chatPeople.riskLevel}} {{chatPeople.riskLevel === 2 ?'blue':''}}" wx:if="{{chatPeople.riskLevel === 2 || chatPeople.riskLevel === 3}}">{{MyMethods.getRiskLevel(chatPeople.riskLevel).name}}</text>
+                  <!-- <icon class="icon-gender{{chatPeople.gender}} gender"></icon> -->
+                </view>
+                <block wx:else>
+                  <view class="name-box 3">
+                    <view class="name">{{item.sendUserRealName}}</view>
+                  </view>
+                  <view class="dec 3" wx:if="{{(item.jobPosition != '' || item.expertTitle != '' || item.expertHospital != '') && minuser.type == 1 && item.sendUserType == 2}}">
+                    <text class="txt" wx:if="{{item.jobPosition !== ''}}">{{item.jobPosition}}</text>
+                    <text class="txt" wx:if="{{item.expertTitle !== ''}}">{{item.expertTitle}}</text>
+                    <text class="txt" wx:if="{{item.expertHospital !== ''}}">{{item.expertHospital}}</text>
+                  </view>
+                </block>
+                <view class="content-box msg{{item.systemMsg}}">
+                  <view class="content">
+                    <view class="msg-ai-text" wx:if="{{item.systemMsg === 2 }}"><text selectable="{{true}}" user-select="{{true}}">本内容由智能AI机器人自动回复，仅供参考</text></view>
+                   
+                    <navigator hover-class="none" class="link" url="{{item.url}}" wx:if="{{item.url !== '' && MyMethods.isIndexOf(item.url, '/pages/news/detail/detail')}}"><text>{{item.content}}</text></navigator>
+                    <block wx:elif="{{item.systemMsg===5}}">
+                      <view class="gy-tips"><text selectable="{{true}}" user-select="{{true}}">以下是针对检查情况给出的干预措施：</text></view>
+                      <view class="gy-type"><text selectable="{{true}}" user-select="{{true}}">{{typeArr[MyMethods.jsonParse(item.content).type].dataName}}</text></view>
+                      <view class="gy-con">
+                        <text selectable="{{true}}" user-select="{{true}}">{{MyMethods.jsonParse(item.content).scheme}}</text>
+                      </view>
+                      <view class="gy-remark">
+                        <text wx:if="{{MyMethods.jsonParse(item.content).remark !== ''}}" selectable="{{true}}" user-select="{{true}}">备注：{{MyMethods.jsonParse(item.content).remark}}，</text><text selectable="{{true}}" user-select="{{true}}">如您有任何疑问，请及时咨询专家！</text>
+                      </view>
+                    </block>
+                    <text selectable="{{true}}" user-select="{{true}}" wx:else>{{item.content}}</text>
+                  </view>
+                </view>
+                <view class="btm">{{item.createTime}}</view>
+              </view>
+              <view class="headimg"></view>
+            </view>
+           
+          </view>
+        </block>
+
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 按钮 -->
+  <view class="fixed-h-box {{btnIsFixed ? '':'nofixed'}}">
+    <view class="fixed-form">
+      <!-- 普通用户 -->
+      <image src="{{MyMethods.requestImgUrl(minuser.avatar, {type: 'avatar'})}}" mode="aspectFill" class="imgbg img" ></image>
+
+      <view class="text-box">
+        <!-- <input type="text" placeholder="请输入咨询内容" class="input-text" placeholder-class="input-placeholder" bindinput="inputChangeSend" bindconfirm="sendTap" data-type="content" value="{{send.content}}" cursor-spacing="120" confirm-type="send" always-embed="true" /> -->
+
+        <view class="text-con">
+          <text class="text textRef">{{send.content}}</text>
+          <text class="placeholder" wx:if="{{send.content == '' && isFocus === false}}">请输入咨询内容</text>
+          <textarea class="textarea" placeholder="" maxlength="-1" bindinput="inputChangeSend" bindconfirm="sendTap" data-type="content" value="{{send.content}}" cursor-spacing="{{120}}" confirm-type="send" disable-default-padding="true" 	adjust-position="false" 	placeholder-style="color:#a6a6a6" bindfocus="bindfocus" bindblur="bindblur" />
+        </view>
+
+      </view>
+      <view class="btn" bindtap="sendTap">发送</view>
+    </view>
+    <view class="ios"></view>
+  </view>
+</view>
+
+<!-- 实名认证 -->
+<RealNameDialog dialogShow="{{dialogShow}}" bind:close="realNameClose"></RealNameDialog>

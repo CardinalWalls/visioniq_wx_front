@@ -1,0 +1,11 @@
+/* components/nomore/nomore.wxss */
+.nomore{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 1px solid #f5f5f8;
+  font-size: 24rpx;
+  color: #ccc;
+  text-align: center;
+  letter-spacing: 3rpx;
+  position: relative;
+}

@@ -1,0 +1,36 @@
+/* components/AlertBox/AlertBox.wxss */
+
+.alert-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.alert-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99991;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.alert-slot {
+  position: absolute;
+  z-index: 100000002;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  /* transform: translateX(-50%) translateY(-50%) scale(0.9); */
+  opacity: 0;
+}
+
+.alert-slot.active {
+  /* transform: translateX(-50%) translateY(-50%) scale(1); */
+  opacity: 1;
+  transition: all 0.3s;
+}

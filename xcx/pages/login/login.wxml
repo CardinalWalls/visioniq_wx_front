@@ -1,0 +1,124 @@
+<!--pages/login/login.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<block wx:if="{{isLogin === false}}">
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="user-top">
+  <SwiperBanner banners="{{banner}}" height="280" classname="pd20"></SwiperBanner>
+</view>
+
+<view style="padding: 30rpx 20rpx 0 20rpx;">
+  <view class="btn-large" style="position: relative;">查询筛查结果
+    <view class="pab-box" bind:tap="privacyAuth" wx:if="{{isLogin === false && privacyObj.needAuthorization === true}}"> </view>
+    <view class="pab-box" wx:elif="{{isLogin === false && privacyObj.needAuthorization === false}}">
+      <PhoneOpenType bind:success="minuserChange2" typecount="{{-1}}"></PhoneOpenType>
+    </view>
+  </view>
+</view>
+<view class="meun-list">
+
+  <!-- <view class="item-box">
+    <view class="item tab1">
+      <icon class="icon-manger-xjda"></icon>
+      <view class="text-box">
+        <view class="name">新建档案</view>
+      </view>
+    </view>
+  </view>
+  <view class="item-box">
+    <view class="item tab2">
+      <icon class="icon-nologin-slyc"></icon>
+      <view class="text-box">
+        <view class="name">视力预测</view>
+      </view>
+    </view>
+  </view>
+  <view class="item-box">
+    <view class="item tab3">
+      <icon class="icon-nologin-zxzx"></icon>
+      <view class="text-box">
+        <view class="name">在线咨询</view>
+      </view>
+    </view>
+  </view>
+  <view class="item-box">
+    <view class="item tab4">
+      <icon class="icon-manger-yyyh"></icon>
+      <view class="text-box">
+        <view class="name">在线预约</view>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="item-box">
+    <view class="item tab4">
+      <icon class="icon-nologin-yhdl"></icon>
+      <view class="text-box">
+        <view class="name">用户登录</view>
+      </view>
+    </view>
+    
+    <view class="pab-box" bind:tap="privacyAuth" wx:if="{{isLogin === false && privacyObj.needAuthorization === true}}"> </view>
+    <view class="pab-box" wx:elif="{{isLogin === false && privacyObj.needAuthorization === false}}">
+      <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}"></PhoneOpenType>
+    </view>
+  </view>
+  <view class="item-box">
+    <view class="item tab5">
+      <icon class="icon-nologin-zjdl"></icon>
+      <view class="text-box">
+        <view class="name">专家登录</view>
+      </view>
+    </view>
+
+    <view class="pab-box" bind:tap="privacyAuth" wx:if="{{isLogin === false && privacyObj.needAuthorization === true}}"> </view>
+    <view class="pab-box" wx:elif="{{isLogin === false && privacyObj.needAuthorization === false}}">
+      <PhoneOpenType bind:success="minuserChange" typecount="{{-1}}"></PhoneOpenType>
+    </view>
+  </view>
+
+  <navigator url="/pages/news/list/list?typecode=YKZS" hover-class="none" class="item-box">
+    <view class="item tab3">
+      <icon class="icon-nologin-zxzx"></icon>
+      <view class="text-box">
+        <view class="name">眼科知识</view>
+      </view>
+    </view>
+  </navigator>
+  <navigator url="/pages/settled/settled" hover-class="none" class="item-box">
+    <view class="item tab1">
+      <icon class="icon-manger-xjda"></icon>
+      <view class="text-box">
+        <view class="name">入驻申请</view>
+      </view>
+    </view>
+  </navigator>
+
+</view>
+
+<!-- 相关知识 -->
+<view class="news-box">
+  <view class="title-box">
+    <text class="name">相关知识</text>
+    <view class="fe"></view>
+    <navigator url="/pages/news/list/list?type=search" hover-class="none" class="icon-box">
+      <icon class="icon-nologin-sousuo"></icon>
+    </navigator>
+  </view>
+
+  <block wx:if="{{d}}">
+  <view class="newlist">
+    <NewsList data="{{d.list}}"></NewsList>
+  </view>
+  <NoData wx:if="{{d.total === 0}}"></NoData>
+</block>
+
+</view>
+
+<view class="ios"></view>
+
+</block>
+<!-- 用户隐私协议 -->
+<privacy-popup show="{{showPrivacy}}" bind:agree="agree" bind:disagree="disagree"></privacy-popup>

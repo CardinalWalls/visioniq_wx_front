@@ -1,0 +1,69 @@
+<!--pages/addArchives/addArchives.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<view class="tips">
+  温馨提示：以下为系统智能建议，可手动选择类型，本建议不作为诊断，也不作为处方医嘱，医生必须自主决定诊断和治疗方案
+</view>
+
+<view class="form-list">
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">干预类型</text>
+    </view>
+
+    <picker mode="selector" range="{{typeArr}}" range-key="dataKey" bindchange="pickerChange" data-type="type">
+      <view class="item-con">
+        <view class="text-box">
+          <input type="text" class="input-text" placeholder="请选择干预类型" data-type="type" value="{{typeCurrentObj.dataKey}}" cursor-spacing="30" always-embed="true" disabled="true"></input>
+        </view>
+        <!-- <view class="icon-box">
+          <icon class="icon-select"></icon>
+        </view> -->
+        <view class="icon-box-text">重新选择类型</view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require">*</text>
+      <text class="name">干预措施</text>
+    </view>
+    <view class="item-con textarea-box">
+      <view class="text-box">
+        <textarea class="input-textarea" placeholder="请输入干预措施" data-type="scheme" value="{{formobj.scheme}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" maxlength="-1"></textarea>
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="item-lable">
+      <text class="require opa0">*</text>
+      <text class="name">其他备注</text>
+    </view>
+    <view class="item-con">
+      <view class="text-box">
+        <input type="text" class="input-text" placeholder="请输入备注" data-type="remark" value="{{formobj.remark}}" bindinput="inputChange" cursor-spacing="30" always-embed="true"></input>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<view class="fixed-btn-h">
+  <view class="fixed-btn">
+    <view class="btn-box-log">
+      <view class="submit-log" bindtap="submit">
+        <text class="text">保存</text>
+      </view>
+    </view>
+    <view class="ios"></view>
+  </view>
+
+</view>

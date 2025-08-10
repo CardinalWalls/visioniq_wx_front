@@ -1,0 +1,8 @@
+<!--pages/tabBar/Index/Index.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+
+<!-- 导航 end -->
+<NavTab current-tab="{{3}}" bind:minuserChange="minuserChange"></NavTab>

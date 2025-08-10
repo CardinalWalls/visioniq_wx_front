@@ -1,0 +1,118 @@
+/* pages/users/personal/personal.wxss */
+.modify-pd {
+  padding: 20rpx 0;
+  border-top: 20rpx solid #f9f9f9;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  height: 86rpx;
+  padding: 0 30rpx;
+  color: #1a1a1a;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.modify-box {
+  padding: 0 30rpx;
+}
+
+.user-img {
+  width: 80rpx;
+  height: 80rpx;
+  background: #f5f5f8;
+  border-radius: 50%;
+}
+
+.icon-modifyinfo-arrowr {
+  margin-left: 24rpx;
+}
+
+.icon-modifyinfo-arrowr.disabled {
+  opacity: 0;
+}
+
+.modify-item {
+  min-height: 110rpx;
+  border-bottom: 1px solid #f7f7f7;
+  display: flex;
+  align-items: center;
+}
+
+.modify-item.column {
+  display: block;
+  padding: 32rpx 0;
+}
+
+.headimg-box {
+  width: 90rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.modify-item .avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 90rpx;
+}
+
+.modify-item .title {
+  color: #262626;
+  font-size: 30rpx;
+  width: 200rpx;
+}
+
+.modify-item .text-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modify-item .text-box.pdr {
+  padding-right: 40rpx;
+}
+
+.modify-item input {
+  text-align: right;
+  height: 100%;
+  width: 100%;
+  font-size: 30rpx;
+  color: #666666;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+
+.modify-item .icon-modifyInfo-arrow {
+  margin-left: 20rpx;
+}
+
+.modify-item .icon-modifyInfo-arrow.disabled {
+  opacity: 0;
+}
+
+.modify-item:last-child {
+  border-bottom: none;
+}
+
+.textarea-box {
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+}
+
+textarea {
+  width: 100%;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.input-placeholder {
+  color: #999999;
+  font-size: 30rpx;
+}
+
+.btn-box {
+  background-color: #f9f9f9;
+  padding: 46rpx 60rpx;
+}

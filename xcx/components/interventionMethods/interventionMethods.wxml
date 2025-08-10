@@ -1,0 +1,33 @@
+<!--components/checkList/checkList.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+<view class="methods-box" wx:for="{{list}}" wx:key="index">
+  <view class="num">{{index+1}}</view>
+  <view hover-class="none" class="row-1">
+    <text class="time">{{MyMethods.dateClipping(item.createTime, 0, 10)}}</text>
+    <view class="fe"></view>
+    <text class="day">距今：{{MyMethods.getDateDurationDay('', item.createTime)}}天</text>
+  </view>
+
+  <view class="row-2">
+    <view class="type">{{typeArr[item.type].dataName}}</view>
+    <view class="fe"></view>
+    <view class="status" wx:if="{{item.pushTime !=='' && type == 0}}">已推送</view>
+  </view>
+  <view class="dec">
+   <text>{{item.scheme}}</text>
+  </view>
+  <view class="remark" wx:if="{{item.remark !==''}}">
+   <text>备注：{{item.remark}}</text>
+  </view>
+  <view class="btns" wx:if="{{item.pushTime === '' && type == 0}}">
+    <view class="btn update" data-index="{{index}}" bind:tap="update">
+      <icon class="icon-update"></icon>
+      <text>修改</text>
+    </view>
+    <view class="line"></view>
+    <view class="btn" data-id="{{item.id}}" bind:tap="push">
+      <icon class="icon-push"></icon>
+      <text>推送给用户</text>  
+    </view>
+  </view>
+</view>

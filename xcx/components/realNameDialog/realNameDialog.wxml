@@ -1,0 +1,13 @@
+<!--components/AuthDialog/AuthDialog.wxml-->
+
+<!-- 实名认证 -->
+<my-dialog show="{{dialogShow}}" isCloseBtn="{{false}}" title="请完成实名登记" buttons="{{buttons}}" bindbuttontap="buttonTap">
+  <view class="dialog-form">
+    <view class="input-box">
+      <input type="text" cursor-spacing="40" class="input-text" placeholder="姓名" placeholder-class="input-placeholder" data-type="realName" bindinput="inputChange" value="{{form.realName}}" />
+    </view>
+    <view class="input-box">
+      <input type="idcard" cursor-spacing="40" class="input-text" placeholder="身份证号码" placeholder-class="input-placeholder" data-type="idCard" bindinput="inputChange" value="{{form.idCard}}" />
+    </view>
+  </view>
+</my-dialog>

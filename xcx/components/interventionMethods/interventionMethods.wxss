@@ -1,0 +1,109 @@
+/* components/checkList/checkList.wxss */
+.methods-box {
+  background-color: #fff;
+  border-radius: 25rpx;
+  margin: 0rpx 20rpx 30rpx 20rpx;
+  padding: 30rpx 20rpx 30rpx 90rpx;
+  color: #101010;
+  box-shadow: 0px 0 20rpx 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.num {
+  position: absolute;
+  top: 34rpx;
+  left: 45rpx;
+  transform: translateX(-50%);
+  background-color: #bbbbbb;
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  min-width: 40rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  color: #fff;
+}
+
+.row-1 {
+  align-items: center;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  font-size: 28rpx;
+}
+
+.row-1 .time {
+  color: #9f9f9f;
+}
+
+.row-1 .day {
+  color: #101010;
+}
+
+.row-2 {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.row-2 .type {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.row-2 .status {
+  background-color: #01c176;
+  font-size: 24rpx;
+  color: #fff;
+  width: 112rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border-radius: 16rpx;
+}
+
+.dec {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  border: 4rpx dashed #fdad3a;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  font-size: 24rpx;
+}
+
+.btns {
+  display: flex;
+  margin-top: 30rpx;
+}
+
+.btns .line {
+  width: 20rpx;
+}
+
+.btns icon {
+  margin-right: 6rpx;
+}
+
+.btns .btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 68rpx;
+  text-align: center;
+  height: 68rpx;
+  background-color: #01c176;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 16rpx;
+}
+
+.btns .btn.update {
+  background-color: #101010;
+}
+
+.remark {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+}

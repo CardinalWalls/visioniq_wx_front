@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog",
+    "intervention-methods": "/components/interventionMethods/interventionMethods"
+  },
+  "navigationBarTextStyle": "white"
+}

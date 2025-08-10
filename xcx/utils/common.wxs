@@ -1,0 +1,645 @@
+var baseUrl = 'https://www.visioniq.tech';
+var avatar = 'https://vision-pub.oss-cn-zhangjiakou.aliyuncs.com/img/avatar.png';
+var logo = 'https://vision-pub.oss-cn-zhangjiakou.aliyuncs.com/img/default-img.png';
+
+module.exports = {
+    requestImgUrl: function (url, obj) {
+        // obj.size 图片尺寸
+        // obj.privates 是否是私有的
+        if ((!url || url === "undefined") && obj && obj.type === 'avatar') {
+            return avatar;
+        } else if (!url || url === "undefined") {
+            return logo;
+        }
+
+        var sp = "/";
+        if (url.indexOf("/") === 0) {
+            sp = "";
+        }
+
+        var imgurl = "";
+        var u = "";
+        if (obj && obj.privates) {
+            u = sp + url + "&__token__=" + token;
+        } else {
+            u = sp + url;
+        }
+
+        if (module.exports.isHttps(url)) {
+            imgurl = url;
+        } else {
+            imgurl = baseUrl + "/api/oss/redirect?file=" + encodeURIComponent(u) + (obj && obj.size ? obj.size : '');
+        }
+        return imgurl;
+    },
+
+    // 时间是否过期
+    isTimeExpire: function (dateTimeStamp) {
+        var time = module.exports.stringReplace(dateTimeStamp, "-", "/");
+        var now = getDate().getTime();
+        var timeStamp = getDate(time).getTime();
+        var diffValue = timeStamp - now;
+        // console.log(diffValue);
+        var b = false;
+        if (diffValue < 0) {
+            b = true;
+        }
+        return b;
+    },
+
+    // 小于一个月
+    getLessMonth: function (dateTimeStamp) {
+        var time = module.exports.stringReplace(dateTimeStamp, "-", "/");
+        var now = getDate().getTime();
+        var timeStamp = getDate(time).getTime();
+        var diffValue = timeStamp - now;
+
+        // 过期时间1天 1000*60*60*24
+        var expiryTime = 1000 * 60 * 60 * 24 * 30;
+
+        var b = false;
+        if (diffValue < expiryTime) {
+            b = true;
+        }
+        return b;
+    },
+
+    // 计算时间显示一天前
+    getDateDiff: function (dateTimeStamp) {
+        var YY_MM_DD_time = dateTimeStamp;
+        var time = module.exports.stringReplace(dateTimeStamp, "-", "/");
+        var minute = 1000 * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+        var month = day * 30;
+
+        var now = getDate().getTime();
+        var timeStamp = getDate(time).getTime();
+
+        var diffValue = now - timeStamp;
+        if (diffValue < 0) {
+            //若日期不符则弹出窗口告之
+            //alert("结束日期不能小于开始日期！");
+        }
+
+        var monthC = diffValue / month;
+        var weekC = diffValue / (7 * day);
+        var dayC = diffValue / day;
+        var hourC = diffValue / hour;
+        var minC = diffValue / minute;
+
+        // if (monthC >= 1) {
+        //   result = module.exports.dateClipping(YY_MM_DD_time, 0, 10);
+        // } 
+        if (weekC > 1) {
+            result = module.exports.dateClipping(YY_MM_DD_time, 0, 10);
+        } else if (weekC <= 1 && dayC >= 4) {
+            result = "近1周";
+        } else if (dayC >= 1) {
+            result = parseInt(dayC) + "天前";
+        } else if (hourC >= 1) {
+            result = parseInt(hourC) + "小时前";
+        } else if (minC >= 1) {
+            result = parseInt(minC) + "分钟前";
+        } else {
+            result = "刚刚发表";
+        }
+        return result;
+    },
+    // 保留两位小数
+    twoDecimal: function (v) {
+        if (v) {
+            return Number(v).toFixed(2);
+        }
+    },
+
+    replaceNewlineSymbol: function (text) {
+        // 替换textarea的换行符，text为需要替换的内容
+        var encodeText = encodeURIComponent(text);
+        var regexp = getRegExp('%0A', 'g');
+        var newText = encodeText.replace(regexp, '\n');
+        return decodeURIComponent(newText);
+    },
+    mathAbs: function (t) {
+        var v = t;
+        if (t != "" && t !== 0) {
+            v = Math.abs(t);
+        }
+        return v;
+    },
+    jsonParse: function (t) {
+        var v = ""
+        if (t != "") {
+            v = JSON.parse(t);
+        }
+        return v;
+    },
+    letterArr: function (t) {
+        const letterArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+        var v = ""
+        return letterArr[t] ? letterArr[t].toLowerCase() : '';
+    },
+    // 日期裁剪
+    dateClipping: function (v, start, end) {
+        if (v) {
+            v = v.substring(start, end);
+            return v;
+        }
+    },
+    /**
+     * 
+     * @param v 要替换的内容
+     * @param oldText 要替换的符号
+     * @param newText 替换符号
+     */
+    // 字符串替换统一
+    stringReplace: function (v, oldText, newText) {
+        var reg = getRegExp(oldText, "g");
+        v = v.replace(reg, newText);
+        return v;
+    },
+    // 检查地址是否 含有https://mjc-pub.oss-cn-huhehaote.aliyuncs.com/backend/avatar.png
+    isAvater: function (v) {
+        var t = "";
+        if (v) {
+            t = v.indexOf('admin/img/avatar.png') != "-1" ? true : false;
+        }
+        return t;
+    },
+    // 检查地址是否 含有http://
+    isHttps: function (v) {
+        var t = "";
+        if (v) {
+            t = v.indexOf('http') != "-1" ? true : false;
+        }
+        // console.log(t);
+        return t;
+    },
+
+    // 是否包含指定字符串
+    isIndexOf: function (v, s) {
+        var t = "";
+        if (v) {
+            t = v.indexOf(s) != "-1" ? true : false;
+        }
+        return t;
+    },
+    // 活动时间判断
+    activity: function (startTime, endTime) {
+        // 当前时间
+        var nowTime = getDate().getTime();
+        // 开始时间
+        startTime = getDate(startTime).getTime();
+        // 结束时间
+        endTime = getDate(endTime).getTime();
+
+        /**
+         * type 返回状态
+         * 1 未开始
+         * 2 进行中
+         * 3 已结束
+         */
+        var type = "";
+        if (nowTime < startTime) {
+            type = 1;
+        } else if (nowTime > startTime && nowTime < endTime) {
+            type = 2;
+        } else if (nowTime > endTime) {
+            type = 3;
+        }
+        return type;
+    },
+    // 字符串分割成数组
+    splitArr: function (v, s) {
+        if (v == undefined) {
+            return false;
+        }
+        return v.split(s);
+    },
+    // 秒转时分秒
+    secondToDate: function (result) {
+        var h = Math.floor(result / 3600) < 10 ? '0' + Math.floor(result / 3600) : Math.floor(result / 3600);
+        var m = Math.floor((result / 60 % 60)) < 10 ? '0' + Math.floor((result / 60 % 60)) : Math.floor((result / 60 % 60));
+        var s = Math.floor((result % 60)) < 10 ? '0' + Math.floor((result % 60)) : Math.floor((result % 60));
+        var result = h + ":" + m + ":" + s
+        if (h == '00') {
+            result = m + ":" + s
+        }
+        return result;
+    },
+    // 取整数
+    getInt: function (v) {
+        return Math.ceil(v);
+    },
+
+    // 取小数
+    getFloor: function (v, n) {
+        if (!v) {
+            return;
+        }
+        return v.toFixed(n || 0);
+    },
+
+    // 转数字
+    getTrunNum: function (num) {
+        if (!num) {
+            return;
+        }
+        return Math.round((num * 100) * 100) / 100
+    },
+
+    // 时间转年月日中文
+    getDateChina: function (v) {
+        if (!v) {
+            return;
+        }
+        var time = module.exports.stringReplace(v, "-", "/");
+        var date = getDate(time);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+        var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        return y + "年" + m + "月" + d + "日"
+    },
+
+    // 当前日期
+    getCurrentDate: function (v) {
+        var time = getDate();
+        if (v) {
+            time = module.exports.stringReplace(v, "-", "/");
+        }
+
+        var date = getDate(time);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+        var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+
+        return y + "年" + m + "月" + d + "日"
+    },
+
+    // 时间范围内
+    inDuringDate: function (beginDateStr, endDateStr) {
+        var s = module.exports.stringReplace(beginDateStr, "-", "/");
+        var e = module.exports.stringReplace(endDateStr, "-", "/");
+
+        var cur = getDate().getTime();
+        var start = getDate(s).getTime();
+        var end = getDate(e).getTime();
+
+        // 0 未开始， 1 进行中， 2 已结束
+        var v = 0;
+        if (cur < start) {
+            v = 0;
+        } else if (cur >= start && cur <= end) {
+            v = 1;
+        } else {
+            v = 2;
+        }
+
+        return v;
+    },
+    // 倒计时时分秒
+    countDownTime: function (pend, pstart, k) {
+
+        var start, end;
+        if (pend && pend !== 'undefined') {
+            var time = module.exports.stringReplace(pend, "-", "/");
+            end = getDate(time).getTime();
+        } else {
+            end = getDate().getTime()
+        }
+
+        if (pstart && pstart !== 'undefined' && pstart !== '') {
+            var time = module.exports.stringReplace(pstart, "-", "/");
+            start = getDate(time).getTime();
+        } else {
+            start = getDate().getTime()
+        }
+
+
+
+        var redu = end - start;
+        var d = Math.floor(redu / 1000 / 60 / 60 / 24),
+            h = Math.floor((redu / 1000 / 60 / 60) % 24),
+            m = Math.floor((redu / 1000 / 60) % 60),
+            s = Math.floor((redu / 1000) % 60);
+
+        if (k === 'd') {
+            return d + ':' + h + ':' + m + ':' + s;
+        } else {
+            return (d * 24 + h) + ':' + m + ':' + s;
+        }
+
+    },
+
+    // 剩余天数
+    getDateDurationDay: function (pend, pstart) {
+        var start, end;
+        if (pend && pend !== 'undefined') {
+            var time = module.exports.stringReplace(pend, "-", "/");
+            end = getDate(time).getTime();
+        } else {
+            end = getDate().getTime()
+        }
+
+        if (pstart && pstart !== 'undefined') {
+            var time = module.exports.stringReplace(pstart, "-", "/");
+            start = getDate(time).getTime();
+        } else {
+            start = getDate().getTime()
+        }
+
+        var redu = end - start;
+        var newDay = redu / (24 * 3600 * 1000);
+        var dayDiff = newDay < 1 ? 0 : Math.ceil(newDay); //计算出相差天数
+        return dayDiff;
+    },
+
+    // 根据身份证获取年龄
+    getIdcardAge: function (identityCard) {
+        var len = (identityCard + "").length;
+        if (len == 0) {
+            return 0;
+        } else {
+            if ((len != 15) && (len != 18)) //身份证号码只能为15位或18位其它不合法
+            {
+                return 0;
+            }
+        }
+        var strBirthday = "";
+        if (len == 18) //处理18位的身份证号码从号码中得到生日和性别代码
+        {
+            strBirthday = identityCard.substring(6, 6 + 4) + "/" + identityCard.substring(10, 10 + 2) + "/" + identityCard.substring(12, 12 + 2);
+        }
+        if (len == 15) {
+            strBirthday = "19" + identityCard.substring(6, 6 + 2) + "/" + identityCard.substring(8, 8 + 2) + "/" + identityCard.substring(10, 10 + 2);
+        }
+
+
+        //时间字符串里，必须是“/”
+        var birthDate = getDate(strBirthday);
+        var nowDateTime = getDate();
+        var age = nowDateTime.getFullYear() - birthDate.getFullYear();
+        //再考虑月、天的因素;.getMonth()获取的是从0开始的，这里进行比较，不需要加1
+        if (nowDateTime.getMonth() < birthDate.getMonth() || (nowDateTime.getMonth() == birthDate.getMonth() && nowDateTime.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age || 0;
+    },
+
+    // 根据生日获取年龄
+    getBirthAge: function (strBirthday) {
+        if (!strBirthday) return ''
+        //时间字符串里，必须是“/”
+        var birthDate = getDate(module.exports.stringReplace(strBirthday, "-", "/"));
+        var nowDateTime = getDate();
+        var age = nowDateTime.getFullYear() - birthDate.getFullYear();
+        //再考虑月、天的因素;.getMonth()获取的是从0开始的，这里进行比较，不需要加1
+        if (nowDateTime.getMonth() < birthDate.getMonth() || (nowDateTime.getMonth() == birthDate.getMonth() && nowDateTime.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age || 0;
+    },
+
+    // 根据生日计算年龄（年月天）
+    getAgeMothDay: function (birthDate, currentDate) {
+        // 将日期字符串转换为 Date 对象
+        var birth = getDate(module.exports.stringReplace(birthDate, "-", "/"));
+        var current = getDate();
+        if (currentDate) {
+            current = getDate(module.exports.stringReplace(currentDate, "-", "/"));
+        }
+
+        // 计算年份差
+        var years = current.getFullYear() - birth.getFullYear();
+
+        // 计算月份差
+        var months = current.getMonth() - birth.getMonth();
+        if (months < 0 || (months === 0 && current.getDate() < birth.getDate())) {
+            years--;
+            months += 12;
+        }
+
+        // 计算天数差
+        var days = current.getDate() - birth.getDate();
+        if (days < 0) {
+            months--;
+            var lastMonth = getDate(current.getFullYear(), current.getMonth(), 0);
+            days += lastMonth.getDate();
+        }
+
+        // var obj = {
+        //     years: years,
+        //     months: months,
+        //     days: days
+        // }
+        // // console.log(obj)
+        var text = '';
+        if (years > 0) {
+            text += years + '岁'
+        }
+        if (months > 0) {
+            text += months + '个月'
+        }
+        if (years == 0 && months == 0 && days > 0) {
+            text += days + '天'
+        }
+        
+
+        return text;
+    },
+
+    getDate: function (date) {
+        var d = getDate(date);
+        // 将日期设置为下月一号
+        d.setMonth(d.getMonth() + 1);
+        d.setDate('1');
+        // 获取本月最后一天
+        d.setDate(d.getDate() - 1);
+        return d.getDate();
+    },
+
+
+    // 根据身份证获取出生日期
+    getYear: function (identityCard) {
+        var len = (identityCard + "").length;
+        if (len == 0) {
+            return 0;
+        } else {
+            if ((len != 15) && (len != 18)) //身份证号码只能为15位或18位其它不合法
+            {
+                return 0;
+            }
+        }
+        var strBirthday = "";
+        if (len == 18) //处理18位的身份证号码从号码中得到生日和性别代码
+        {
+            strBirthday = identityCard.substring(6, 6 + 4) + "-" + identityCard.substring(10, 10 + 2) + "-" + identityCard.substring(12, 12 + 2);
+        }
+        if (len == 15) {
+            strBirthday = "19" + identityCard.substring(6, 6 + 2) + "-" + identityCard.substring(8, 8 + 2) + "-" + identityCard.substring(10, 10 + 2);
+        }
+
+        return strBirthday;
+    },
+    // 计算两个日期之间相差的年份
+    getDateYearSub: function (startDateStr, endDateStr) {
+        var day = 24 * 60 * 60 * 1000;
+
+        var sDate = getDate(module.exports.stringReplace(startDateStr, "-", "/"));
+        var eDate = getDate(module.exports.stringReplace(endDateStr, "-", "/"));
+
+        //得到前一天(算头不算尾)
+        // sDate = getDate(sDate.getTime() - day);
+
+        //获得各自的年、月、日
+        var sY = sDate.getFullYear();
+        var sM = sDate.getMonth() + 1;
+        var sD = sDate.getDate();
+        var eY = eDate.getFullYear();
+        var eM = eDate.getMonth() + 1;
+        var eD = eDate.getDate();
+
+        if (eY > sY && sM == eM && sD == eD) {
+            return (eY - sY) + '年';
+        } else {
+            return module.exports.getDateDurationDay(endDateStr, startDateStr) + '天';
+        }
+    },
+    // 特定字符转化
+    getSplitJoin: function (v, n, s) {
+        if (!v) {
+            return;
+        }
+        return v.split(n).join(s ? s : '');
+    },
+    // 数组连接
+    getJoin: function (v, s) {
+        if (!v) {
+            return;
+        }
+        return v.join(s ? s : '');
+    },
+    /**
+     * 处理字符串为*格式，中间显示自定义*号
+     * str 需要处理的字符串
+     * startLength 前面显示的字符串长度
+     * endLength 后面显示的字符串长度
+     */
+    numPwd: function (str, startLength, endLength) {
+        if (str == undefined || str.length == 0) {
+            return "";
+        }
+        var length = str.length;
+        if (length >= startLength + endLength) {
+            //判断当字符串长度为二时,隐藏末尾
+            if (length === 2) {
+                return str.substring(0, 1) + '*';
+            } else if (3 <= length && length <= 10) {
+                return str.substring(0, 1) + '**';
+            }
+            //判断字符串长度大于首尾字符串长度之和时,隐藏中间部分
+            else if (length == 11) {
+                return str.substring(0, startLength) + "****" + str.substring(length - endLength, length);
+            } else if (length > 11) {
+                return str.substring(0, startLength) + "********" + str.substring(length - endLength, length);
+            } else {
+                return str
+            }
+        }
+    },
+
+    // 性别
+    getGender: function (i) {
+        var text = '';
+        if (i == 2) {
+            text = '女';
+        } else if (i === 1) {
+            text = '男';
+        } else {
+            text = '未填写'
+        }
+        return text;
+    },
+
+    // 用户角色
+    userType: function (v) {
+        var t = {
+            text: "普通用户"
+        };
+        if (v == 2) {
+            t = {
+                text: "医生专家",
+                key: 'expert'
+            }
+        }
+        return t;
+    },
+
+    // 系统消息类别；0=非系统消息, 1=系统推送, 2=AI回复, 3=新用户系统问候, 4=新用户医生问候
+    getSystemMsg: function (v) {
+        var arr = [
+            // {value: 0, dec: '非系统消息', avatar: ''},
+            {
+                value: 1,
+                dec: '系统推送',
+                avatar: '推送',
+                title: '系统推送'
+            },
+            {
+                value: 2,
+                dec: '自动回复',
+                avatar: 'AI',
+                title: '智能AI机器人'
+            },
+            {
+                value: 3,
+                dec: '新用户系统问候',
+                avatar: '系统',
+                title: '系统消息'
+            },
+            {
+                value: 4,
+                dec: '新用户医生问候',
+                avatar: '',
+                title: ''
+            },
+        ];
+        var obj = arr[1];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].value === v) {
+                obj = arr[i];
+                break;
+            }
+        }
+        return obj;
+    },
+
+    // 风险等级
+    //   风险等级；0=无，1=低风险，2=中风险，3=高风险
+    getRiskLevel: function (v) {
+
+        var risk = [{
+                name: '中风险',
+                value: 2
+            },
+            {
+                name: '高风险',
+                value: 3
+            },
+            {
+                name: '无',
+                value: 0
+            },
+            {
+                name: '低风险',
+                value: 1
+            },
+        ];
+        var arr = risk.filter(function (item) {
+            return item.value === v
+        })
+        // console.log(arr,'===============')
+        return arr[0] || {};
+    },
+}

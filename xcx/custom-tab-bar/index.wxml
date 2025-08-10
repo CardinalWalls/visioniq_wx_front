@@ -1,0 +1,18 @@
+<wxs src="../utils/common.wxs" module="MyMethods" />
+<view class="nav-box  ios">
+  <view class='nav-tab ios'>
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="item {{currentTab === index?'active':''}}">
+        <view class="item-box" bindtap="gopage" data-url='{{item.pagePath}}' data-index="{{index}}" data-avater="{{minuser.avatar}}">
+          <view class="icon-box">
+            <image mode="aspectFit" src="{{item.selectedIconPath}}" class="icon" wx:if="{{currentTab === index}}"></image>
+            <image mode="aspectFit" src="{{item.iconPath}}" class="icon" wx:else></image>
+          </view>
+          <view class='text'>
+            <view class="txt">{{item.text}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

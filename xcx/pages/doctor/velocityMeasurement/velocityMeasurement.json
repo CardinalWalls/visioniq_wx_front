@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "report-interval": "/components/reportInterval/reportInterval",
+    "intervention-methods": "/components/interventionMethods/interventionMethods",
+    "check-list": "/components/checkList/checkList"
+  },
+  "navigationBarTextStyle": "white"
+}

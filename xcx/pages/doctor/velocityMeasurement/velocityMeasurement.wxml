@@ -1,0 +1,92 @@
+<!--pages/user/manageCheck/manageCheck.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<view class="con">
+  <view class="bg"></view>
+
+  <block wx:if="{{archive && d}}">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="img-box">
+        <icon class="icon-gender{{archive.gender}}-large2"></icon>
+      </view>
+      <view class="text-box">
+        <view class="row-1">
+          <text class="name">{{archive.name}}</text>
+        </view>
+        <view class="idcard">{{MyMethods.numPwd(archive.idcard, 6, 4)}}</view>
+      </view>
+      <text class="age">{{MyMethods.getAgeMothDay(archive.birth)}}</text>
+    </view>
+    
+    <view class="box">
+      <view class="title-box">
+        <text class="name">眼轴长度随时间变化记录</text>
+        <view class="fe"></view>
+      </view>
+
+      <view style="min-height: 800rpx;">
+        <view class="report-vision" wx:if="{{speed && reportList && ((speed.l) && (speed.r && speed.r))}}">
+          <report-interval vision="{{speed}}" reports="{{reportList}}"></report-interval>
+        </view>
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.id}}" hover-class="none" class="no-add" wx:elif="{{loading === false}}">
+          <icon class="icon-nodata-add"></icon>
+          <view class="nodata-add">请录入视力检查数据</view>
+        </navigator>
+        <view class="vision-swiper-loading" style="height: 400px;" wx:if="{{loading}}">
+            <view class="loading-box">
+                <view class="sk-fading-circle">
+                <view class="sk-circle1 sk-circle"></view>
+                <view class="sk-circle2 sk-circle"></view>
+                <view class="sk-circle3 sk-circle"></view>
+                <view class="sk-circle4 sk-circle"></view>
+                <view class="sk-circle5 sk-circle"></view>
+                <view class="sk-circle6 sk-circle"></view>
+                <view class="sk-circle7 sk-circle"></view>
+                <view class="sk-circle8 sk-circle"></view>
+                <view class="sk-circle9 sk-circle"></view>
+                <view class="sk-circle10 sk-circle"></view>
+                <view class="sk-circle11 sk-circle"></view>
+                <view class="sk-circle12 sk-circle"></view>
+                </view>
+                <view class="text">报告生成中...</view>
+            </view>
+            </view>
+      </view>
+      
+    </view>
+
+
+    <!-- 专家干预记录、视力档案记录 -->
+    <view class="tabs">
+      <view class="tabs-item {{tabIndex == 0 ? 'active':''}}" data-index="{{0}}" bind:tap="tabTap">专家干预记录</view>
+      <view class="tabs-item {{tabIndex == 1 ? 'active':''}}" data-index="{{1}}" bind:tap="tabTap">视力档案记录</view>
+    </view>
+
+    <view class="tabs-content">
+      <view hidden="{{tabIndex == 0 ? false:true}}">
+        <view class="no-data-box" wx:if="{{d1.total == 0}}">
+          <no-data></no-data>
+        </view>
+        <view class="intervention-methods" wx:else="">
+          <intervention-methods list="{{d1.list}}" type="{{1}}"></intervention-methods>
+        </view>
+      </view>
+      <view hidden="{{tabIndex == 1 ? false:true}}">
+        <view class="no-data-box" wx:if="{{d.total == 0}}">
+          <no-data></no-data>
+        </view>
+        <view class="intervention-methods" wx:else="">
+          <check-list list="{{d.list}}"></check-list>
+        </view>
+      </view>
+
+    </view>
+    
+  </block>
+</view>
+
+<view class="ios"></view>

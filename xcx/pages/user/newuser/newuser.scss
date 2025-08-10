@@ -1,0 +1,48 @@
+/* pages/user/newuser/newuser.wxss */
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.main-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .add-box {
+    padding-left: 10rpx;
+    margin-top: 34rpx;
+    margin-bottom: 9vh;
+  }
+  .headimg-box {
+    margin-top: 10vh;
+  }
+  .headimg {
+    border: 6rpx solid #ffffff;
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 100%;
+    display: block;
+
+    box-shadow: 0rpx 8rpx 32rpx 5rpx rgba(0, 123, 73, 0.11);
+  // -webkit-box-shadow: -3px 0 20rpx -2px rgba(0, 0, 0, 0.1);
+  // -moz-box-shadow: -3px 0 20rpx -2px rgba(0, 0, 0, 0.1);
+  }
+
+  .phone {
+    color: #1e1e1e;
+    font-size: 40rpx;
+    font-weight: bold;
+    margin-top: 30rpx;
+  }
+}

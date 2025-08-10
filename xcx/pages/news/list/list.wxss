@@ -1,0 +1,54 @@
+/* pages/News/List/List.wxss */
+
+.newlist {
+  padding: 30rpx 20rpx;
+  border-top: 1px solid #f2f2f2;
+}
+
+
+
+.tab-wrap{
+  position: relative;
+  height: 80rpx;
+  z-index: 9999;
+}
+
+
+
+.search-box {
+  width: 710rpx;
+  height: 76rpx;
+  background: #f5f6fa;
+  border-radius: 38rpx;
+  margin: 32rpx auto;
+  display: flex;
+  align-items: center;
+  padding-left: 39rpx;
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+
+.search-box .input {
+  flex: 1;
+  font-size: 24rpx;
+}
+
+.search-box .icon-search {
+  width: 40rpx;
+  height: 76rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+}
+
+.search-box .input-text {
+  flex: 1;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}
+
+.tabs-box {
+  border-bottom: 1px solid #f2f2f2;
+}

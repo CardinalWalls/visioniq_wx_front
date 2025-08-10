@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "SwiperBanner": "/components/swiper/swiper",
+    "my-dialog": "/components/dialog/dialog"
+  },
+  "navigationBarTextStyle": "white"
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "PhoneOpenType": "/components/phoneOpenType/phoneOpenType",
+    "my-half-screen-dialog": "/components/halfScreenDialog/halfScreenDialog"
+  }
+}

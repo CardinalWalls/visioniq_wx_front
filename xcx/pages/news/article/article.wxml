@@ -1,0 +1,13 @@
+<!--pages/PersonalCenter/PromoteRule/PromoteRule.wxml-->
+<import src="../../../components/wxParse/wxParse.wxml" />
+
+<block wx:if="{{d !== ''}}">
+  <!-- 导航 start -->
+  <NavBar navbar-data="{{nvabarData}}"></NavBar>
+  <!-- 导航 end -->
+  
+  <view class="rule-box">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    <view class="ios"></view>
+  </view>
+</block>

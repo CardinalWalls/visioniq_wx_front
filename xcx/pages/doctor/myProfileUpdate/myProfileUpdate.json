@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "user-open-type": "/components/userOpenType/userOpenType",
+    "address": "/components/address/address"
+  }
+}

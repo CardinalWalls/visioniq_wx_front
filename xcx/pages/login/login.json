@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "SwiperBanner": "/components/swiper/swiper",
+    "PhoneOpenType": "/components/phoneOpenType/phoneOpenType",
+    "my-half-screen-dialog": "/components/halfScreenDialog/halfScreenDialog",
+    "NewsList": "/components/newsList/newsList"
+  },
+  "navigationBarTextStyle": "white"
+}

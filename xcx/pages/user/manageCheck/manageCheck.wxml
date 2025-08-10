@@ -1,0 +1,54 @@
+<!--pages/user/manageCheck/manageCheck.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+<view class="con">
+  <view class="bg"></view>
+
+  <block wx:if="{{archive && d}}">
+    <view style="height: {{navheight}}px"></view>
+    <view class="top-box">
+      <view class="img-box">
+        <icon class="icon-gender{{archive.gender}}-large2"></icon>
+      </view>
+      <view class="text-box">
+        <view class="row-1">
+          <text class="name">{{archive.name}}</text>
+        </view>
+        <view class="idcard">{{MyMethods.numPwd(archive.idcard, 6, 4)}}</view>
+      </view>
+      <text class="age">{{MyMethods.getAgeMothDay(archive.birth)}}</text>
+    </view>
+    
+    <!-- <view class="box">
+      <view class="title-box">
+        <text class="name">视力度数数据</text>
+        <view class="fe"></view>
+      </view>
+
+      <view style="min-height: 400rpx;">
+        <view class="report-vision" wx:if="{{vision.length > 0}}">
+          <report-vision vision="{{ vision}}"></report-vision>
+        </view>
+        <navigator url="/pages/addCheck/addCheck?userArchiveId={{archive.id}}" hover-class="none" class="no-add" wx:else="">
+          <icon class="icon-nodata-add"></icon>
+          <view class="nodata-add">请录入视力检查数据</view>
+        </navigator>
+      </view>
+
+    </view> -->
+    
+    <!-- 检查数据 -->
+    <view class="no-data-box" wx:if="{{d.total == 0}}">
+      <no-data></no-data>
+    </view>
+    <check-list list="{{d.list}}" wx:else=""></check-list>
+
+    
+
+  </block>
+</view>
+
+<view class="ios"></view>

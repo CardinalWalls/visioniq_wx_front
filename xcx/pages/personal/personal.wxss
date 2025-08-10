@@ -1,0 +1,217 @@
+@charset "UTF-8";
+/* pages/tabBar/Index/Index.wxss */
+page {
+  background-color: #f9f9f9;
+}
+
+.user-top {
+  background-color: #1fb471;
+}
+
+.user-info {
+  display: flex;
+  padding: 56rpx 54rpx 130rpx 54rpx;
+  align-items: center;
+  color: #fff;
+}
+
+.user-info .headimg {
+  width: 132rpx;
+  height: 132rpx;
+  border: 6rpx solid rgba(255, 255, 255, 0.7);
+  border-radius: 132rpx;
+  display: block;
+}
+
+.user-info .text-box {
+  flex: 1;
+  padding: 0 30rpx;
+}
+
+.user-info .name {
+  font-size: 45rpx;
+  font-weight: bold;
+}
+
+.user-info .phone {
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+
+.user-info .edit {
+  display: flex;
+  align-items: center;
+  color: #99f0bd;
+  font-size: 28rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  background-color: #14a064;
+  padding: 0 24rpx;
+}
+
+.user-info .edit icon {
+  margin-right: 10rpx;
+}
+
+.user-tab {
+  background-color: #fff;
+  border-radius: 15rpx;
+  margin: 0 24rpx;
+  position: relative;
+  z-index: 1;
+  bottom: -60rpx;
+  height: 155rpx;
+  display: flex;
+  align-items: center;
+}
+
+.user-tab .item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-tab .num {
+  font-family: 'fontNumBold';
+  color: #363636;
+  font-size: 48rpx;
+}
+
+.user-tab .text,
+.user-tab .unit {
+  color: #606060;
+  font-size: 28rpx;
+  margin-top: 4rpx;
+}
+
+.pd {
+  padding: 0 24rpx;
+}
+
+.meun-box {
+  margin-top: -64rpx;
+}
+
+.meun-list {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  border-radius: 20rpx;
+}
+
+.meun-list.mg {
+  margin-top: 30rpx;
+}
+
+.meun-list .item {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  position: relative;
+  z-index: 1;
+  font-size: 30rpx;
+}
+
+.meun-list .icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50rpx;
+}
+
+.meun-list .text-box {
+  flex: 1;
+  padding: 0 30rpx;
+  color: #262626;
+  font-weight: bold;
+}
+
+.meun-list .tel {
+  color: #8a8a8a;
+}
+
+.dialog-limit {
+  padding: 30rpx 0;
+}
+
+.dialog-limit .tit {
+  color: #333333;
+  text-align: left;
+}
+
+.dialog-limit .week-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.dialog-limit .week-list .item {
+  margin-bottom: 20rpx;
+  width: 33.3333333%;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-limit .week-list .text {
+  color: #333;
+  font-size: 28rpx;
+}
+
+/* 核销码生成弹窗 */
+.dialog-ewm .weui-dialog {
+  width: 500rpx;
+}
+
+.dialog-ewm .weui-dialog__hd {
+  z-index: 10;
+}
+
+.dialog-ewm .weui-dialog__ft {
+  display: none;
+}
+
+.dialog-ewm .close-box {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.ewm-box {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  border-radius: 10rpx;
+  color: #101010;
+  padding-top: 40rpx;
+}
+
+.ewm-box .title {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.ewm-box .ewm-img {
+  width: 400rpx;
+  height: 400rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.ewm-box .ewm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #d8d8d8;
+}
+
+.ewm-box .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+.ewm-box .hospital {
+  color: #b0aeb7;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}

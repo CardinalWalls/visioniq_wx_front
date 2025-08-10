@@ -1,0 +1,67 @@
+<!--pages/doctor/archivesManage/archivesManage.wxml-->
+<wxs src="../../../utils/common.wxs" module="MyMethods" />
+<!-- 导航 start -->
+<NavBar navbar-data="{{nvabarData}}" class="ref"></NavBar>
+<!-- 导航 end -->
+
+
+<view class="top-box">
+  <view class="search-box">
+    <view class="text-box">
+      <input type="text" class="input-text" placeholder="用户名/手机号/身份证" data-type="searchKey" value="{{formobj.searchKey}}" bindinput="inputChange" cursor-spacing="30" always-embed="true" bindconfirm="tapSearch"></input>
+    </view>
+    <view class="btn" bindtap="tapSearch">
+      <icon class="icon-manger-search"></icon>
+    </view>
+  </view>
+
+  <view class="texts">
+    <text class="txt">总共 {{statistics.total || 0}} 份档案</text>
+    <text class="txt">男性 {{statistics.male || 0}} 人</text>
+    <text class="txt">女性 {{statistics.female || 0}} 人</text>
+  </view>
+</view>
+
+<block wx:if="{{d}}">
+  <no-data wx:if="{{d.total == 0}}"></no-data>
+  <view class="list" wx:else>
+    <block wx:for="{{d.list}}" wx:key="index">
+      <view class="item" data-index="{{index}}" data-type="link" catch:tap="infoDialogOpen">
+        <icon class="icon-gender{{item.gender}}-large" data-index="{{index}}" data-type="dialog" catch:tap="infoDialogOpen"></icon>
+       
+        <view class="text-box">
+            <view class="row-1">
+                <text class="name">{{item.name}}</text>
+                <text class="age">{{MyMethods.getAgeMothDay(item.birth)}}</text>
+                <view class="fe"></view>
+                <!-- blue -->
+                <text class="risk-level {{item.riskLevel === 2 ?'blue':''}}" wx:if="{{item.riskLevel === 2 || item.riskLevel === 3}}">{{MyMethods.getRiskLevel(item.riskLevel).name}}</text>
+            </view>
+            <text class="remark">{{item.remark}}</text>
+        </view>
+        
+        <icon class="icon-select"></icon>
+      </view>
+    </block>
+  </view>
+</block>
+<view class="ios"></view>
+
+
+<my-dialog show="{{isShow}}" title="备注信息" closebtn="{{true}}" bind:close="infoDialogClose" extClass="dialog-book">
+  <view class="info-form">
+    <view class="item">
+      <view class="tit">姓名：{{form.name}}</view>
+    </view>
+    <view class="item">
+      <view class="tit">备注说明</view>
+      <view class="input-box">
+        <input type="text" placeholder-class="input-placeholder" class="input-text" cursor-spacing="60" data-type="remark" value="{{form.remark}}" bindinput="changeInput" placeholder="备注说明：王医生熟人"/>
+      </view>
+    </view>
+  </view>
+  <view slot="footer" class="btn-box">
+    <view class="btn" bindtap="dialogSubmit">提交</view>
+  </view>
+
+</my-dialog>

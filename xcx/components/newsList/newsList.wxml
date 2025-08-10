@@ -1,0 +1,19 @@
+<!--components/NewsList/NewsList.wxml-->
+<wxs src="../../utils/common.wxs" module="MyMethods" />
+
+<block wx:for="{{data}}" wx:key="index">
+
+  <navigator url="/pages/news/detail/detail?id={{item.id}}" class="new-item {{calssname}}">
+    <image lazy-load="true" mode="aspectFill"
+      src="{{MyMethods.requestImgUrl(item.img)}}?x-oss-process=image/resize,l_208" class="img imgbg">
+    </image>
+
+    <view class="fe text-box">
+      <view class="title {{(item.img && item.img !== '') ? '':'hauto'}}">{{item.title}}</view>
+      <view class="dec" wx:if="{{item.summary !== ''}}">{{item.summary}}</view>
+    </view>
+    
+    <view class="look">查看</view>
+  </navigator>
+
+</block>

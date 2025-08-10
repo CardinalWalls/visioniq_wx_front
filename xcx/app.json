@@ -1,0 +1,113 @@
+{
+  "pages": [
+    "pages/loginLoading/loginLoading",
+    "pages/clipperImg/clipperImg",
+    "pages/login/login",
+    "pages/userIndex/userIndex",
+    "pages/doctorIndex/doctorIndex",
+    "pages/operatorIndex/operatorIndex",
+    "pages/tabBar/home/home",
+    "pages/tabBar/user/user",
+    "pages/chatWindow/chatWindow",
+    "pages/addArchives/addArchives",
+    "pages/addCheck/addCheck",
+    "pages/addVisualCheck/addVisualCheck",
+    "pages/personal/personal",
+    "pages/settled/settled"
+  ],
+  "entryPagePath": "pages/login/login",
+  "subpackages": [
+    {
+      "name": "news",
+      "root": "pages/news/",
+      "pages": [
+        "article/article",
+        "risk/risk",
+        "detail/detail",
+        "list/list"
+      ]
+    },
+    {
+      "name": "user",
+      "root": "pages/user/",
+      "pages": [
+        "manageCheck/manageCheck",
+        "newuser/newuser",
+        "modifyInfo/modifyInfo",
+        "phone/phone"
+      ]
+    },
+    {
+      "name": "doctor",
+      "root": "pages/doctor/",
+      "pages": [
+        "velocityMeasurement/velocityMeasurement",
+        "interventionMethods/interventionMethods",
+        "intervention/intervention",
+        "archivesManage/archivesManage",
+        "archivesDetail/archivesDetail",
+        "myProfile/myProfile",
+        "myProfileUpdate/myProfileUpdate",
+        "bookManage/bookManage"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/login/login": {
+      "network": "all",
+      "packages": [
+        "user",
+        "news"
+      ]
+    },
+    "pages/doctorIndex/doctorIndex": {
+      "network": "all",
+      "packages": [
+        "doctor",
+        "news"
+      ]
+    }
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "usingComponents": {
+    "privacy-popup": "/components/privacyPopup/privacyPopup",
+    "Tab": "/components/tab/index",
+    "NavTab": "/custom-tab-bar/index",
+    "no-data": "/components/noData/noData",
+    "NavBar": "/components/navBar/navBar",
+    "mp-sticky": "/components/sticky/index"
+  },
+  "requiredPrivateInfos": [],
+  "permission": {},
+  "tabBar": {
+    "custom": true,
+    "color": "#363636",
+    "selectedColor": "#fe6804",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "iconPath": "/images/tab-icon1.png",
+        "selectedIconPath": "/images/tab-icon1-active.png",
+        "pagePath": "pages/tabBar/home/home",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/images/tab-icon2.png",
+        "selectedIconPath": "/images/tab-icon2-active.png",
+        "pagePath": "pages/tabBar/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {},
+  "plugins": {},
+  "sitemapLocation": "sitemap.json"
+}

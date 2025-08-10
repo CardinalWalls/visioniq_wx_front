@@ -1,0 +1,114 @@
+/* pages/users/index/index.wxss */
+
+page {
+  background-color: #fff !important;
+}
+
+.form-box {
+  padding: 26rpx 26rpx 0 26rpx;
+}
+
+.form-box-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.form-box-tit {
+  font-size: 28rpx;
+  color: #595959;
+  width: 170rpx;
+  line-height: 60rpx;
+}
+
+.form-box-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-input {
+  flex: 1;
+  
+}
+
+.form-input .input-box {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.form-input .input-text {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.form-input .textarea {
+  width: 100%;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #595959;
+  height: 180rpx;
+}
+
+.form-box-item .placeholder-class {
+  font-size: 28rpx;
+  line-height: 60rpx;
+  color: #bfbfbf;
+}
+
+.form-box-item .yzm-box {
+  font-size: 30rpx;
+  width: 160rpx;
+  padding-left: 10rpx;
+  text-align: center;
+  color: #fe6804;
+}
+
+.yzm-text {
+  position: relative;
+  z-index: 1
+}
+
+.form-box-item .yzm-text::before {
+  content: "";
+  width: 1px;
+  height: 30rpx;
+  background-color: #f5f5f5;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.form-box-item .yzm-img {
+  height: 60rpx;
+  width: 150rpx;
+  display: block;
+}
+
+.form-box-item .yzm-box.disabled {
+  color: #bfbfbf;
+}
+
+.btn-fixed {
+  padding: 30rpx;
+}
+
+.btn-fixed .btn {
+  background-color: #fe1d1d;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+
+.phone-btn {
+  padding: 100rpx 50rpx;
+}
+
+.input-placeholder {
+  color:#999999;
+  font-size: 30rpx;
+}

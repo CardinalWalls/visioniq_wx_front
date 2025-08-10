@@ -1,0 +1,9 @@
+<picker 
+    mode="{{mode}}"
+    bindchange="bindchange"
+    range-key="{{rangeKey}}"
+    value="{{listIndex}}" 
+    range="{{list}}"
+>
+  <slot></slot>
+</picker>

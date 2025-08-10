@@ -1,0 +1,124 @@
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/*隐藏滚动条*/
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+.scroll-view {
+  width: 100%;
+  height: 90rpx;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.scroll-view.red {
+  background-color: #ff4444;
+}
+
+.scroll-view.orange {
+  background-color: #ff8412;
+}
+
+.scroll-view.radius {
+  border-radius: 10rpx;
+}
+
+.scroll-view.video-class .tabs{
+  font-size: 38rpx;
+}
+
+.tabs-wrap {
+  padding-bottom: 20rpx;
+}
+
+.scroll-view.red .tabs,
+.scroll-view.orange .tabs {
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.scroll-view.red .tabs-item-cur,
+.scroll-view.orange .tabs-item-cur {
+  color: #fff;
+  font-weight: bold;
+}
+
+.tabs {
+  position: relative;
+  height: 90rpx;
+  color: #595959;
+  display: flex;
+  font-size: 34rpx;
+}
+
+scroll-view::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tabs-scroll {
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+.tabs-scroll .tabs-item {
+  flex: initial !important;
+  text-align: initial !important;
+  display: inline-block !important;
+  padding: 0 26rpx;
+}
+
+.tabs-scroll .tabs-item-child {
+  display: block !important;
+}
+
+.tabs-item {
+  flex: 1;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  transition: color 0.3s ease-in-out;
+}
+
+.tabs-item-cur {
+  color: #2fbe82;
+  font-weight: bold;
+}
+
+.tabs-item-child {
+  display: inline-block;
+}
+
+.scroll-view.red .tabs-line{
+  bottom: 6rpx;
+}
+.tabs-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fe773d;
+  height: 6rpx;
+  width: 0rpx;
+  display: inline-block;
+  border-radius: 10rpx;
+}
+
+.tabs-line.transition {
+  transition: width 0.3s, transform 0.3s;
+}
+
+
+.count {
+  color: #c98a5c;
+  font-weight: normal;
+  margin-left: 10rpx;
+}

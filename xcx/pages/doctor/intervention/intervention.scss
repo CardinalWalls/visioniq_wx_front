@@ -1,0 +1,127 @@
+/* pages/addArchives/addArchives.wxss */
+page {
+  background-color: #f9f9f9;
+}
+.tips {
+  color: #E20202;
+  font-size: 24rpx;
+  padding: 20rpx;
+  line-height: 1.4;
+  background-color: rgba($color: #E20202, $alpha: 0.1);
+}
+.form-list {
+  margin: 20rpx;
+  border-radius: 10rpx;
+  padding: 40rpx 20rpx;
+  background-color: #ffffff;
+  box-shadow: 0px 0 20rpx 0px rgba(0, 0, 0, 0.1);
+
+  .item {
+    margin-bottom: 40rpx;
+  }
+
+  .pick-line {
+    display: flex;
+    align-items: center;
+  }
+
+  .line {
+    width: 33rpx;
+    height: 3rpx;
+    background-color: #e5e5e5;
+    margin: 0 10rpx;
+  } 
+
+  .item-lable {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
+  }
+
+  .require {
+    color: #f83b43;
+    margin-right: 10rpx;
+    &.opa0{
+      opacity: 0;
+    }
+  }
+
+  .name {
+    color: #262626;
+    font-size: 32rpx;
+  }
+
+  .green {
+    color: #45b778;
+    font-size: 26rpx;
+  }
+
+  .item-con {
+    display: flex;
+    align-items: center;
+    background-color: #f6f6f6;
+    min-height: 80rpx;
+    align-items: center;
+    border-radius: 80rpx;
+
+    &.textarea-box {
+      border-radius: 30rpx;
+      padding: 20rpx 0;
+    }
+  }
+  .text-box {
+    flex: 1;
+    padding: 0 20rpx 0 30rpx;
+  }
+
+.input-textarea{
+  width: 100%;
+  height: 700rpx;
+  line-height: 1.6;
+  font-size: 30rpx;
+  overflow-y: scroll;
+  color: #1a1a1a;
+}
+  .input-text {
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #1a1a1a;
+
+    &.tc {
+      text-align: center;
+    }
+  }
+
+  .opacity {
+    opacity: 0;
+  }
+
+  .icon-box {
+    padding-right: 30rpx;
+  }
+}
+
+.protocol-box {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+
+  .link {
+    color: #01c176;
+  }
+}
+
+
+.icon-box-text {
+  font-size: 24rpx;
+  color: #ffffff;
+  width: 210rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  background-color: rgb(246, 155, 24);
+  border-radius: 16rpx;
+}

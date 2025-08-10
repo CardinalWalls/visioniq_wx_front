@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "address": "/components/address/address",
+    "my-dialog": "/components/dialog/dialog",
+    "PhoneOpenType": "/components/phoneOpenType/phoneOpenType"
+  }
+}
